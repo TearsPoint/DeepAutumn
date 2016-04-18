@@ -1,0 +1,102 @@
+﻿button {
+    border-radius: 5px;
+    background-color: white;
+    font-size: 15px;
+    font-family: 'Microsoft YaHei';
+    padding: 6px 12px;
+}
+
+.btn-iphone {
+    border: solid 1px #0079ff;
+    color: #0079ff;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 15px;
+    font-family: 'Microsoft YaHei';
+    padding: 6px 12px;
+}
+
+    .btn-iphone:hover {
+        color: white;
+        background-color: #0079ff;
+        cursor: pointer;
+    }
+
+.btn-iphone-bgt {
+    border: solid 1px #0079ff;
+    border-radius: 5px;
+    background: none;
+    color: #0079ff;
+    font-size: 15px;
+    font-family: 'Microsoft YaHei';
+    padding: 6px 12px;
+}
+
+    .btn-iphone-bgt:hover {
+        color: white;
+        background-color: #0079ff;
+        cursor: pointer;
+    }
+
+/*这种多个background：是为了兼容多种浏览器*/
+.btn-blue {
+    color: white;
+    background: #396b9e;
+    background: -webkit-gradient(linear,left top,left bottom,from(#5f9cc5),to(#396b9e));
+    background: -webkit-linear-gradient(top,#5f9cc5,#396b9e);
+    background: -moz-linear-gradient(top,#5f9cc5,#396b9e);
+    background: -ms-linear-gradient(top,#5f9cc5,#396b9e);
+    background: -o-linear-gradient(top,#5f9cc5,#396b9e);
+    background: linear-gradient(top,#5f9cc5,#396b9e);
+    -webkit-text-shadow: 0 1px 1px #194b7e;
+    -moz-text-shadow: 0 1px 1px #194b7e;
+    text-shadow: 0 1px 1px #194b7e;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    min-width: 80px;
+    text-align: center;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    float: none;
+    height: 33px;
+    text-decoration: none;
+}
+ 
+    .btn-blue:hover {
+        color: white;
+        background: #0079ff;
+        background: -webkit-gradient(linear,left top,left bottom,from(#5f9cc5),to(#0079ff));
+        background: -webkit-linear-gradient(top,#5f9cc5,#0079ff);
+        background: -moz-linear-gradient(top,#5f9cc5,#0079ff);
+        background: -ms-linear-gradient(top,#5f9cc5,#0079ff);
+        background: -o-linear-gradient(top,#5f9cc5,#0079ff);
+        background: linear-gradient(top,#5f9cc5,#0079ff);
+        -webkit-text-shadow: 0 1px 1px #0079ff;
+        -moz-text-shadow: 0 1px 1px #0079ff;
+        text-shadow: 0 1px 1px #0079ff;
+        box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+        text-decoration: none;
+    }
+
+.btn-login {
+    display: block;
+    float: right;
+    margin-right: 12px;
+    background: url(../Images/login-button.png) no-repeat;
+    width: 130px;
+    height: 47px;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+}
+
+
+    .btn-login:hover {
+        background: url(../Images/login-hover.png) no-repeat;
+        width: 130px;
+        height: 47px;
+        border: none;
+        cursor: pointer;
+        text-align: left;
+    }

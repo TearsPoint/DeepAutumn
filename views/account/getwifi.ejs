@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title></title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <script type="text/javascript" src="/Scripts/layout.js"></script>
+    <link rel="stylesheet" href="/Content/css/site.css" />
+    <link rel="stylesheet" href="/Content/css/panel.css" />
+    <link rel="stylesheet" href="/Content/css/input.css" />
+    <link rel="stylesheet" href="/Content/css/button.css" />
+
+    <script type="text/javascript" src="/Scripts/jquery/jquery-1.7.1.js"></script>
+    <script type="text/javascript" src="/Scripts/layout.js"></script>
+    <script type="text/javascript">
+
+        function DoGet() {
+            var url = "http://180.166.7.150/clientApi.do?method=get10mCard&orderId=" + $("#orderId").val();
+            window.open(url);
+
+//            var orderId = $("#orderId").val();
+//            if (orderId != '') {
+//                $.get(
+//                    "/user/ajax.do",
+//                    {
+//                        method: 'orderConnect',
+//                        orderId: orderId,
+//                        rand: Math.random()
+//                    },
+//                    function (data) {
+//                        return;
+//                    }
+//                );
+//            }
+//             jQuery.ajax({
+//                type: "POST",
+//                url: url,//处理请求的action方法
+//                data: "orderId=" & orderId,
+//                dataType: "text",
+//                success: function (data) {
+//
+//                    var result = data.substring(0, data.indexOf(','));
+//                    if (result == '-1') {
+//                        var msg = data.substring(data.indexOf(',') + 1);
+//                        alert(msg);
+//                    } else {
+//
+//                        var res = data.substring(data.indexOf(',') + 1);
+//                        var loginurl = res.split(',')[0];
+//                        var logouturl = res.split(',')[1];
+//                        var cardnumber = res.split(',')[3];
+//                        var pwd = res.split(',')[4];
+//                        $("#result").val("用户名:" + cardnumber + "   " + "密码:" + pwd);
+//                        w.location = 'http://180.166.7.150/service/autoLoginWifi.jsp?loginurl=' + loginurl + '&cardnumber=' + cardnumber + '&pwd=' + pwd + '&logouturl=' + logouturl;
+//
+//                    }
+//
+//                },
+//                error: function (msg) {
+//                    alert("出错了");
+//                }
+//            });
+            return;
+        }
+    </script>
+</head><body>
+<div>
+    <form action="http://180.166.7.150/service/user.do" method="post" id="payFrm" name="payFrm" target="_blank">
+        <input id="method" name="method" type="hidden" value="buy">
+        <input id="confirm" name="confirm" type="hidden" value="yes">
+        <input id="shopCartFlag" name="shopCartFlag" type="hidden" value="shopCart">
+        <input id="cardType" name="cardType" type="hidden" value="1">
+        <input id="cardPayType" name="cardPayType" type="hidden" value="yi">
+        <input id="user_phone" name="user_phone" type="hidden" value="">
+        <input id="smsVerifyCode" type="hidden" name="smsVerifyCode" value="">
+        <input id="isBenJi" name="isBenJi" type="hidden" value="no">
+
+        <div class="queren_2">输入要购买时长卡的手机号码<a target="_blank" href="http://180.166.7.150/service/user.do?method=buy&cardType=1&cardId=2" >加入购物车</a>
+       </div>
+        <div class="queren_3">
+            <div id="loaddiv">
+                <input name="" type="text" class="reset_table_input" id="tel_ph" style="DISPLAY: none; COLOR: #999" value="手机号码">
+                <input name="phone" maxlength="11" type="text" class="reset_table_input" id="tel" placeholder="手机号码">
+            </div>
+        </div>
+        <div>
+            <div id="loaddiv_2">
+                <input name="" type="text" class="reset_table_input" id="tel_1_ph" style="DISPLAY: none; COLOR: #999" value="再次确认您的手机号码">
+                <input name="phone_1" maxlength="11" type="text" class="reset_table_input" id="tel_1" placeholder="再次确认您的手机号码">
+            </div>
+        </div>
+        <div>
+            <p class="qr1_2">支付成功后，帐号信息会显示在支付成功页面。</p>
+            <input id="btnPay"  type="submit" value="提交">
+        </div>
+    </form>
+</div>
+<div>
+    <div id="div_orderId">
+        <input type="text" class="reset_table_input" id="orderId" placeholder="订单号">
+    </div>
+</div>
+
+<button id="doget" onclick="DoGet();">根据订单号获取密码</button>
+<span id="result"></span>
+</body>
+</html>

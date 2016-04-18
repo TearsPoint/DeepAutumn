@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="font-size: 100px;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="author" content="Tencent-CDC">
+    <meta name="copyright" content="Tencent">
+    <title>我和微信的故事</title>
+    <link rel="stylesheet" href="/Content/css/wx/common.css">
+    <script>
+        var evt = "onorientationchange" in window ? "orientationchange" : "resize";
+        function resize() {
+            var html = document.documentElement,
+                    fontSize = 100,//100为根元素字体大小
+                    pageW = 375,//设计稿页面宽度
+                    pageH = 604,//设计稿页面高度
+            //根据具体情况修改宽高值，可以用页面主体内容的宽高值
+                    wk = 375;//页面大小缩放的上限阀值，当页面大小超过此值时将不再放大页面
+            hk = 604;//页面大小缩放的上限阀值，当页面大小超过此值时将不再放大页面
+            if (html.clientWidth / html.clientHeight > pageW / pageH) {
+                if (html.clientHeight <= hk) {
+                    html.style.fontSize = html.clientHeight / pageH * fontSize + "px";
+                } else {
+                    html.style.fontSize = hk / pageH * fontSize + "px";
+                }
+            } else {
+                if (html.clientWidth <= wk) {
+                    html.style.fontSize = html.clientWidth / pageW * fontSize + "px";
+                } else {
+                    html.style.fontSize = wk / pageW * fontSize + "px";
+                }
+            }
+        }
+        resize();
+    </script>
+    <style>html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden
+        }</style>
+</head>
+<iframe id="__WeixinJSBridgeIframe_SetResult" style="display: none;"></iframe>
+<iframe id="__WeixinJSBridgeIframe" style="display: none;"></iframe>
+<body>
+
+<div id="wrapper" class="wrapper" style="display: block; position: relative; width: 100%; height: 100%;">
+    <div class="page page1 play"
+         style="display: block; position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; -webkit-transform: translate3d(0px, 0px, 0px);">
+        <div class="circle">
+            <div class="line line1">
+                <div class="lr"><i></i></div>
+            </div>
+            <div class="line line2"><i></i></div>
+            <div class="line line3">
+                <div class="lr"><i></i></div>
+            </div>
+            <div class="line line4"><i></i></div>
+            <div class="line line5"><i></i></div>
+            <div class="line line6"><i></i></div>
+            <div class="line line7">
+                <div class="lr"><i></i></div>
+            </div>
+            <div class="line line8"><i></i></div>
+            <div class="line line9"><i></i></div>
+            <div class="line line10"><i></i></div>
+            <div class="line line11">
+                <div class="lr"><i></i></div>
+            </div>
+            <div class="line line12">
+                <div class="lr"><i></i></div>
+            </div>
+            <div class="line line13"><i></i></div>
+            <div class="line line14"><i></i></div>
+            <div class="line line15">
+                <div class="lr"><i></i></div>
+            </div>
+        </div>
+        <h2 class="page_title">2015年过去了，我很怀念它。</h2>
+
+        <div class="action_tips">微信将获取你的信息，轻按按钮进入下一步</div>
+    </div>
+    <div class="page page2"
+         style="display: block; position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; -webkit-transform: translate3d(0px, 800px, 0px);">
+        <h2 class="page_title">那一天，我与微信相识</h2>
+
+        <div class="ray ray1"><i></i></div>
+        <div class="ray ray2"><i></i></div>
+        <div class="ray ray3"><i></i></div>
+        <div class="ol ol1">
+            <div class="lr"><i></i></div>
+        </div>
+        <div class="ol ol2">
+            <div class="lr"><i></i></div>
+        </div>
+        <div class="dot dot1">
+            <div class="inner">1</div>
+            <div class="line line1"><i></i></div>
+            <div class="line line2">
+                <div class="lr"><i></i></div>
+            </div>
+            <div class="line line3"><i></i></div>
+            <div class="line line4"><i></i></div>
+        </div>
+        <div class="dot dot2">
+            <div class="inner">1</div>
+            <div class="line line1"><i></i></div>
+            <div class="line line2">
+                <div class="lr"><i></i></div>
+            </div>
+            <div class="line line3"><i></i></div>
+            <div class="line line4"><i></i></div>
+            <div class="line line5">
+                <div class="lr"><i></i></div>
+            </div>
+            <div class="line line6"><i></i></div>
+        </div>
+        <div class="dot dot3">
+            <div class="inner">1</div>
+            <div class="line line1"><i></i></div>
+            <div class="line line2">
+                <div class="lr"><i></i></div>
+            </div>
+            <div class="line line3"><i></i></div>
+            <div class="line line4">
+                <div class="lr"><i></i></div>
+            </div>
+        </div>
+        <div class="section section1"><p class="data">2013.02.23</p>
+            <p>我来到了微信星球</p>
+            <p>我是第</p>
+            <p class="data">342909692</p>
+            <p>个微信用户</p></div>
+        <div class="section section2 "><p class="data">2014.02.15</p>
+            <p>我发送了第一条朋友圈</p>
+            <p>向世界问好</p></div>
+        <div class="section section3">
+            <div class="avatar"><img
+                        src="/Images/mmhead/head1.jpg"
+                        alt="avatar"></div>
+            <p class="data">John.Xiong</p>
+            <p>是我的第一个朋友</p>
+            <p>PS: 你们现在还在联系吗</p></div>
+    </div>
+</div>
+
+<div id="landscape_hinter">
+    <div class="hinter_phone"></div>
+    <div class="hinter_rotate"></div>
+    <div class="hinter_text">竖屏体验效果更佳</div>
+</div>
+
+<div class="point animation page1">
+    <div class="dot">1</div>
+    <div class="after_wrap">
+        <div class="after">1</div>
+    </div>
+    <div class="touch_tip"></div>
+    <div class="touch_effect">1</div>
+</div>
+
+
+<a href="javascript:;" id="bgMusicContr" class="music playing"></a>
+<audio id="bgMusic" src="https://res.wx.qq.com/zh_CN/htmledition/getmyrelationwithwx/media/music.1dfb.mp3" loop=""
+       preload="auto"></audio>
+
+<a href="javascript:;" class="open_statement" style="display: none;">官方辟谣声明</a>
+
+<div class="statement">
+    <h2>【辟谣】我和微信的故事是真的！<br>盗号什么的都是谣言！</h2>
+    <p><strong>这里，微信团队郑重声明：</strong></p>
+    <p>“我和微信的2015”是为1月11日微信公开课PRO版准备的官方体验。</p>
+    <p>这个内容本是微信官方为了微信年度大会“微信公开课PRO”做的一个小插曲互动，也是为了纪念2015这一年。绝不是谣言中所说的病毒或者木马！更不存在账号里的钱被盗的情况！</p>
+    <p>我们将通过法律手段追究造谣者的责任，绝不姑息。</p>
+    <div class="toolbar">
+        <a href="https://mp.weixin.qq.com/s?__biz=MjM5MjU0NTc4OQ==&amp;mid=402566366&amp;idx=1&amp;sn=a1a452ab4e1cff764d3a2e4aa0b2f1cc&amp;scene=1&amp;srcid=011094zsYBYUgIx5KwfROQG6&amp;from=singlemessage&amp;isappinstalled=0&amp;uin=MTg2NDAxOTU%3D&amp;key=41ecb04b051110032a77fcf5ca46cfa444d83379149058b7f5315e1cb21614c19d8930fa96d5abb9aa492c4ac84d7f61&amp;devicetype=iMac+MacBookPro11%2C4+OSX+OSX+10.11.1+build(15B42)&amp;version=11020201&amp;lang=zh_CN&amp;pass_ticket=vc4%2FXNnYw6wa7F4gh4GdO6%2BkGhaZe97yEmAo09OyV4A%3D"
+           class="return">辟谣原文</a>
+        <a href="javascript:;" class="close_statement">关闭声明</a>
+    </div>
+</div>
+
+<script id="tmpl" type="text/tmpl">
+<!-- page1 START -->
+<div class="page page1">
+    <div class="circle">
+        <div class="line line1"><div class="lr"><i></i></div></div>
+        <div class="line line2"><i></i></div>
+        <div class="line line3"><div class="lr"><i></i></div></div>
+        <div class="line line4"><i></i></div>
+        <div class="line line5"><i></i></div>
+        <div class="line line6"><i></i></div>
+        <div class="line line7"><div class="lr"><i></i></div></div>
+        <div class="line line8"><i></i></div>
+        <div class="line line9"><i></i></div>
+        <div class="line line10"><i></i></div>
+        <div class="line line11"><div class="lr"><i></i></div></div>
+        <div class="line line12"><div class="lr"><i></i></div></div>
+        <div class="line line13"><i></i></div>
+        <div class="line line14"><i></i></div>
+        <div class="line line15"><div class="lr"><i></i></div></div>
+    </div>
+    <h2 class="page_title">2015年过去了，我很怀念它。</h2>
+    <div class="action_tips">微信将获取你的信息，轻按按钮进入下一步</div>
+</div>
+<!-- page1 END -->
+<!-- page2 START -->
+<div class="page page2">
+    <h2 class="page_title">那一天，我与微信相识</h2>
+
+    <div class="ray ray1"><i></i></div>
+    <div class="ray ray2"><i></i></div>
+    <div class="ray ray3"><i></i></div>
+
+    <div class="ol ol1"><div class="lr"><i></i></div></div>
+    <div class="ol ol2"><div class="lr"><i></i></div></div>
+
+    <div class="dot dot1">
+        <div class="inner">1</div>
+        <div class="line line1"><i></i></div>
+        <div class="line line2"><div class="lr"><i></i></div></div>
+        <div class="line line3"><i></i></div>
+        <div class="line line4"><i></i></div>
+    </div>
+    <div class="dot dot2">
+        <div class="inner">1</div>
+        <div class="line line1"><i></i></div>
+        <div class="line line2"><div class="lr"><i></i></div></div>
+        <div class="line line3"><i></i></div>
+        <div class="line line4"><i></i></div>
+        <div class="line line5"><div class="lr"><i></i></div></div>
+        <div class="line line6"><i></i></div>
+    </div>
+    <div class="dot dot3">
+        <div class="inner">1</div>
+        <div class="line line1"><i></i></div>
+        <div class="line line2"><div class="lr"><i></i></div></div>
+        <div class="line line3"><i></i></div>
+        <div class="line line4"><div class="lr"><i></i></div></div>
+    </div>
+
+    <div class="section section1">
+        <p class="data">{{!it.FstUseWXTime}}</p>
+        <p>我来到了微信星球</p>
+        <p>我是第</p>
+        <p class="data">{{!it.WXRankNum}}</p>
+        <p>个微信用户</p>
+    </div>
+
+    <div class="section section2 {{?!it.FstSnsTime}}section_empty{{?}}">
+        {{? it.FstSnsTime}}
+        <p class="data">{{!it.FstSnsTime}}</p>
+        <p>我发送了第一条朋友圈</p>
+        <p>向世界问好</p>
+        {{??}}
+        <p>亲爱的</p>
+        <p>微信是一种生活方式</p>
+        <p>发一条朋友圈</p>
+        <p>向世界问好吧</p>
+        {{?}}
+    </div>
+
+    <div class="section section3">
+        {{? it.FstFriendNickName}}
+        <div class="avatar"><img src="{{=it.FstFriendImg}}" alt="avatar">
+        </div>
+        <p class="data">{{!it.FstFriendNickName}}</p>
+        <p>是我的第一个朋友</p>
+        <p>PS: 你们现在还在联系吗</p>
+        {{??}}
+        <p>打开微信</p>
+        <p>寻找你的</p>
+        <p>第一个好友吧</p>
+        {{?}}
+    </div>
+</div>
+<!-- page2 END -->
+<!-- page3 START -->
+<div class="page page3">
+    <h2 class="page_title">这一年，微信上的我</h2>
+
+    <div class="triangle triangle1"><i>1</i></div>
+    <div class="triangle triangle2"><i>1</i></div>
+    <div class="triangle triangle3"><i>1</i></div>
+    <div class="triangle triangle4"><i>1</i></div>
+
+    <div class="ray ray1"><i></i></div>
+    <div class="ray ray2"><i></i></div>
+    <div class="ray ray3"><i></i></div>
+
+    <div class="dot dot1">
+        <div class="inner">1</div>
+        <div class="line line1"><i></i></div>
+        <div class="line line2"><div class="lr"><i></i></div></div>
+    </div>
+    <div class="dot dot2">
+        <div class="inner">1</div>
+        <div class="line line1"><i></i></div>
+        <div class="line line2"><div class="lr"><i></i></div></div>
+    </div>
+    <div class="dot dot3">
+        <div class="inner">1</div>
+        <div class="line line1"><i></i></div>
+        <div class="line line2"><div class="lr"><i></i></div></div>
+        <div class="line line3"><i></i></div>
+    </div>
+
+    <div class="section section1 {{?it.SnsNum == 0}}section_empty{{?}}">
+        <h3>朋友圈</h3>
+        {{? it.SnsNum == 0}}
+        <p>亲爱的</p>
+        <p>微信是一种生活方式</p>
+        <p>发一条朋友圈</p>
+        <p>向世界问好吧</p>
+        {{??}}
+        <p>这一年</p>
+        <p>我一共发了</p>
+        <p><span class="data">{{!it.SnsNum}}</span>条朋友圈</p>
+        {{?}}
+    </div>
+
+    <div class="section section2">
+        <h3>微信红包</h3>
+        {{? it.RecRedEnvelope == 0 && it.SendRedEnvelope == 0 }}
+        <p>亲爱的</p>
+        <p>有微信红包</p>
+        <p>才叫过年</p>
+        {{??}}
+        <p>这一年</p>
+        <p>我共收到</p>
+        <p><span class="data">{{!it.RecRedEnvelope}}</span>个红包</p>
+        <p>发出</p>
+        <p><span class="data">{{!it.SendRedEnvelope}}</span>个红包</p>
+        {{?}}
+    </div>
+
+    <div class="section section3">
+        <h3>地理位置</h3>
+        {{? it.isLocateEmpty }}
+        <p>世界那么大</p>
+        <p>该出来看看了</p>
+        {{??}}
+            <p>这一年</p>
+            <p><span class="data city">{{!it.locateCity}}</span>留下了我的足迹</p>
+            <p>PS: 这是你在朋友圈</p>
+            <p>签到留下的足迹哦</p>
+        {{?}}
+    </div>
+</div>
+<!-- page3 END -->
+<!-- page4 START -->
+<div class="page page4">
+    <h2 class="page_title">这一年，微信上的我们</h2>
+
+    <div class="rect rect1"><i></i></div>
+    <div class="rect rect2"><i></i></div>
+    <div class="rect rect3"><i></i></div>
+
+    <div class="circle circle1"><i></i></div>
+    <div class="circle circle2"><i></i></div>
+
+    <div class="ray ray1"><i></i></div>
+    <div class="ray ray2"><i></i></div>
+    <div class="ray ray3"><i></i></div>
+    <div class="ray ray4"><i></i></div>
+    <div class="ray ray5"><i></i></div>
+    <div class="ray ray6"><i></i></div>
+    <div class="ray ray7"><i></i></div>
+    <div class="ray ray8"><i></i></div>
+    <div class="ray ray9"><i></i></div>
+    <div class="ray ray10"><i></i></div>
+
+    <div class="dot dot1">
+        <div class="inner">1</div>
+        <div class="line line1"><div class="lr"><i></i></div></div>
+        <div class="line line2"><i></i></div>
+    </div>
+    <div class="dot dot2">
+        <div class="inner">1</div>
+        <div class="line line1"><i></i></div>
+        <div class="line line2"><div class="lr"><i></i></div></div>
+    </div>
+    <div class="dot dot3">
+        <div class="inner">1</div>
+        <div class="line line1"><i></i></div>
+        <div class="line line2"><div class="lr"><i></i></div></div>
+        <div class="line line3"><i></i></div>
+    </div>
+
+    <div class="section section1">
+        {{? it.AllFriendNum == 0}}
+        <p>快打开微信</p>
+        <p>添加好友吧</p>
+        {{??}}
+        <p>我新认识了</p>
+        <p><span class="data">{{!it.AddFriendNum}}</span>个好友</p>
+        <p>好友人数已经达到</p>
+        <p><span class="data">{{!it.AllFriendNum}}</span>个</p>
+        {{?}}
+    </div>
+
+    <div class="section section2 {{?it.RecLike == 0}}section_empty{{?}}">
+        {{? it.RecLike == 0}}
+        <p>亲爱的</p>
+        <p>快和你的朋友</p>
+        <p>“赞”起来</p>
+        {{??}}
+        <p>我收获了朋友们的</p>
+        <p><span class="data">{{!it.RecLike}}</span>个赞</p>
+        <p>有朋友真好!</p>
+        {{?}}
+    </div>
+
+    <div class="section section3 {{?it.Steps == 0 || it.NeedAttention == 1}}section_empty{{?}}">
+        {{? it.NeedAttention == 0}}
+            {{? it.Steps == 0}}
+            <p>暂时没有</p>
+            <p>任何步数数据</p>
+            <p>快来关注微信运动吧</p>
+            {{??}}
+            <p>我在微信运动上</p>
+            <p>走出了</p>
+            <p class="steps"><span class="data">{{!it.Steps}}</span>步</p>
+                {{? it.Marathon != 0 }}
+                <p>相当于跑了</p>
+                <p><span class="data">{{!it.Marathon}}</span>个马拉松</p>
+                {{?}}
+            {{?}}
+        {{?}}
+
+        {{? it.NeedAttention == 1}}
+        <p>暂时没有</p>
+        <p>任何步数数据</p>
+        <p>快来关注微信运动吧</p>
+        {{?}}
+
+        {{? it.NeedAttention == -1}}
+        <p>获取微信运动数据出错。</p>
+        {{?}}
+    </div>
+</div>
+<!-- page4 END -->
+<!-- page5 START -->
+<div class="page page5">
+    <div class="end"></div>
+    <h2 class="page_title">重新回顾<br>你和微信的故事</h2>
+</div>
+<!-- page5 END -->
+
+</script>
+<script src="https://res.wx.qq.com/open/libs/jquery/1.11.3/jquery.js"></script>
+<script src="https://res.wx.qq.com/zh_CN/htmledition/getmyrelationwithwx/js/vendor/doT.min.js"></script>
+<script src="https://res.wx.qq.com/zh_CN/htmledition/getmyrelationwithwx/js/vendor/moment.min.js"></script>
+<script src="https://res.wx.qq.com/zh_CN/htmledition/getmyrelationwithwx/js/vendor/preloader.js"></script>
+<script src="https://res.wx.qq.com/zh_CN/htmledition/getmyrelationwithwx/js/vendor/iSlider.js"></script>
+<script>
+    // 预加载资源
+    var preload = [
+        'https://res.wx.qq.com/zh_CN/htmledition/getmyrelationwithwx/media/music.1dfb.mp3',
+        'https://res.wx.qq.com/zh_CN/htmledition/getmyrelationwithwx/images/bg@2x.4612.jpg',
+        'https://res.wx.qq.com/zh_CN/htmledition/getmyrelationwithwx/images/logo@2x.595c.png',
+        'https://res.wx.qq.com/zh_CN/htmledition/getmyrelationwithwx/images/end@2x.2a0e.png',
+        'https://res.wx.qq.com/zh_CN/htmledition/getmyrelationwithwx/images/sound@2x.257e.png',
+        'https://res.wx.qq.com/zh_CN/htmledition/getmyrelationwithwx/images/sound_muted@2x.a2c6.png',
+        'https://res.wx.qq.com/zh_CN/htmledition/getmyrelationwithwx/images/hand@2x.34a4.png',
+        'https://res.wx.qq.com/zh_CN/htmledition/getmyrelationwithwx/images/rect_dashed@2x.8e8d.png',
+        'https://res.wx.qq.com/zh_CN/htmledition/getmyrelationwithwx/images/triangle@2x.77c4.png',
+        'https://res.wx.qq.com/zh_CN/htmledition/getmyrelationwithwx/images/triangle_solid@2x.66a3.png',
+        'https://res.wx.qq.com/zh_CN/htmledition/getmyrelationwithwx/images/close@2x.4a0d.png',
+        'https://res.wx.qq.com/zh_CN/htmledition/getmyrelationwithwx/images/source@2x.bdad.png'
+    ];
+
+    // 线上数据
+    var wechatPro = {"FstUseWXTime": 20130223, "WXRankNum": 342909692, "FstFriendNickName": "John.Xiong", "FstFriendImg": "http:\/\/wx.qlogo.cn\/mmhead\/Q3auHgzwzM6LBRfun5YKWUB1NjthqSf1FdGdVef6P1KFq9HgS5CVPA\/132", "SnsNum": 82, "SnsRankNum": 248630709, "LocateNum": 5, "AddFriendNum": 154, "AllFriendNum": 245, "BoyFriendNum": 133, "GirlFriendNum": 112, "SendLike": 730, "RecLike": 248, "RecRedEnvelope": 464, "SendRedEnvelope": 775, "LocateCountryList": ["广州市", "深圳市", "珠海市", "衡阳市", "长沙市"], "FriendCountryList": ["上海市", "云南省", "北京市", "安徽省", "山东省", "广东省", "江苏省", "江西省", "浙江省", "湖北省", "湖南省", "贵州省", "陕西省"], "FstSnsTime": 1392445642, "FstSnsType": 3, "NeedAttention": 0, "Steps": 1274871};
+
+    wechatPro.WXRankNum = wechatPro.WXRankNum >= 1000000000 ? '999999999+' : wechatPro.WXRankNum;
+    wechatPro.FstSnsTime = wechatPro.FstSnsTime ? moment.unix(wechatPro.FstSnsTime).format('YYYY.MM.DD') : false;
+    wechatPro.FstUseWXTime = moment(wechatPro.FstUseWXTime, 'YYYYMMDD').format('YYYY.MM.DD');
+    wechatPro.Marathon = Math.floor(wechatPro.Steps / 52500);
+    wechatPro.isLocateEmpty = typeof wechatPro.LocateCountryList == 'undefined' || wechatPro.LocateCountryList.length == 0; // 判断是否有地理数据
+    wechatPro.locateCity = !wechatPro.isLocateEmpty ? wechatPro.LocateCountryList[0] : false; // 显示国内第一个城市
+
+    // 国内城市删除最后一个市字
+    if (wechatPro.locateCity && wechatPro.locateCity.substr(-1) == '市') {
+        wechatPro.locateCity = wechatPro.locateCity.substr(0, wechatPro.locateCity.length - 1);
+    }
+
+    var tempFn = doT.template(jQuery('#tmpl').html());
+    jQuery('#wrapper').html(tempFn(wechatPro));
+</script>
+<script src="https://res.wx.qq.com/zh_CN/htmledition/getmyrelationwithwx/js/common.ecdd.js"></script>
+
+
+<div style="position: absolute; left: -1000px; top: 0px; width: 1px; height: 1px; overflow: hidden;">
+    <img src="https://res.wx.qq.com/zh_CN/htmledition/getmyrelationwithwx/images/logo@2x.595c.png">
+    <img src="https://res.wx.qq.com/zh_CN/htmledition/getmyrelationwithwx/images/end@2x.2a0e.png">
+    <img src="https://res.wx.qq.com/zh_CN/htmledition/getmyrelationwithwx/images/sound@2x.257e.png">
+    <img src="https://res.wx.qq.com/zh_CN/htmledition/getmyrelationwithwx/images/sound_muted@2x.a2c6.png">
+    <img src="https://res.wx.qq.com/zh_CN/htmledition/getmyrelationwithwx/images/bg@2x.4612.jpg">
+    <img src="https://res.wx.qq.com/zh_CN/htmledition/getmyrelationwithwx/images/hand@2x.34a4.png">
+    <img src="https://res.wx.qq.com/zh_CN/htmledition/getmyrelationwithwx/images/rect_dashed@2x.8e8d.png">
+    <img src="https://res.wx.qq.com/zh_CN/htmledition/getmyrelationwithwx/images/triangle@2x.77c4.png">
+    <img src="https://res.wx.qq.com/zh_CN/htmledition/getmyrelationwithwx/images/triangle_solid@2x.66a3.png">
+    <img src="https://res.wx.qq.com/zh_CN/htmledition/getmyrelationwithwx/images/close@2x.4a0d.png">
+    <img src="https://res.wx.qq.com/zh_CN/htmledition/getmyrelationwithwx/images/source@2x.bdad.png">
+</div>
+</body>
+</html>

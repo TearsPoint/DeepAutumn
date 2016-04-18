@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html id="chat_view">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>socket</title>
+    <style type="text/css">
+        #chat_panel {
+            position:relative;
+            text-align: left;
+            height: 90%;
+            overflow: hidden;
+            width:960px;
+            left:50%;
+            right:50%;
+            margin-left:-480px;
+            vertical-align: text-bottom;
+        }
+
+    </style>
+    <link rel="stylesheet" href="/Content/css/button.css" />
+    <script type="text/javascript">
+
+    </script>
+</head>
+<body>
+<div id="chat_panel">
+    <table style="width: 100%; background-color: #ffffff;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td rowspan="2" style="width: 220px;">
+                <select id="selOnline" multiple="multiple" style="width: 200px; height: 400px;">
+                </select>
+            </td>
+            <td>
+                <div style="height: 340px; background: #eeeeee; padding: 10px; overflow: auto;">
+                    <div id="message">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="height: 25px; text-align: left;">
+                <select id="selMsgTo">
+                    <option value="0">所有人</option>
+                </select>&nbsp;&nbsp; 内容:&nbsp;
+                <input id="txtSend" type="text" style="width: 360px;" />
+                <button id="btn_send_chat">发送</button>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width" />
+    <meta name="baidu-site-verification" content="RRolCUMurk" />
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="../Content/css/site.css" />
+    <!--<link rel="stylesheet" href="../Content/css/panel.css" />-->
+    <!--<link rel="stylesheet" href="../Content/css/input.css" />-->
+    <!--<link rel="stylesheet" href="../Content/css/button.css" />-->
+</head>
+<body class="full_noscroll_body">
+<!--<div>-->
+    <!--<div class="fb_blue_p magenta m_l_r_16">-->
+        <!--<i alt="warning" class="f_l_m001 img sp_001 w_h_18_001"></i>-->
+        <!--<div class="b_f_m_0 f_13_lh_16">-->
+            <!--<div id="sp_waring_msg">。。。</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="_54ng" >-->
+        <!--<ul class="_54nf" role="menu">-->
+            <!--<li class="_54ni _4fav">-->
+                <!--<a class="_54nc _4faw" role="menuitem" tabindex="0">-->
+                    <!--<div class="_4fax _ftt" ></div>-->
+                    <!--<div class="_4fay">-->
+                        <!--<div class="_nmp mvs">-->
+                            <!--<span class="_nmq prl  _50f6" >￥0.00</span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</a>-->
+            <!--</li>-->
+            <!--<li class="_54ni" >-->
+                <!--<a class="_54nc _4faw" role="menuitem" tabindex="0">-->
+                    <!--<div class="_4fax _ftt" ></div>-->
+                    <!--<div class="_4fay">-->
+                        <!--<div class="_nmp mvs" >-->
+                            <!--<span class="_nmq prl  _50f6">￥130.00</span>-->
+                            <!--<span class="_nmo pll _50f8  _5kx5">预计覆盖17,000 - 44,000</span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</a>-->
+            <!--</li>-->
+            <!--<li class="_54ni" >-->
+                <!--<a class="_54nc _4faw" role="menuitem" tabindex="0">-->
+                    <!--<div class="_4fax _ftt" ></div>-->
+                    <!--<div class="_4fay">-->
+                        <!--<div class="_nmp mvs" >-->
+                            <!--<span class="_nmq prl  _50f6">￥380.00</span>-->
+                            <!--<span class="_nmo pll _50f8  _5kx5">预计覆盖87,000 - 94,000</span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</a>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</div>-->
+<!--</div>-->
+
+
+<div class="wrap">
+<div id="main_container">
+    <div class="panel main-panel" id="panel-0">
+        <div class="accountHeader">
+            <div class="avatar_wrap">
+                <img src="..\Images\user-manage-icon.png" width="40" height="40">
+                <span id="user_online_state" class="state_online"></span>
+            </div>
+            <span id="user_nick" class="text-ellipsis user_nick">["CurrentUserName"] </span>
+            <span id="user_desc" class="text-ellipsis user_desc"></span>
+            <div class="icons_list">
+                <!--@using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))-->
+                <!--{-->
+                <!--@Html.AntiForgeryToken()-->
+                <a href="javascript:document.getElementById('logoutForm').submit()" class="a-exit" title="注销">注销</a>
+                <!--}-->
+            </div>
+        </div>
+        <div class="panel_container">
+            <div class="panel-header header-font font2center">管理菜单</div>
+            <div id="left-panel-content" class="panel-content nui-scroll">
+                <ul class="ul-menu-list">
+                    <li id="menu_1">用户管理</li>
+                    <li id="menu_2">部门管理</li>
+                    <li id="menu_3">企业职工管理</li>
+                </ul>
+            </div>
+        </div>
+        <div class="panel-footer"></div>
+    </div>
+</div>
+<div id="container" class="container" style="display: block;">
+    <div class="panel detail-panel" id="panel-5" style="transition: -webkit-transform 0.4s cubic-bezier(0, 1, 0, 1); -webkit-transition: -webkit-transform 0.4s cubic-bezier(0, 1, 0, 1); -webkit-transform: translate3d(0, 0, 0); display: block;">
+        <div class="panel_container">
+            <div id="panel-detail-header" class="panel-header">
+            </div>
+            <div id="detail_content" class="panel-content nui-scroll">
+                <ul class="ul_detail_content">
+                    <li id="content_1" class="ul_detail_content_li hide">用户管理尚未实现</li>
+                    <li id="content_2" class="ul_detail_content_li hide">部门管理尚未实现</li>
+                    <li id="content_3" class="ul_detail_content_li hide">
+                        <div id="div-query-employe">
+                            <span>姓名</span>
+                            <input id="txtEmployeeName" type="text" />
+                            <button id="btnQuery" class="btn-blue">查询</button>
+                            <button id="btnAddEmp" class="btn-blue">新增</button>
+                        </div>
+                        <div id="panel-detail-content" class="panel-content nui-scroll">
+                            <div id="panel-employee">
+                                <div id="div_employees" class="div_table">
+                                    <div>
+                                        <ul>
+                                            <li class="_1">职工编号</li>
+                                            <li class="_2">姓名</li>
+                                            <li class="_3">民族</li>
+                                            <li class="_4">出生日期</li>
+                                            <li class="_5">年龄</li>
+                                            <li class="_6">部门</li>
+                                            <li class="_7">职位</li>
+                                            <li class="_8">管理</li>
+                                        </ul>
+                                    </div>
+                                    <!--@{-->
+                                    <!--var t = ViewData["Employees"] as IList<Dtotb_Stuffbusic>;-->
+                                    <!--foreach (var item in t)-->
+                                    <!--{-->
+                                    <!--string rowId = string.Format("div_{0}", item.ID);-->
+                                    <!--string birth = item.Birthday == null ? "" : item.Birthday.Value.ToString("yyyy-MM-dd");-->
+                                    <div id="@rowId">
+                                        <ul>
+                                            <li class="_1">@item.ID </li>
+                                            <li class="_2">@item.StuffName</li>
+                                            <li class="_3">@item.Folk</li>
+                                            <li class="_4">@birth</li>
+                                            <li class="_5">@item.Age 岁</li>
+                                            <li class="_6">@item.Branch</li>
+                                            <li class="_7">@item.Business</li>
+                                            <li class="_8">
+                                                <a class="a_do_delete" >删除</a>
+                                                <a class="a_do_edit">编辑</a>
+                                                <!--@{-->
+                                                <!--string doDelete = "javascript:doDelete('" + item.ID + "')";-->
+                                                <!--string doEdit = "javascript:doEdit('" + item.ID + "')";-->
+                                                <!--}-->
+                                                <!--@Html.ActionLink("删除", "DoDelete", "Home", new { @class = "a_do_delete", @title = "删除", @Href = doDelete })-->
+
+                                                <!--@Html.ActionLink("编辑", "DoEdit", "Home", new { @class = "a_do_edit", @title = "编辑", @Href = doEdit })-->
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!--}-->
+                                    <!--}-->
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="panel-detail-footer" class="panel-footer" style="line-height: 45px; text-align: right;">
+            <span id="btn_save_employee" class="btn-blue" style="line-height: 33px; margin-right: 20px;">保存</span>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

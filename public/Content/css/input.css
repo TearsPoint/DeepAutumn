@@ -1,0 +1,28 @@
+﻿
+
+.beauty_big_input {
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    padding: 5px;
+    color: #36bff2;
+    font-size: 32px;
+    font-weight: inherit;
+    font-style: inherit;
+    text-transform: none;
+    text-indent: 0px;
+    box-shadow: inset 1px 1px 2px rgba(0,0,0,0.1);
+    border: 1px solid;
+    height: 36px;
+    line-height: 36px;
+    display: inline-block;
+    list-style: none;
+}
+
+
+    .beauty_big_input:focus {
+        outline: none;
+        border-color: orange;
+        /*box-shadow:1px 1px 10px red, inset 1px 1px 1px green;*/
+        /*box-shadow: 5px 5px 10px #92afec, inset 1px 1px 2px rgba(0,0,0,0.1);*/
+        box-shadow: 1px 1px 10px #36bff2, inset 1px 1px 2px rgba(0,0,0,0.1);
+    }
