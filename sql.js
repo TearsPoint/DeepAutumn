@@ -14,7 +14,7 @@ function DoInstall() {
     }
     
     //sqlexecutor.ExecSql('USE r7gs53056x0gq8dq;');
-    sqlexecutor.ExecSql(sql, undefined,
+    sqlexecutor.ExecSql(sql,
         function (err, rows) {
             if (err) log(err, 3);
             else {  //
