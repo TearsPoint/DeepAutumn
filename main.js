@@ -34,6 +34,7 @@ var about = require('./routes/about');
 var chat = require('./routes/chat');
 var jxdemo = require('./routes/jxdemo');
 var wechat_sto = require('./routes/wechat_sto');
+var test = require('./routes/test');
 
 app.set('views',path.join(__dirname,'views'));
 app.set('view engine','ejs');
@@ -52,6 +53,7 @@ app.use('/about',about);
 app.use('/chat',chat);
 app.use('/jxdemo',jxdemo);
 app.use('/wechat_sto',wechat_sto);
+app.use('/test',test);
 
 
 // catch 404 and forward to error handler
@@ -88,6 +90,7 @@ module.exports = app;
 
 server.listen(config.web_port);
 io.sockets.on('connection', function (socket) {
+    console.log('io.socket.onconnection');
 //    socket.emit('news', { hello: 'world' });
 //    socket.on('my other event', function (data)
 //       console.log('ccc');
@@ -134,9 +137,6 @@ var upgradeHandler = function(request, socket, head) {
 //server.on('request', requestHandler);
 server.on('upgrade', upgradeHandler);
 console.log('服务启动完毕');
-
-
-
 
 //监听web请求
 //app.listen(config.web_port);
