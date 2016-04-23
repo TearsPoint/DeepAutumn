@@ -4,9 +4,10 @@ var runtime = require('../runtime');
 var sqlexecutor = require('../sqlexecutor');
 
 function SetRouter(router) {
-    router.get('/usvc2', function (req, res) {
+    router.get('/eventsvc', function (req, res) {
         res.contentType('application/json');
-        res.send('{"error":1}');
+        
+        res.send('{"eventsvc":1}');
     });
 }
 

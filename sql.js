@@ -7,6 +7,18 @@ var path = require('path');
 var sql = process.argv[2];
 var rdire = process.argv[1];  //e:\MyWorkspace\DeepAutumn\NodeJs\DeepAutumn\sql 
 
+
+function getRootPath() {
+    var strFullPath = "http://localhost:8025/test/user";
+    var a = strFullPath.indexOf("://");
+    var protocal = strFullPath.substring(0,a);
+    var b = strFullPath.substr(a+3);
+    var c = b.indexOf("/");
+    var host= b.substring(0,c+1);
+    rootPath = protocal + "://" + host 
+    return (rootPath);
+}
+
 Exec();
 function Exec() {
     if (sql == null || sql == undefined)
@@ -19,29 +31,28 @@ function Exec() {
         var sqls = [];
         sqls = sql.split('--##');
         if (sqls.length > 1) {
-            sqls.forEach(function (element) {
+            sqls.forEach(function(element) {
                 //console.log(element);
                 ExecSql(element);
             }, this);
+            return;
         }
-        else
-            ExecSql(sql);
     }
-    else
-        ExecSql(sql);
+    console.log(sql);
+    ExecSql(sql);
 }
 
 
 function ExecSql(sql) {
     sqlexecutor.ExecSql(sql,
-        function (err, rows) {
+        function(err, rows) {
             if (err) log(err, 3);
             else {
                 console.log('等待退出...');
-                setTimeout(function () {
+                setTimeout(function() {
                     process.exit();
                 }, 2000);
             }
         }
-        );
+    );
 }

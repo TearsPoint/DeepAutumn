@@ -1,6 +1,82 @@
-<h1><%= title %></h1>
+<!DOCTYPE html>
+<html>
 
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>test demo</title>
+    <script type="text/javascript" src="/Scripts/jquery/jquery-1.7.1.js"></script>
+    <script type="text/javascript" src="/Scripts/modernizr-2.5.3.js"></script>
+    <script type="text/javascript" src="/Scripts/tearspoint.core.js"></script>
+    <script type="text/javascript" src="/Scripts/tearspoint.core.dispatcher.js"></script>
+    <script type="text/javascript">
+        window.onload = function()
+        {
+            $("#btnQuery").bind("click",null, doQuery);
+            $("#btnSave").bind("click",null, doSave);
+        }
+        
+        function doSave() {
+            $.ajax(
+            {
+                url: getRootPath() + "/svc" + "/usersvc/save",
+                data: $("#iform").serialize(),
+                type: 'POST',
+                success: function (data) {
+                    alert(data.data);
+                    if (data.data === "-1") { alert("保存失败"); return; }
+                    // if ($("#id").val() == "-1") {
+                    //     $("#id").val(data);
+                    //}
+                    alert("已保存");
+                }, //显示操作提示
+                error: function(a)
+                {console.log(a);  alert(a.responseText);  }
+            });
+        }
+        
+        function doQuery()
+        {
+            $.getJSON(getRootPath() + "/svc" + "/usersvc",
+            function (data, textStatu, jqXHR) {
+            console.log(data.data);
+                console.log(data);
+            $.each(data.data, function (j, d) {
+                var row = document.createElement("div");
+                row.id = "div_" + d["ID"];
+                var rowContentHtml = " <ul>";
+                var rowContentHtml = rowContentHtml + "  <li class='_1'>" + d["user_name"] + "</li>";
+                var rowContentHtml = rowContentHtml + "  <li class='_2'>" + d["pwd"] + "</li>";
+                var rowContentHtml = rowContentHtml + " </ul>";
+                row.innerHTML = rowContentHtml;
+                $("#queryResult")[0].appendChild(row);
+            }
+            );
+        });
+        }
+    </script>
+</head>
 
-<% data.forEach(function(user){ %>
-  <h2>  <%=user.ID + ',' + user.Character; %></h2>
- <% }); %>
+<body>
+    <div>
+        <form id="iform">
+            <input id='user_name' name="user_name" type="text" />
+            <input id='pwd' name='pwd' type="text" />
+        </form>
+        <button id="btnSave">保存</button>
+    </div>
+    <div>
+        <div>
+            <button id="btnQuery"> Query </button>
+        </div>
+        <div id="queryResult">
+        </div>
+    </div>
+    <div id="content">
+        <h1><%= title %></h1>
+        <% data.forEach(function(user){ %>
+            <h2>  <%=user.ID + ',' + user.Character; %></h2>
+            <% }); %>
+    </div>
+</body>
+
+</html>
