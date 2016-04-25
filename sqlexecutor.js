@@ -4,6 +4,11 @@
 
 var mysql = require('mysql');
 var config = require('./config');
+var fs = require('fs');
+var path = require('path');
+var runtime = require('./runtime');
+var rdire = process.argv[1];
+
 var currentConnection;
 
 function ConnDB(dbname, multipleStatements) {
@@ -18,17 +23,17 @@ function ConnDB(dbname, multipleStatements) {
             multipleStatements: multipleStatements === undefined ? false : multipleStatements
         });
 
-        currentConnection.config.queryFormat = function(query, values) {
+        currentConnection.config.queryFormat = function (query, values) {
             if (!values) return query;
-            return query.replace(/\@(\w+)/g, function(txt, key) {
+            return query.replace(/\@(\w+)/g, function (txt, key) {
                 if (values.hasOwnProperty(key)) {
                     return this.escape(values[key]);
                 }
                 return txt;
             }.bind(this));
         };
-        
-        currentConnection.connect(function(err) {
+
+        currentConnection.connect(function (err) {
             if (err != null) {
                 console.log("Mysql Connect error:" + err, 3);
                 currentConnection.end();
@@ -39,7 +44,7 @@ function ConnDB(dbname, multipleStatements) {
             }
         });
 
-        currentConnection.on('error', function(err) {
+        currentConnection.on('error', function (err) {
             console.log(err, 3);
             ConnDB();
         });
@@ -47,18 +52,18 @@ function ConnDB(dbname, multipleStatements) {
 }
 
 
-function ExecSql(sql, dbname,data, callback) {
+function ExecSql(sql, dbname, data, callback) {
     if (typeof (dbname) == 'function') {
         callback = dbname;
         dbname = config.db_database;
     }
-    if(typeof (data) == 'function') {
+    if (typeof (data) == 'function') {
         callback = data;
         data = dbname;  //values
         dbname = undefined;
     }
     ConnDB(dbname);
-    currentConnection.query(sql, data, function(err, rows) {
+    currentConnection.query(sql, data, function (err, rows) {
         if (err) {
             console.log(err);
             throw err;
@@ -81,13 +86,28 @@ function ExecSql(sql, dbname,data, callback) {
 }
 
 
-function ExecSqls(sql, dbname, callback) {
+function ExecSqls(sql, dbname, data, callback) {
     if (typeof (dbname) == 'function') {
         callback = dbname;
         dbname = config.db_database;
     }
+    if (typeof (data) == 'function') {
+        callback = data;
+        data = dbname;  //values
+        dbname = undefined;
+    }
     ConnDB(dbname, true);
-    currentConnection.query(sql, function(err, rows) {
+
+    if (path.extname(sql) == '.sql') {
+        var filePath = path.join(rdire, '../sql-script/' + sql);
+        sql = fs.readFileSync(filePath, 'utf-8');
+    }
+    sql = sql.replace(/--.*/g, function (txt, key) {
+        if (txt.indexOf('--##') > -1) return txt;
+        return '';
+    }.bind(this));
+    
+    currentConnection.query(sql, data, function (err, rows) {
         if (err) {
             console.log(err);
             throw err;
@@ -114,7 +134,7 @@ function OnConnectSuccess() {
 }
 
 
-module.exports.currentConnection = function() {
+module.exports.currentConnection = function () {
     ConnDB();
     return currentConnection;
 };
