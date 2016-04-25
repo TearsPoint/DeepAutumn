@@ -26,8 +26,10 @@ function SetRouter(router) {
         var uname = req.param('user_name');
         var pwd = req.param('pwd');
         var cpwd = runtime.md5(runtime.md5(pwd));
-        sqlexecutor.ExecSql('insert into user(user_name,pwd) values("' + uname + '","' + cpwd + '");', function(err, rows) {
-            if (err) { res.send(-1); log(err, 3); }
+        //sqlexecutor.ExecSql('insert into user(user_name,pwd) values("' + uname + '","' + cpwd + '");',
+        sqlexecutor.ExecSql('insert into user(user_name,pwd) values(@uname ,@cpwd)', {uname:uname,cpwd:cpwd},
+        function(err, rows) {
+            if (err) { res.send('-1'); log(err, 3); }
             else {
                 data = rows;
                 res.send({ data: data });

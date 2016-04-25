@@ -458,7 +458,9 @@ function SocketClient() {
     this.isConnected = false;
     this.socket = null;
     this.readyStatus = new Array("正在连接", "已建立连接", "正在关闭连接", "已关闭连接");
-    this.socket_server_url = site_nav.is_windows_socketserver ? "ws://" + '192.168.179.1' + ":8023/" : "ws://" + location.hostname + ':8025/';  //ws://192.168.179.1:8088
+    this.socket_server_url = site_nav.is_windows_socketserver ? 
+    "ws://" + '192.168.179.1' + ":8023/" 
+    : "ws://" + location.host + '/';  //ws://192.168.179.1:8088
     //alert(this.socket_server_url);
     this.addMsg = function(msg) {
         var now = new Date();
