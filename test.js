@@ -11,7 +11,38 @@ var rdire = process.argv[1];  //e:\MyWorkspace\DeepAutumn\NodeJs\DeepAutumn\sql
 //Exec();
 //ExecSqls();
 //test();
-customerFormatSqlFile();
+//customerFormatSqlFile();
+console.log(parseInt("3",4));
+
+var a = ["1", "2", "3"].map(parseInt) ;
+console.log(a);
+var b= ["1", "2", "3"];
+b.map(parseInt);
+console.log(b); 
+
+// function parseInt(str, radix) { 
+//     return str+'-'+radix; 
+// };
+var a=["1", "2", "3", "4","5",6,7,8,9,10,11,12,13,14,15];
+a=a.map(parseInt);
+console.log(a);
+
+
+function Person()
+{
+    this.name = "";
+    this.age = 0;
+}
+
+//new 实际干了以下事情
+var obj  = {};
+obj.__proto__ = Person.prototype;
+Person.call(obj); 
+console.log(Person.prototype);
+console.log(obj);
+
+
+
 
 function test() {
     var data;

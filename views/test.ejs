@@ -4,6 +4,26 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>test demo</title>
+    <style type="text/css">
+        .div {
+            Width: 500px;
+            height: 300px;
+            Margin: -150px 0 0 -250px;
+            position: absolute; 
+            background-color: pink; 
+            left: 50%;
+            top: 50%;
+        } 
+        .divr {
+            Width: 500px;
+            height: 300px;
+            Margin: -150px 0 0 -250px;
+            position: relative; 
+            background-color: pink; 
+            left: 50%;
+            top: 50%;
+        }
+    </style>
     <script type="text/javascript" src="/Scripts/jquery/jquery-1.7.1.js"></script>
     <script type="text/javascript" src="/Scripts/modernizr-2.5.3.js"></script>
     <script type="text/javascript" src="/Scripts/tearspoint.core.js"></script>
@@ -76,6 +96,10 @@
         <% data.forEach(function(user){ %>
             <h2>  <%=user.ID + ',' + user.Character; %></h2>
             <% }); %>
+    </div>
+    <div class="div"></div>
+    <div style=" width:800px; height:800px; background-color:green;">
+        <div class="divr"></div>
     </div>
 </body>
 
