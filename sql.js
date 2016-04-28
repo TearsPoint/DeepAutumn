@@ -8,8 +8,8 @@ var sql = process.argv[2];
 var rdire = process.argv[1];  //e:\MyWorkspace\DeepAutumn\NodeJs\DeepAutumn\sql 
 
 
-//Exec();
-ExecSqls();
+Exec();
+//ExecSqls();
 
 function Exec() {
     if (sql == null || sql == undefined)
@@ -31,7 +31,7 @@ function Exec() {
             }
         }
         else
-        ExecSqls();
+        ExecSqls(sql);
     }
     console.log(sql);
     ExecSql(sql);
@@ -53,7 +53,7 @@ function ExecSql(sql) {
 }
 
 
-function ExecSqls() {
+function ExecSqls(sql) {
     if (sql == null || sql == undefined)
         sql = "select * from bi_posts";
  
