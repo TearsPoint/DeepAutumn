@@ -12,8 +12,8 @@ var rdire = process.argv[1];
 var currentConnection;
 
 function ConnDB(dbname, multipleStatements) {
-    console.log('multipleStatements', multipleStatements);
     if (currentConnection === undefined) {
+        console.log('multipleStatements', multipleStatements);
         currentConnection = mysql.createConnection({
             host: config.db_host,
             port: config.db_port,
@@ -135,6 +135,7 @@ function OnConnectSuccess() {
 
 
 module.exports.currentConnection = function () {
+    console.log('conn');
     ConnDB();
     return currentConnection;
 };

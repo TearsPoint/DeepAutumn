@@ -23,18 +23,55 @@ function Exec() {
             var sqls = [];
             sqls = sql.split('--##');
             if (sqls.length > 1) {
-                sqls.forEach(function (element) {
-                    //console.log(element);
-                    ExecSql(element);
-                }, this);
+                var conn = sqlexecutor.currentConnection();
+                //console.log(conn);
+                conn.beginTransaction(function doT(err) {
+                    console.log('beginTransaction');
+                    if (err) {
+                        console.log(err); connection.rollback(function () {
+                            throw err;
+                        });
+                        waitExit(2000);
+                    }
+                    else {
+                        console.log("doTransaction1");
+                        // (function a(p) {
+                        //     console.log(p);
+                        // } (2));
+                        (function doTransaction(i, len, count, callback) {
+                            console.log("doTransaction2");
+                            if (i < len) {
+                                ExecSql(sqls[i]);
+                                doTransaction(i + 1, len, i + 1, callback);
+                            }
+                            else { callback(); }
+                        } (0, sqls.length, 0, function callback() {
+                            console.log("commit");
+                            conn.commit();
+                        }));
+                    }
+                });
+                waitExit(8000);
+
+                // sqls.forEach(function (element) {
+                //     //console.log(element);
+                //     ExecSql(element);
+                // }, this);
                 return;
             }
         }
         else
-        ExecSqls(sql);
+            ExecSqls(sql);
     }
     console.log(sql);
     ExecSql(sql);
+}
+
+function waitExit(time) {
+    console.log('等待退出...');
+    setTimeout(function () {
+        process.exit();
+    }, time);
 }
 
 
@@ -49,15 +86,15 @@ function ExecSql(sql) {
                 }, 2000);
             }
         }
-        );
+    );
 }
 
 
 function ExecSqls(sql) {
     if (sql == null || sql == undefined)
         sql = "select * from bi_posts";
- 
-    sqlexecutor.ExecSqls(sql, {o:'i', value1:'testValue1'},
+
+    sqlexecutor.ExecSqls(sql, { o: 'i', value1: 'testValue1' },
         function (err, rows) {
             if (err) log(err, 3);
             else {
@@ -67,5 +104,5 @@ function ExecSqls(sql) {
                 }, 2000);
             }
         }
-        );
+    );
 }
