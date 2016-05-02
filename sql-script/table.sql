@@ -16,6 +16,8 @@ INSERT INTO TEST(VALUE) VALUES("HELLO4")
 --##
 INSERT INTO TEST(VALUE) VALUES("HELLO5")
 --##
+INSERT INTO TEST(VALUE) VALUES("HELLO6")
+--##
 select * from test;
 --##
 select * from chinesecharactercode limit 1;
