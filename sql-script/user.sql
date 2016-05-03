@@ -1,0 +1,6 @@
+
+--
+create table IF NOT EXISTS user(
+    ID BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT
+    PRIMARY KEY (ID));
+    

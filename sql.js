@@ -9,7 +9,6 @@ var rdire = process.argv[1];  //e:\MyWorkspace\DeepAutumn\NodeJs\DeepAutumn\sql
 
 
 Exec();
-//ExecSqls();
 
 function Exec() {
     if (sql == null || sql == undefined)
@@ -21,34 +20,42 @@ function Exec() {
 
         if (sql.indexOf('--##') > -1) {
             var sqls = [];
+            sql = sql.replace(/--.*/g, '--##');
             sqls = sql.split('--##');
             if (sqls.length > 1) {
                 var conn = sqlexecutor.currentConnection();
                 //console.log(conn);
                 conn.beginTransaction(function doT(err) {
-                    console.log('beginTransaction');
                     if (err) {
-                        console.log(err); connection.rollback(function () {
-                            throw err;
+                        console.log('err');
+                        conn.rollback(function () {
                         });
                         waitExit(2000);
                     }
                     else {
-                        console.log("doTransaction1");
                         // (function a(p) {
                         //     console.log(p);
                         // } (2));
                         (function doTransaction(i, len, count, callback) {
-                            console.log("doTransaction2");
                             if (i < len) {
-                                ExecSql(sqls[i]);
-                                doTransaction(i + 1, len, i + 1, callback);
+                                // ExecSql(sqls[i]);
+                                // doTransaction(i + 1, len, i + 1, callback);
+                                try {
+                                    sqlexecutor.ExecSql(sqls[i], function oncomplete(err, data) {
+                                        try {
+                                            doTransaction(i + 1, len, i + 1, callback);
+                                        } catch (err) {
+                                            conn.rollback();
+                                            return;
+                                        }
+                                    });
+                                } catch (err) { throw err; }
                             }
                             else { callback(); }
                         } (0, sqls.length, 0, function callback() {
-                            console.log("commit");
                             conn.commit();
                         }));
+
                     }
                 });
                 waitExit(8000);
@@ -66,6 +73,7 @@ function Exec() {
     console.log(sql);
     ExecSql(sql);
 }
+
 
 function waitExit(time) {
     console.log('等待退出...');

@@ -3,10 +3,11 @@ create table IF NOT EXISTS test(
     ID BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT, 
     VALUE VARCHAR(50) NOT NULL, 
     PRIMARY KEY (ID));
---##
+    
+--##删除test表中数据
 delete from test;
 --##
-INSERT INTO TEST(VALUE) VALUES("HELLO2")
+INSERT INTO TEST(VALUE) VALUES("HELLO1")
 --##
 INSERT INTO TEST(VALUE) VALUES("HELLO2")
 --##
@@ -20,4 +21,4 @@ INSERT INTO TEST(VALUE) VALUES("HELLO6")
 --##
 select * from test;
 --##
-select * from chinesecharactercode limit 1;
+--##select * from chinesecharactercode limit 1;

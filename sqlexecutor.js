@@ -53,36 +53,43 @@ function ConnDB(dbname, multipleStatements) {
 
 
 function ExecSql(sql, dbname, data, callback) {
-    if (typeof (dbname) == 'function') {
-        callback = dbname;
-        dbname = config.db_database;
-    }
-    if (typeof (data) == 'function') {
-        callback = data;
-        data = dbname;  //values
-        dbname = undefined;
-    }
-    ConnDB(dbname);
-    currentConnection.query(sql, data, function (err, rows) {
-        if (err) {
-            console.log(err);
-            throw err;
+    try {
+        if (sql.trim().length == 0) return;
+        if (typeof (dbname) == 'function') {
+            callback = dbname;
+            dbname = config.db_database;
         }
-        else {
-            if (callback !== undefined)
-                callback(err, rows);
-            console.log("脚本执行成功: " + sql);
-            if (rows != undefined) {
-                if (rows.affectedRows !== undefined)
-                    console.log('affectedRows:' + rows.affectedRows)
-                else if (rows.length > 0) {
-                    for (var i = 0, len = rows.length; i < len; i++) {
-                        console.log(rows[i]);
+        if (typeof (data) == 'function') {
+            callback = data;
+            data = dbname;  //values
+            dbname = undefined;
+        }
+        ConnDB(dbname);
+        currentConnection.query(sql, data, function (err, rows) {
+            if (err) {
+                console.log(err);
+                throw err;
+            }
+            else {
+                if (callback !== undefined) {
+                    try {
+                        callback(err, rows);
+                    } catch (err) { throw err; }
+                }
+                console.log("脚本执行成功: " + sql);
+                if (rows != undefined) {
+                    if (rows.affectedRows !== undefined)
+                        console.log('affectedRows:' + rows.affectedRows)
+                    else if (rows.length > 0) {
+                        for (var i = 0, len = rows.length; i < len; i++) {
+                            console.log(rows[i]);
+                        }
                     }
                 }
             }
-        }
-    });
+        });
+    } catch (err)
+    { throw err; }
 }
 
 
@@ -106,7 +113,7 @@ function ExecSqls(sql, dbname, data, callback) {
         if (txt.indexOf('--##') > -1) return txt;
         return '';
     }.bind(this));
-    
+
     currentConnection.query(sql, data, function (err, rows) {
         if (err) {
             console.log(err);
