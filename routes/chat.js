@@ -2,15 +2,18 @@
  * Created by 衡 on 15-5-17.
  */
 var express = require('express');
-var router = express.Router();
+var runtime = require('../runtime');
+var sqlexecutor = require('../sqlexecutor');
 
-/* GET chat page. */
-router.get('/', function(req, res) {
-    res.render('chat', { title: 'Express' });
-});
+function SetRouter(router) {
+    /* GET chat page. */
+    router.get('/chat', function (req, res) {
+        res.render('chat', { title: 'Express' });
+    });
 
-router.post('/', function(req, res) {
-    res.render('chat', { title: 'Express' });
-});
+    router.post('/chat', function (req, res) {
+        res.render('chat', { title: 'Express' });
+    });
+}
 
-module.exports = router;
+module.exports.SetRouter = SetRouter;

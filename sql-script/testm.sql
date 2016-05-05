@@ -15,13 +15,15 @@
 
 
 --创建存储过程
-create PROCEDURE `r7gs53056x0gq8dq`.`testproc2` (IN icount int) 
+DROP PROCEDURE IF EXISTS  `r7gs53056x0gq8dq`.`testproc2`; 
+CREATE PROCEDURE `r7gs53056x0gq8dq`.`testproc2` (IN icount int) 
  COMMENT '测试proc' 
  DETERMINISTIC 
  READS SQL DATA 
- begin
+  SQL SECURITY DEFINER 
+begin
 if(1=1) then set icount = icount+1;
 end if;
-select icount;
+select icount+1;
 end; 
 

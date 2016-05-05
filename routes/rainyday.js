@@ -2,11 +2,14 @@
  * Created by 衡 on 15-5-16.
  */
 var express = require('express');
-var router = express.Router();
+var runtime = require('../runtime');
+var sqlexecutor = require('../sqlexecutor');
 
-/* GET rainyday page. */
-router.get('/', function(req, res) {
-    res.render('rainyday', { title: 'Express' });
-});
+function SetRouter(router) {
+    /* GET rainyday page. */
+    router.get('/rainyday', function (req, res) {
+        res.render('rainyday', { title: 'Express' });
+    });
+}
 
-module.exports = router;
+module.exports.SetRouter = SetRouter;

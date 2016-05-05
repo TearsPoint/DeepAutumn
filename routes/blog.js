@@ -2,15 +2,18 @@
  * Created by 衡 on 15-5-17.
  */
 var express = require('express');
-var router = express.Router();
+var runtime = require('../runtime');
+var sqlexecutor = require('../sqlexecutor');
 
-/* GET blog page. */
-router.get('/', function(req, res) {
-    res.render('blog', { title: 'Express' });
-});
+function SetRouter(router) {
+    /* GET blog page. */
+    router.get('/blog', function (req, res) {
+        res.render('blog', { title: 'Express' });
+    });
 
-router.post('/', function(req, res) {
-    res.render('blog', { title: 'Express' });
-});
+    router.post('/blog', function (req, res) {
+        res.render('blog', { title: 'Express' });
+    });
+}
 
-module.exports = router;
+module.exports.SetRouter = SetRouter;

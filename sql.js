@@ -68,7 +68,10 @@ function Exec() {
             }
         }
         else
+        {
+            sql = sql.replace(/--.*/g, '');
             ExecSqls(sql);
+        }
     }
     console.log(sql);
     ExecSql(sql);

@@ -153,3 +153,87 @@ function ExecSqls() {
         }
         );
 }
+
+
+
+
+var nums = [3, 1, 2, 7, 9, 8];
+
+console.log(nums instanceof Array);
+console.log(Object.prototype.toString.call(nums)=='[object Array]');
+
+nums.reverse();   //反转
+console.log('reverse():',nums);
+
+var orderByDesc = function(num1,num2)
+{
+    if(num2>num1)
+        return true;
+}
+
+var orderByEsc = function(num1,num2)
+{
+    if(num1>num2)
+        return true;
+}
+
+Array.prototype.orderByDesc = function()
+{
+    Array.prototype.sort.call(this,function(num1,num2)
+    {
+        if(num2>num1)
+            return true;
+    });
+    return this;
+};
+
+
+Array.prototype.orderByEsc = function()
+{
+    Array.prototype.sort.call(this,function(num1,num2)
+    {
+        if(num1>num2)
+            return true;
+    });
+    return this;
+};
+
+//nums.sort(orderByDesc);
+console.log('sortDesc:',nums.orderByDesc());
+//nums.sort(orderByEsc);
+console.log('sortEsc:',nums.orderByEsc());
+
+nums.splice(0, 1,'a');
+console.log(nums);  // [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+nums = nums.slice(0, 1);
+console.log(nums);
+
+var up = function(grade,index,current) {
+    var r = grade += 5;
+    return r;
+}
+var grades = [72, 65, 81, 92, 85];
+var newGrades = grades.map(up,2);
+console.log(newGrades);
+
+
+var objInArray = [
+    {
+        name: 'king',
+        pass: '123',
+        index: 2
+    },
+    {
+        name: 'king1',
+        pass: '234',
+        index: 1
+    }
+];
+
+// 对数组中的对象元素，根据index进行升序
+var compare = function(o1, o2) {
+    return o1.index > o2.index;
+};
+objInArray.sort(compare);
+console.log(objInArray); // true

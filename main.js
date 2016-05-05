@@ -26,17 +26,8 @@ var port    = config.web_port,
 runtime.CurrentApp = app;
 
 //定义路由
-var routes = require('./routes/index');
-var rainyday = require('./routes/rainyday');
-var blog = require('./routes/blog');
-var account = require('./routes/account');
-var about = require('./routes/about');
-var chat = require('./routes/chat');
-var jxdemo = require('./routes/jxdemo');
-var wechat_sto = require('./routes/wechat_sto');
-var test = require('./routes/test');
-var test2 = require('./routes/test2');
-var svc = require('./svc/svc');
+var routes = require('./routes/a.routes');
+var svc = require('./svc/a.svc');
 
 app.set('views',path.join(__dirname,'views'));
 app.set('view engine','ejs');
@@ -47,16 +38,8 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//定义路由
 app.use('/',routes);
-app.use('/rainyday',rainyday);
-app.use('/blog',blog);
-app.use('/account',account);
-app.use('/about',about);
-app.use('/chat',chat);
-app.use('/jxdemo',jxdemo);
-app.use('/wechat_sto',wechat_sto);
-app.use('/test',test);
-app.use('/test2',test2);
 app.use('/svc',svc);
 
 // catch 404 and forward to error handler
@@ -144,84 +127,3 @@ console.log('服务启动完毕');
 //监听web请求
 //app.listen(config.web_port);
 //app.listen();
-
-var nums = [3, 1, 2, 7, 9, 8];
-
-console.log(nums instanceof Array);
-console.log(Object.prototype.toString.call(nums)=='[object Array]');
-
-nums.reverse();   //反转
-console.log('reverse():',nums);
-
-var orderByDesc = function(num1,num2)
-{
-    if(num2>num1)
-        return true;
-}
-
-var orderByEsc = function(num1,num2)
-{
-    if(num1>num2)
-        return true;
-}
-
-Array.prototype.orderByDesc = function()
-{
-    Array.prototype.sort.call(this,function(num1,num2)
-    {
-        if(num2>num1)
-            return true;
-    });
-    return this;
-};
-
-
-Array.prototype.orderByEsc = function()
-{
-    Array.prototype.sort.call(this,function(num1,num2)
-    {
-        if(num1>num2)
-            return true;
-    });
-    return this;
-};
-
-//nums.sort(orderByDesc);
-console.log('sortDesc:',nums.orderByDesc());
-//nums.sort(orderByEsc);
-console.log('sortEsc:',nums.orderByEsc());
-
-nums.splice(0, 1,'a');
-console.log(nums);  // [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-nums = nums.slice(0, 1);
-console.log(nums);
-
-var up = function(grade,index,current) {
-    var r = grade += 5;
-    return r;
-}
-var grades = [72, 65, 81, 92, 85];
-var newGrades = grades.map(up,2);
-console.log(newGrades);
-
-
-var objInArray = [
-    {
-        name: 'king',
-        pass: '123',
-        index: 2
-    },
-    {
-        name: 'king1',
-        pass: '234',
-        index: 1
-    }
-];
-
-// 对数组中的对象元素，根据index进行升序
-var compare = function(o1, o2) {
-    return o1.index > o2.index;
-};
-objInArray.sort(compare);
-console.log(objInArray); // true
