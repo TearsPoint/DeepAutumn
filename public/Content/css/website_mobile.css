@@ -73,7 +73,7 @@ body {
     height: 150px;
     position: static;
     margin: 10px 0px 10px 10px;
-    background-image: url('../../Images/header.jpg');
+    background-image: url('../../images/header.jpg');
     background-repeat: no-repeat;
     background-position: 50% 50%;
     background-size: cover;

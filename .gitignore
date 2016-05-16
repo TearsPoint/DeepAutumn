@@ -17,6 +17,7 @@ DerivedData
 *.ipa
 *.xcuserstate
 config.js
+.idea/
 
 # CocoaPods
 #

@@ -1,13 +1,16 @@
+/**
+ * Created by 衡 on 15-5-16.
+ */
 var express = require('express');
 var runtime = require('../runtime');
 var sqlexecutor = require('../sqlexecutor');
 
 function push(router) {
-    router.get('/eventsvc', function (req, res) {
-        res.contentType('application/json');
-        
-        res.send('{"eventsvc":1}');
+    /* GET home page. */
+    router.get('/', function (req, res) {
+        res.render('default', { title: 'Welcome 1778' });
     });
+
 }
 
 module.exports.push = push;

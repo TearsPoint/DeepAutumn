@@ -32,7 +32,7 @@ function raindrops() {
             engine.rain([engine.preset(0, 2, 0.5), engine.preset(4, 4, 1)], 50);
         }
     };
-    image.src = "../Images/bg.jpg";
+    image.src = "../images/bg.jpg";
     this.canvas.width = this.canvas.clientWidth;
     this.canvas.height = this.canvas.clientHeight;
 }
@@ -71,7 +71,7 @@ function changeTimeLineDisplay(type, is_mobile) {
                    date: '2013-12-16',
                    width: 400,
                    height: 150,
-                   images: ['../Images/bg2.jpg', '../Images/bg3.jpg'],
+                   images: ['../images/bg2.jpg', '../images/bg3.jpg'],
                    speed: 5000
                },
                {
@@ -103,7 +103,7 @@ function changeTimeLineDisplay(type, is_mobile) {
                    title: '画廊',
                    width: 400,
                    height: 150,
-                   images: ['../Images/bg1.jpg', '../Images/bg2.jpg', '../Images/bg3.jpg']
+                   images: ['../images/bg1.jpg', '../images/bg2.jpg', '../images/bg3.jpg']
                },
                {
                    type: 'blog_post',
@@ -111,7 +111,7 @@ function changeTimeLineDisplay(type, is_mobile) {
                    title: '相信',
                    width: 400,
                    content: "我们应当相信，每个人都是带着使命来到人间的。无论他多么的平凡渺小，多么的微不足道，总有一个角落会将他搁置，总有一个人需要他的存在。有些人在属于自己的狭小世界里，守着简单的安稳与幸福，不惊不扰地过一生。有些人在纷扰的世俗中，以华丽的姿态尽情地演绎一场场悲喜人生",
-                   image: '../Images/love.jpg',
+                   image: '../images/love.jpg',
                    readmore: ''
                }
     ];
@@ -172,34 +172,21 @@ function changeTimeLineDisplay(type, is_mobile) {
 
 
 var scripts = {
-    'baidu_stat': '//hm.baidu.com/hm.js?7b75b0a60e7eee892a399711f7358a01',
-    'top':'http://l.tbcdn.cn/apps/top/x/sdk.js?appkey=21792936'
+    // 'baidu_stat': '//hm.baidu.com/hm.js?7b75b0a60e7eee892a399711f7358a01',
+    //'top':'http://l.tbcdn.cn/apps/top/x/sdk.js?appkey=21792936'
 }
 
 var images = {
-    'wallpaper0': '../Images/mac_bg/Andromeda Galaxy.jpg',
-    'wallpaper1': '../Images/bg1.jpg',
-    'wallpaper2': '../Images/bg2.jpg',
-    'wallpaper3': '../Images/bg3.jpg',
-    'wallpaper4': '../Images/bg4.jpg',
-    'wallpaper5': '../Images/bg5.jpg'
-    //'logo1': '../Images/logo32.ico',
-    //'logo2': '../Images/logo64.ico',
-    //'logo3': '../Images/logo128.ico',
-    //'orderedList0': '../Images/orderedList0.png',
-    //'orderedList1': '../Images/orderedList1.png',
-    //'orderedList2': '../Images/orderedList2.png',
-    //'orderedList3': '../Images/orderedList3.png',
-    //'orderedList4': '../Images/orderedList4.png',
-    //'orderedList5': '../Images/orderedList5.png',
-    //'orderedList6': '../Images/orderedList6.png',
-    //'orderedList7': '../Images/orderedList7.png',
-    //'orderedList8': '../Images/orderedList8.png',
-    //'orderedList9': '../Images/orderedList9.png',
-    //'girl1': '../Images/girl_1.jpg',
-    //'girl2': '../Images/girl_2.jpg',
-    //'girl3': '../Images/girl_3.jpg',
-    //'girl4': '../Images/girl_4.jpg'
+    'orderedList0': '../images/orderedList0.png',
+    'orderedList1': '../images/orderedList1.png',
+    'orderedList2': '../images/orderedList2.png',
+    'orderedList3': '../images/orderedList3.png',
+    'orderedList4': '../images/orderedList4.png',
+    'orderedList5': '../images/orderedList5.png',
+    'orderedList6': '../images/orderedList6.png',
+    'orderedList7': '../images/orderedList7.png',
+    'orderedList8': '../images/orderedList8.png',
+    'orderedList9': '../images/orderedList9.png'
 };
 
 
@@ -229,7 +216,7 @@ window.onload = function () {
             scripts : scripts,
             images: images,
             mode: 'text',
-            text: 'DeepAutumn - 加载中...',
+            text: 'welcome 1778 - loding...',
             background: ['#000']   //#2bc9fd
         });
 
@@ -242,7 +229,7 @@ window.onload = function () {
             var h_container = document.getElementById("header_container");
             if (bgc === null && h_container !== null) {
                 bgc = $("<div>").attr("id", "bgAllImage");
-                $("<img>").addClass("bgAllImage").attr("src", "../Images/mac_bg/Andromeda Galaxy.jpg").appendTo(bgc);
+                $("<img>").addClass("bgAllImage").attr("src", "../images/mac_bg/Andromeda Galaxy.jpg").appendTo(bgc);
                 $(bgc).insertBefore($(h_container));
                 $(h_container).slideDown(2000);
             }

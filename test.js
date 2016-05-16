@@ -12,6 +12,7 @@ var rdire = process.argv[1];  //e:\MyWorkspace\DeepAutumn\NodeJs\DeepAutumn\sql
 //ExecSqls();
 //test();
 //customerFormatSqlFile();
+
 console.log(parseInt("3",4));
 
 var a = ["1", "2", "3"].map(parseInt) ;

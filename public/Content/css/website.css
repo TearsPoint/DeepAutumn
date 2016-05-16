@@ -7,8 +7,7 @@ body {
     padding: 0px;
     font-size: 100%;
     font-family: Arial, sans-serif;
-    background-color: #000;
-    /*background-image: url('../../images/mac_bg/Andromeda Galaxy.jpg');*/
+    background-color: #ffffff;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -39,7 +38,7 @@ body {
 }
 
 .div_account .a-exit {
-    background: url(../../Images/exit.png) no-repeat;
+    background: url(../../images/exit.png) no-repeat;
 }
 
 ._54ng {
@@ -96,7 +95,7 @@ ul {
 }
 
 .sp_001 {
-    background-image: url(../../Images/001.png);
+    background-image: url(../../images/001.png);
     background-size: auto;
     background-repeat: no-repeat;
     display: inline-block;
@@ -616,7 +615,7 @@ i.img {
     right: 0px;
     bottom: 0px;
     left: 0px;
-    background-image: url('../../Images/header.jpg');
+    background-image: url('../../images/header.jpg');
     background-repeat: no-repeat;
     background-position: 50% 50%;
     background-size: cover;
@@ -718,7 +717,7 @@ i.img {
 }
 
 #page_box.loading {
-    background: url('../../Images/loader.gif') no-repeat 10px 50%;
+    background: url('../../images/loader.gif') no-repeat 10px 50%;
 }
 
 .page_view #page_box {
@@ -929,7 +928,7 @@ i.img {
 #page_box div.work div.preview a.v {
     top: -24px;
     margin: -24px 0px 0px -68px;
-    background-image: url('../../Images/search.png');
+    background-image: url('../../images/search.png');
 }
 
 #page_box div.work div.preview:hover a.v {
@@ -940,7 +939,7 @@ i.img {
 #page_box div.work div.preview a.d {
     bottom: -24px;
     margin: 0px 0px -24px 20px;
-    background-image: url('../../Images/download.png');
+    background-image: url('../../images/download.png');
 }
 
 #page_box div.work div.preview:hover a.d {
@@ -977,7 +976,7 @@ div.social_logo a {
     right: 0px;
     bottom: 0px;
     left: 0px;
-    background: url('../../Images/search.png') no-repeat 50% 50% rgba(0, 0, 0, 0.7);
+    background: url('../../images/search.png') no-repeat 50% 50% rgba(0, 0, 0, 0.7);
     opacity: 0;
     -moz-transition: all 0.5s;
     -webkit-transition: all 0.5s;
@@ -1113,7 +1112,7 @@ input.contact_button:active {
     right: 0px;
     left: 0px;
     display: none;
-    background: url('../../Images/opacity.png') repeat; /*Fallback for IE*/
+    background: url('../../images/opacity.png') repeat; /*Fallback for IE*/
     /*background-color: rgba(52, 152, 219, 0);*/
 }
 

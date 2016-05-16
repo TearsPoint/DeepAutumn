@@ -5,12 +5,12 @@ var express = require('express');
 var runtime = require('../runtime');
 var sqlexecutor = require('../sqlexecutor');
 
-function SetRouter(router) {
+function push(router) {
     router.get('/account/login', function (req, res) {
         res.render('account/login', { title: 'Express' });
     });
 
-    router.post('/account/LoginSvc', function (req, res) {
+    router.post('/account/loginsvc', function (req, res) {
         runtime.Log("login_key:" + req.param('login_key'), 1);
         var login_key = req.param('login_key');
         var login_pwd = req.param('login_pwd');
@@ -51,4 +51,4 @@ function SetRouter(router) {
     });
 }
 
-module.exports.SetRouter = SetRouter;
+module.exports.push = push;

@@ -3,7 +3,7 @@ var runtime = require('../runtime');
 var sqlexecutor = require('../sqlexecutor');
 
 
-function SetRouter(router) {
+function push(router) {
     router.get('/usersvc', function(req, res) {
         res.contentType('application/json');
         var data;
@@ -38,4 +38,4 @@ function SetRouter(router) {
 }
 
 
-module.exports.SetRouter = SetRouter;
+module.exports.push = push;

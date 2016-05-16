@@ -342,7 +342,7 @@ function setElementValue(elementId, value) {
                         $("#login_from").submit(function () {
                             $.ajax(
                                 {
-                                    url: "../account/LoginSvc",
+                                    url: "../account/loginsvc",
                                     data: $("#login_from").serialize(),
                                     type: 'POST',
                                     success: function (data_auth) {

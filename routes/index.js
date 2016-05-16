@@ -5,46 +5,16 @@ var express = require('express');
 var runtime = require('../runtime');
 var sqlexecutor = require('../sqlexecutor');
 
-function SetRouter(router) {
+function push(router) {
     /* GET home page. */
-    router.get('/', function (req, res) {
+    router.get('/index', function (req, res) {
         res.render('index', { title: 'Express' });
     });
 
     router.get('/contact', function (req, res) {
         res.render('contact', {});
     }
-    );
-    router.post('/contact', function (req, res) {
-        res.render('contact', {});
-    }
-    );
-
-
-    router.get('/timeline', function (req, res) {
-        res.render('timeline', {});
-    }
-    );
-    router.post('/timeline', function (req, res) {
-        res.render('timeline', {});
-    }
-    );
-
-
-    router.get('/mall', function (req, res) {
-        res.render('mall', {});
-    }
-    );
-    router.post('/mall', function (req, res) {
-        res.render('mall', {});
-    }
-    );
-
-
-    router.get('/jxdemo', function (req, res) {
-        res.render('jxdemo', {});
-    }
-    );
+    ); 
 }
 
-module.exports.SetRouter = SetRouter;
+module.exports.push = push;

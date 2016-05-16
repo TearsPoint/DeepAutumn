@@ -9,30 +9,50 @@
             Width: 500px;
             height: 300px;
             Margin: -150px 0 0 -250px;
-            position: absolute; 
-            background-color: pink; 
+            position: absolute;
+            background-color: pink;
             left: 50%;
             top: 50%;
-        } 
+        }
+        
         .divr {
             Width: 500px;
             height: 300px;
             Margin: -150px 0 0 -250px;
-            position: relative; 
-            background-color: pink; 
+            position: relative;
+            background-color: pink;
             left: 50%;
             top: 50%;
         }
     </style>
-    <script type="text/javascript" src="/Scripts/jquery/jquery-1.7.1.js"></script>
-    <script type="text/javascript" src="/Scripts/modernizr-2.5.3.js"></script>
-    <script type="text/javascript" src="/Scripts/tearspoint.core.js"></script>
-    <script type="text/javascript" src="/Scripts/tearspoint.core.dispatcher.js"></script>
+    <script type="text/javascript" src="/scripts/jquery/jquery-1.7.1.js"></script>
+    <script type="text/javascript" src="/scripts/modernizr-2.5.3.js"></script>
+    <script type="text/javascript" src="/scripts/tearspoint.core.js"></script>
+    <script type="text/javascript" src="/scripts/tearspoint.core.dispatcher.js"></script>
     <script type="text/javascript">
         window.onload = function()
         {
             $("#btnQuery").bind("click",null, doQuery);
             $("#btnSave").bind("click",null, doSave);
+            
+            
+            //始终弹出 4
+            for (var i=0; i<5; i++) {
+                $('<p>click me</p>').appendTo('body').click(function() {
+                    alert(i);
+                });
+            }
+            
+            //如出 0，1，2，3，4
+            /* fix: “close” the value of i inside createFunction, so it won't change */
+            var createFunction = function(i) {
+                return function() { alert(i); };
+            };
+ 
+            for (var i=0; i<5; i++) {
+                $('<p>click me</p>').appendTo('body').click(createFunction(i));
+            }
+            
         }
         
         function doSave() {

@@ -75,7 +75,7 @@ begin
         table_name='user' and column_name='photo';
     if @i=0 then alter table user add `photo` varchar(200) null;  end if; 
     
-    --微信
+    --微信号
     select  @i:=count(column_name)  from information_schema.columns where
         table_name='user' and column_name='wechat_no';
     if @i=0 then alter table user add `wechat_no` varchar(200) null;  end if; 

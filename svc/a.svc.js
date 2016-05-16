@@ -3,7 +3,7 @@ var router = express.Router();
 var runtime = require('../runtime');
 var sqlexecutor = require('../sqlexecutor');
 
-require('./usersvc.js').SetRouter(router);
-require('./eventsvc.js').SetRouter(router);
+require('./usersvc.js').push(router);
+require('./eventsvc.js').push(router);
 
 module.exports  = router;

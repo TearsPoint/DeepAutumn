@@ -5,7 +5,7 @@ var express = require('express');
 var runtime = require('../runtime');
 var sqlexecutor = require('../sqlexecutor');
 
-function SetRouter(router) {
+function push(router) {
     /* GET about page. */
     router.get('/about', function (req, res) {
         res.render('about', { title: 'Express' });
@@ -15,4 +15,4 @@ function SetRouter(router) {
     });
 }
 
-module.exports.SetRouter = SetRouter;
+module.exports.push = push;

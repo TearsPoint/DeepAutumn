@@ -5,7 +5,7 @@ var express = require('express');
 var runtime = require('../runtime');
 var sqlexecutor = require('../sqlexecutor');
 
-function SetRouter(router) {
+function push(router) {
     /* GET chat page. */
     router.get('/chat', function (req, res) {
         res.render('chat', { title: 'Express' });
@@ -16,4 +16,4 @@ function SetRouter(router) {
     });
 }
 
-module.exports.SetRouter = SetRouter;
+module.exports.push = push;

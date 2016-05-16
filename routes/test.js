@@ -5,7 +5,7 @@ var express = require('express');
 var runtime = require('../runtime');
 var sqlexecutor = require('../sqlexecutor');
 
-function SetRouter(router) {
+function push(router) {
     /* GET test page. */
     router.get('/test', function (req, res) {
         var data;
@@ -22,4 +22,4 @@ function SetRouter(router) {
     });
 }
 
-module.exports.SetRouter = SetRouter;
+module.exports.push = push;
