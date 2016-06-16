@@ -14,9 +14,23 @@
 -- select * from test; 
 
 
+
+
+drop TABLE if exists ChineseCharacterCode;
+CREATE TABLE if not exists ChineseCharacterCode
+(
+	ID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `Character` varchar(10) NOT NULL,
+    WBCode varchar(10) NOT NULL,
+	SpellCode varchar(10) NOT NULL,
+	WBCode1 varchar(10) NOT NULL,
+    SpellCode1 varchar(10) NOT NULL,
+	RowVersion date NOT NULL
+);
+
 --创建存储过程
-DROP PROCEDURE IF EXISTS  `r7gs53056x0gq8dq`.`testproc2`; 
-CREATE PROCEDURE `r7gs53056x0gq8dq`.`testproc2` (IN icount int) 
+DROP PROCEDURE IF EXISTS  `coredb`.`testproc2`; 
+CREATE PROCEDURE `coredb`.`testproc2` (IN icount int) 
  COMMENT '测试proc' 
  DETERMINISTIC 
  READS SQL DATA 

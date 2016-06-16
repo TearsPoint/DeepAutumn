@@ -18,8 +18,8 @@ CREATE TABLE if not exists user (
 alter table user change id id BIGINT(20) NOT NULL AUTO_INCREMENT;
 --select case @i when 1 then (select 2) else (select 3) end as tt;
 
-DROP PROCEDURE IF EXISTS  `r7gs53056x0gq8dq`.`alter_user`; 
-CREATE PROCEDURE `r7gs53056x0gq8dq`.`alter_user` (IN icount int) 
+DROP PROCEDURE IF EXISTS  `coredb`.`alter_user`; 
+CREATE PROCEDURE `coredb`.`alter_user` (IN icount int) 
  COMMENT 'alter_user' 
  DETERMINISTIC 
  READS SQL DATA 

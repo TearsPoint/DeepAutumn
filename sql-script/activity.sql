@@ -16,8 +16,8 @@ CREATE TABLE if not exists activity (
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 
-DROP PROCEDURE IF EXISTS  `r7gs53056x0gq8dq`.`alter_activity`; 
-CREATE PROCEDURE `r7gs53056x0gq8dq`.`alter_activity` (IN icount int) 
+DROP PROCEDURE IF EXISTS  `coredb`.`alter_activity`; 
+CREATE PROCEDURE `coredb`.`alter_activity` (IN icount int) 
  COMMENT '修改活动表' 
  DETERMINISTIC 
  READS SQL DATA 
@@ -27,7 +27,7 @@ begin
     -- select  @i:=count(column_name)  from information_schema.columns where
     --     table_name='user' and column_name='real_name';
     -- if @i=0 then alter table user add real_name varchar(30) null; end if;
-    
+  
 end; 
 
 call alter_activity(1);
