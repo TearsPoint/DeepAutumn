@@ -6,7 +6,7 @@ function DoInstall()
 {
     //sqlexecutor.ExecSql('DROP DATABASE IF EXISTS blogdb; ','mysql');
     //sqlexecutor.ExecSql('CREATE DATABASE IF NOT EXISTS blogdb; ');
-    sqlexecutor.ExecSql('USE r7gs53056x0gq8dq;');
+    sqlexecutor.ExecSql('USE coredb;');
     sqlexecutor.ExecSql('SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";');
     sqlexecutor.ExecSql('CREATE TABLE IF NOT EXISTS bi_categorys (' +
         'id int(11) NOT NULL AUTO_INCREMENT,' +
