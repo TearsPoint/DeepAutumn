@@ -39,18 +39,18 @@ function push(router) {
             });
     });
 
+    router.get('/account/register', function(req, res) {
+        res.render('register', { title: '加入' });
+    });
+    
+    router.post('/account/regsvc', function(req, res) {
+        var login_key = req.param('login_key');
+        var login_pwd = req.param('login_pwd');
+        var cpwd = runtime.md5(runtime.md5(login_pwd));
 
-    router.get('/getwifi', function(req, res) {
-        res.render('account/getwifi', { title: 'Express' });
+        res.send({info:"正在注册。。。"});
     });
 
-    router.get('/account/login_pv', function(req, res) {
-        res.render('account/login_pv', { title: 'Express' });
-    });
-
-    router.post('/account/login_pv', function(req, res) {
-        res.render('account/login_pv', { title: 'Express' });
-    });
 }
 
 module.exports.push = push;
