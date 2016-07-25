@@ -1,9 +1,9 @@
 var mysql = require('mysql');
-var config = require('./config');
-var sqlexecutor = require('./sqlexecutor')
+var config = require('../config');
+var sqlexecutor = require('../sqlexecutor')
 var fs = require('fs');
 var path = require('path');
-var runtime = require('./runtime');
+var runtime = require('../runtime');
 var sql = process.argv[2];
 var rdire = process.argv[1];  //e:\MyWorkspace\DeepAutumn\NodeJs\DeepAutumn\sql 
 
