@@ -9,10 +9,8 @@
     <meta name="author" content="王衡">
     <meta name="viewport" content="width=device-width" />
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=0" />
-    <link rel="stylesheet" type="text/css" href="/content/css/preloader.css" />
     <script type="text/javascript" src="/scripts/less-1.5.0.min.js"></script>
     <script type="text/javascript" src="/scripts/jquery/jquery-1.7.1.js"></script>
-    <script type="text/javascript" src="/scripts/preloader.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/content/css/website.css" />
     <link rel="stylesheet" type="text/css" href="/content/css/1778.css" media="all" />
     <link rel="stylesheet" type="text/css" href="/content/css/website_mobile.css" media="screen and (max-width: 850px), screen and (orientation:portrait)"
@@ -26,10 +24,21 @@
 </head>
 
 <body class="page-responsive">
-    <div id='welcome' >
+    <div id='welcome'>
         <h1>Welcome 1778</h1>
-        <a class="btn btn-theme-green btn-jumbotron" href="/account/login" rel="nofollow">Sign in</a>
-        <a class="btn btn-theme-green btn-jumbotron" href="/register" rel="nofollow">Sign up</a>
+        <form id='login_from' action="\account\loginsvc" method="post">
+            <div class="form_group">
+                <input id="login_key" name="login_key" placeholder="邮箱\用户名\用机号" type="text" class="noborder_input form_control" />
+                <label class="login_field_icon user" for="profile_email_input"></label>
+            </div>
+            <div class="form_group">
+                <input id="login_pwd" name="login_pwd" placeholder="密码" type="password" class="noborder_input form_control" />
+                <label class="login_field_icon pwd" for="profile_pwd_input"></label>
+            </div>
+            <div class="form_group">
+                <input type="submit" class="btn_login" value="登录" />
+            </div>
+        </form>
     </div>
 </body>
 
