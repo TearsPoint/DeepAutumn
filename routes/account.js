@@ -39,7 +39,7 @@ function push(router) {
         //     });
 
             
-        sqlexecutor.ExecSql('SELECT COUNT(*) AS count FROM user where user_name = @login_key and pwd= @cpwd', {login_key:login_key,cpwd:cpwd}, function(err, rows) {
+        sqlexecutor.ExecSql('SELECT *,1 as count FROM user where user_name = @login_key and pwd= @cpwd', {login_key:login_key,cpwd:cpwd}, function(err, rows) {
                 if (err) { log(err, 3); }
                 if (rows[0].count == 0 || rows[0] === undefined) {
                     //res.contentType('application/json');
@@ -47,14 +47,14 @@ function push(router) {
                     return;
                 }
                 else if (rows[0].count > 0) {
-                    var t = req.session;
+                    req.session.isLogin = true;
+                    req.session.uname = rows[0].user_name;
+                    req.session.uid = rows[0].id;
+                    
 
                     //res.contentType('application/text'); 
                     //res.render('chat');  //只是呈现，客户端的url没有变化
-                    res.writeHead(302, {
-                        'Location': '/index'
-                        //add other headers here...
-                    });
+                    res.writeHead(302, { 'Location': '/index' }); //add other headers here...  
                     res.end();
                     return;
                 }

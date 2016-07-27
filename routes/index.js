@@ -8,9 +8,12 @@ var sqlexecutor = require('../sqlexecutor');
 function push(router) {
     /* GET home page. */
     router.get('/index', function (req, res) {
-        
-
-        res.render('index', { title: '主页', uid:'001', uname: 'admin' });
+        if (!req.session.isLogin) {
+             res.writeHead(302, {  'Location': '/account/login'}); //add other headers here... });
+             res.end();
+             return;
+        }
+        res.render('index', { title: '主页', uid: req.session.uid, uname: req.session.uname });
     });
 
 

@@ -1,6 +1,7 @@
 var runtime = require('./runtime');
 var config =require('./config');
 var express = require('express');
+var session = require('express-session');
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
@@ -35,7 +36,8 @@ app.use(logger('dev'));
 //app.use(bodyParser({limit:'10mb'}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
-app.use(cookieParser());
+app.use(cookieParser('attention')); 
+app.use(session({ secret: 'attention'}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //定义路由
