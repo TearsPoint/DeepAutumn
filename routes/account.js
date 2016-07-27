@@ -17,9 +17,29 @@ function push(router) {
         var cpwd = runtime.md5(runtime.md5(login_pwd));
         runtime.Log("login_pwd:" + cpwd, 1);
 
-        sqlexecutor.ExecSql('SELECT COUNT(*) AS count FROM user ' +
-            'where user_name = \'' + login_key + '\'' +
-            'and pwd=\'' + cpwd + '\'', undefined, function(err, rows) {
+        // sqlexecutor.ExecSql('SELECT COUNT(*) AS count FROM user ' +
+        //     'where user_name = \'' + login_key + '\'' +
+        //     'and pwd=\'' + cpwd + '\'', undefined, function(err, rows) {
+        //         if (err) { log(err, 3); }
+        //         if (rows[0].count == 0 || rows[0] === undefined) {
+        //             //res.contentType('application/json');
+        //             res.send('{"error":“登录失败”}');
+        //             return;
+        //         }
+        //         else if (rows[0].count > 0) {
+        //             //res.contentType('application/text'); 
+        //             //res.render('chat');  //只是呈现，客户端的url没有变化
+        //             res.writeHead(302, {
+        //                 'Location': '/chat'
+        //                 //add other headers here...
+        //             });
+        //             res.end();
+        //             return;
+        //         }
+        //     });
+
+            
+        sqlexecutor.ExecSql('SELECT COUNT(*) AS count FROM user where user_name = @login_key and pwd= @cpwd', {login_key:login_key,cpwd:cpwd}, function(err, rows) {
                 if (err) { log(err, 3); }
                 if (rows[0].count == 0 || rows[0] === undefined) {
                     //res.contentType('application/json');
@@ -27,10 +47,12 @@ function push(router) {
                     return;
                 }
                 else if (rows[0].count > 0) {
+                    var t = req.session;
+
                     //res.contentType('application/text'); 
                     //res.render('chat');  //只是呈现，客户端的url没有变化
                     res.writeHead(302, {
-                        'Location': '/chat'
+                        'Location': '/index'
                         //add other headers here...
                     });
                     res.end();

@@ -14,7 +14,7 @@ create table if not exists organ
 alter table organ add build_on date null; --组织成立时间
 
 insert into organ (organ_name,organ_code,organ_desc,build_on )
-values ('1778','1778','一起出发','13-05-01');
+values ('iHiking.me','iHiking.me','艾嗨肯','13-05-01');
 
 select * from organ;
 

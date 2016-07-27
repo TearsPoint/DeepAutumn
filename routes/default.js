@@ -8,7 +8,7 @@ var sqlexecutor = require('../sqlexecutor');
 function push(router) {
     /* GET home page. */
     router.get('/', function (req, res) {
-        res.render('default', { title: 'Welcome 1778' });
+        res.render('default', { title: 'Welcome iHiking.me' });
     });
 
 }

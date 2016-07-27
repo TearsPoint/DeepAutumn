@@ -24,21 +24,10 @@
 </head>
 
 <body class="page-responsive">
-    <div id='pal_signup'>
-        <h1>Sign up</h1>
-        <form id='reg_from' action="\account\regsvc" method="post">
-            <div class="form_group">
-                <input id="login_key" name="login_key" placeholder="邮箱\用户名\用机号" type="text" class="noborder_input form_control" />
-                <label class="login_field_icon user" for="profile_email_input"></label>
-            </div>
-            <div class="form_group">
-                <input id="login_pwd" name="login_pwd" placeholder="密码" type="password" class="noborder_input form_control" />
-                <label class="login_field_icon pwd" for="profile_pwd_input"></label>
-            </div>
-            <div class="form_group">
-                <input type="submit" class="btn_login" value="Sign up" />
-            </div>
-        </form>
+    <div id='welcome'>
+        <h1>Main</h1>
+        <div>当前用户 <%=uname %>  </div>
+        <div><a href="/account/register?uid=<%=uid %>">完善用户信息</a </div>
     </div>
 </body>
 
