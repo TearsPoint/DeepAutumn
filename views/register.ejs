@@ -9,7 +9,6 @@
     <meta name="author" content="王衡">
     <meta name="viewport" content="width=device-width" />
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=0" />
-    <script type="text/javascript" src="/scripts/less-1.5.0.min.js"></script>
     <script type="text/javascript" src="/scripts/jquery/jquery-1.7.1.js"></script>
     <link rel="stylesheet" type="text/css" href="/content/css/website.css" />
     <link rel="stylesheet" type="text/css" href="/content/css/ihiking.me.css" media="all" />
@@ -28,12 +27,40 @@
         <h1>Sign up</h1>
         <form id='reg_from' action="\account\regsvc" method="post">
             <div class="form_group">
-                <input id="login_key" name="login_key" placeholder="邮箱\用户名\用机号" type="text" class="noborder_input form_control" />
-                <label class="login_field_icon user" for="profile_email_input"></label>
+                <input id="uname" name="uname" placeholder="昵称" type="text" class="noborder_input form_control" />
+                <label class="login_field_icon user" for="uname"></label>
             </div>
             <div class="form_group">
-                <input id="login_pwd" name="login_pwd" placeholder="密码" type="password" class="noborder_input form_control" />
-                <label class="login_field_icon pwd" for="profile_pwd_input"></label>
+                <input id="upwd" name="upwd" placeholder="密码" type="password" class="noborder_input form_control" />
+                <label class="login_field_icon pwd" for="upwd"></label>
+            </div>
+            <div class="form_group">
+                <input id="ureal_name" name="ureal_name" placeholder="真实姓名" type="text" class="noborder_input form_control" />
+                <label class="login_field_icon pwd" for="ureal_name"></label>
+            </div>
+            <div class="form_group">
+                <input id="ugender" name="ugender" placeholder="性别" type="text" class="noborder_input form_control" />
+                <label class="login_field_icon pwd" for="ugender"></label>
+            </div>
+            <div class="form_group">
+                <input id="uidcard" name="uidcard" placeholder="身份证号" type="text" class="noborder_input form_control" />
+                <label class="login_field_icon pwd" for="uidcard"></label>
+            </div>
+            <div class="form_group">
+                <input id="uphone" name="uphone" placeholder="联系电话" type="text" class="noborder_input form_control" />
+                <label class="login_field_icon pwd" for="profile_puphonewd_input"></label>
+            </div>
+            <div class="form_group">
+                <input id="uemail" name="uemail" placeholder="email" type="text" class="noborder_input form_control" />
+                <label class="login_field_icon pwd" for="uemail"></label>
+            </div>
+            <div class="form_group">
+                <input id="uwechat_no" name="uwechat_no" placeholder="微信号" type="text" class="noborder_input form_control" />
+                <label class="login_field_icon pwd" for="uwechat_no"></label>
+            </div>
+            <div class="form_group">
+                <input id="uabout_me" name="uabout_me" placeholder="个性签名" type="text" class="noborder_input form_control" />
+                <label class="login_field_icon pwd" for="uabout_me"></label>
             </div>
             <div class="form_group">
                 <input type="submit" class="btn_login" value="Sign up" />
