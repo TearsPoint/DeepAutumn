@@ -27,40 +27,31 @@
         <h1>Sign up</h1>
         <form id='reg_from' action="\account\regsvc" method="post">
             <div class="form_group">
-                <input id="uname" name="uname" placeholder="昵称" type="text" class="noborder_input form_control" />
-                <label class="login_field_icon user" for="uname"></label>
+                <input id="uname" name="uname" placeholder="昵称" type="text" class="noborder_input form_control" value="<%=user.user_name %>"/>
             </div>
             <div class="form_group">
-                <input id="upwd" name="upwd" placeholder="密码" type="password" class="noborder_input form_control" />
-                <label class="login_field_icon pwd" for="upwd"></label>
+                <input id="upwd" name="upwd" placeholder="密码" type="password" class="noborder_input form_control"/>
             </div>
             <div class="form_group">
-                <input id="ureal_name" name="ureal_name" placeholder="真实姓名" type="text" class="noborder_input form_control" />
-                <label class="login_field_icon pwd" for="ureal_name"></label>
+                <input id="ureal_name" name="ureal_name" placeholder="真实姓名" type="text" class="noborder_input form_control" value="<%=user.real_name %>" />
             </div>
             <div class="form_group">
-                <input id="ugender" name="ugender" placeholder="性别" type="text" class="noborder_input form_control" />
-                <label class="login_field_icon pwd" for="ugender"></label>
+                <input id="ugender" name="ugender" placeholder="性别" type="text" class="noborder_input form_control" value="<%=user.gender %>" />
             </div>
             <div class="form_group">
-                <input id="uidcard" name="uidcard" placeholder="身份证号" type="text" class="noborder_input form_control" />
-                <label class="login_field_icon pwd" for="uidcard"></label>
+                <input id="uidcard" name="uidcard" placeholder="身份证号" type="text" class="noborder_input form_control" value="<%=user.idcard %>" />
             </div>
             <div class="form_group">
-                <input id="uphone" name="uphone" placeholder="联系电话" type="text" class="noborder_input form_control" />
-                <label class="login_field_icon pwd" for="profile_puphonewd_input"></label>
+                <input id="uphone" name="uphone" placeholder="联系电话" type="text" class="noborder_input form_control" value="<%=user.phone %>" />
             </div>
             <div class="form_group">
-                <input id="uemail" name="uemail" placeholder="email" type="text" class="noborder_input form_control" />
-                <label class="login_field_icon pwd" for="uemail"></label>
+                <input id="uemail" name="uemail" placeholder="email" type="text" class="noborder_input form_control" value="<%=user.email %>" />
             </div>
             <div class="form_group">
-                <input id="uwechat_no" name="uwechat_no" placeholder="微信号" type="text" class="noborder_input form_control" />
-                <label class="login_field_icon pwd" for="uwechat_no"></label>
+                <input id="uwechat_no" name="uwechat_no" placeholder="微信号" type="text" class="noborder_input form_control" value="<%=user.wechat_no %>" />
             </div>
             <div class="form_group">
-                <input id="uabout_me" name="uabout_me" placeholder="个性签名" type="text" class="noborder_input form_control" />
-                <label class="login_field_icon pwd" for="uabout_me"></label>
+                <input id="uabout_me" name="uabout_me" placeholder="个性签名" type="text" class="noborder_input form_control" value="<%=user.aboutme %>" />
             </div>
             <div class="form_group">
                 <input type="submit" class="btn_login" value="Sign up" />
