@@ -41,6 +41,7 @@ function push(router) {
             });
     });
 
+    //进入用户信息页面
     router.get('/account/register', function(req, res) {
         //var param = url.parse(req.url, true).query;
         var data = { user_name: '', pwd: '', real_name: '', gender: '', idcard: '', phone: '', email: '', wechat_no: '', about_me: '' };
@@ -62,6 +63,7 @@ function push(router) {
             res.render('register', { title: '加入', user: data });
     });
 
+    //保存用户信息
     router.post('/account/regsvc', function(req, res) {
         var uname = req.param('uname');
         var upwd = runtime.md5(runtime.md5(req.param('upwd')));
@@ -73,21 +75,82 @@ function push(router) {
         var uwechat_no = req.param('uwechat_no');
         var uabout_me = req.param('uabout_me');
 
-        sqlexecutor.ExecSql('insert into user(user_name,pwd,real_name,gender,idcard,phone,email,wechat_no,about_me) ' +
-            'values (@uname ,@upwd ,@ureal_name,@ugender,@uidcard,@uphone,@uemail,@uwechat_no,@uabout_me)',
-            { uname: uname, upwd: upwd, ureal_name: ureal_name, ugender: ugender, uidcard: uidcard, uphone: uphone, uemail: uemail, uwechat_no: uwechat_no, uabout_me: uabout_me },
-            function(err, rows) {
-                res.contentType('application/json');
-                if (err) { res.send('-1'); log(err, 3); }
-                else {
-                    data = rows;
-                    res.send({ data: data });
-                }
-            });
+        if (req.session.uid != undefined && req.session.uid > 0) {
+            sqlexecutor.ExecSql(' update user set  user_name=@uname,real_name=@ureal_name,gender=@ugender,idcard=@uidcard,phone=@uphone,email=@uemail,wechat_no=@uwechat_no,about_me=@uabout_me  where id = @id ',
+                { uname: uname, upwd: upwd, ureal_name: ureal_name, ugender: ugender, uidcard: uidcard, uphone: uphone, uemail: uemail, uwechat_no: uwechat_no, uabout_me: uabout_me }, function(err, rows) {
+                    if (err) log(err);
+                    else if (rows.affectedRows > 0) {
+                        req.session.uname = uname;
+                    }
+                    else {
+                        res.send('操作失败');
+                        return;
+                    }
+                });
+        }
+        else
+            sqlexecutor.ExecSql('insert into user(user_name,real_name,gender,idcard,phone,email,wechat_no,about_me) ' +
+                'values (@uname ,@ureal_name,@ugender,@uidcard,@uphone,@uemail,@uwechat_no,@uabout_me)',
+                { uname: uname, upwd: upwd, ureal_name: ureal_name, ugender: ugender, uidcard: uidcard, uphone: uphone, uemail: uemail, uwechat_no: uwechat_no, uabout_me: uabout_me },
+                function(err, rows) {
+                    res.contentType('application/json');
+                    if (err) { res.send('-1'); log(err, 3); }
+                    else {
+                        data = rows;
+                        res.send({ data: data });
+                    }
+                });
 
         //res.send({ info: "正在注册。。。" });
     });
 
+    router.get('/account/setpwd', function(req, res) {
+        if (!req.session.isLogin) {
+            res.writeHead(302, { 'Location': '/account/login' }); //add other headers here... });
+            res.end();
+            return;
+        }
+        res.render('setpwd', { title: '设置密码', uid: req.session.uid, uname: req.session.uname });
+    });
+
+    router.post('/account/setpwd', function(req, res) {
+        if (!req.session.isLogin) {
+            res.writeHead(302, { 'Location': '/account/login' }); //add other headers here... });
+            res.end();
+            return;
+        }
+
+        var login_pwd = req.param('login_pwd');
+        var login_pwd2 = req.param('login_pwd2');
+
+        if (login_pwd != login_pwd2) {
+            res.send('两次密码输入不一致');
+            return;
+        }
+
+        var cpwd = runtime.md5(runtime.md5(login_pwd));
+        var cpwd2 = runtime.md5(runtime.md5(login_pwd2));
+
+        sqlexecutor.ExecSql(' update user set pwd = @pwd  where id = @id ', { pwd: cpwd, id: req.session.uid }, function(err, rows) {
+            if (err) log(err);
+            else if (rows.affectedRows > 0) {
+                res.writeHead(302, { 'Location': '/account/login' });
+                res.end();
+                return;
+            }
+            else {
+                res.send('操作失败');
+                return;
+            }
+        });
+    });
+
+    router.get('/account/signout', function(req, res) {
+        req.session = null;
+        res.writeHead(302, { 'Location': '/account/login' });
+        res.end();
+        return;
+    });
 }
 
 module.exports.push = push;
