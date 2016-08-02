@@ -2,42 +2,85 @@
 <html>
 
 <head>
-    <title>
-        <%=title %>
-    </title>
-    <meta charset="UTF-8" />
-    <meta name="author" content="王衡">
-    <meta name="viewport" content="width=device-width" />
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=0" />
-    <script type="text/javascript" src="/scripts/jquery/jquery-1.7.1.js"></script>
-    <link rel="stylesheet" type="text/css" href="/content/css/website.css" />
-    <link rel="stylesheet" type="text/css" href="/content/css/ihiking.me.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="/content/css/website_mobile.css" media="screen and (max-width: 850px), screen and (orientation:portrait)"
-    />
-    <script type="text/javascript" src="/scripts/ihiking.me.js"></script>
-    <script type="text/javascript" src="/scripts/tearspoint.core.js"></script>
-    <script type="text/javascript" src="/scripts/tearspoint.core.dispatcher.js"></script>
-    <script type="text/javascript">
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"
+	/>
+	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
 
-    </script>
+	<title>登录</title>
+
+	<link rel='stylesheet' href='/stylesheets/aui.2.0.css' />
+	<link rel='stylesheet' href='/stylesheets/aui-slide.css' />
+	<style type="text/css">
+		.aui-list .aui-list-item-label {
+			width: 10%;
+		}
+		
+		.aui-list {
+			border-left: 1px solid #EEE;
+			border-right: 1px solid #EEE;
+		}
+	</style>
+
 </head>
 
-<body class="page-responsive">
-    <div id='welcome'>
-        <h1>Welcome 13hike</h1>
-        <form id='login_from' action="\account\loginsvc" method="post">
-            <div class="form_group">
-                <input id="login_key" name="login_key" placeholder="邮箱\用户名\用机号" type="text" class="noborder_input form_control" /> 
-            </div>
-            <div class="form_group">
-                <input id="login_pwd" name="login_pwd" placeholder="密码" type="password" class="noborder_input form_control" /> 
-            </div>
-            <div class="form_group">
-                <input type="submit" class="btn_login" value="Sign in" />
-                <a  class="btn_login" href='\account\register'> Sign up </a>
-            </div>
-        </form>
-    </div>
+<body>
+	<header class="aui-bar aui-bar-nav">
+		<div class="aui-title">登录页</div>
+	</header>
+
+	<form id='login_from' action="\account\loginsvc" method="post">
+		<div class="aui-content aui-margin-b-15" style="padding:1rem;">
+
+			<ul class="aui-list aui-form-list" style="margin: 3rem 0 2rem 0;">
+				<li class="aui-list-item">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-label">
+							<i class="aui-iconfont aui-icon-my"></i>
+						</div>
+						<div class="aui-list-item-input">
+							<input type="text" id="login_key" name="login_key" placeholder="用户名">
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-label">
+							<i class="aui-iconfont aui-icon-lock"></i>
+						</div>
+						<div class="aui-list-item-input">
+							<input type="password" id="login_pwd" name="login_pwd" placeholder="密码">
+						</div>
+					</div>
+				</li>
+			</ul>
+			<p>
+				<input type="submit" class="aui-btn aui-btn-info aui-btn-block" value="登录" />
+			</p>
+			<p style="margin:1rem 0; "><a href="/account/register" class="aui-btn aui-btn-block">还没账号？</a></p>
+
+		</div>
+	</form>
+
+	<!-- footer -->
+	<footer class="aui-bar aui-bar-tab" id="footer">
+		<a href="/" class="aui-bar-tab-item" tapmode>
+			<i class="aui-iconfont aui-icon-home"></i>
+			<div class="aui-bar-tab-label">首页</div>
+		</a>
+		<a class="aui-bar-tab-item" tapmode>
+			<i class="aui-iconfont aui-icon-flag"></i>
+			<div class="aui-bar-tab-label">活动</div>
+		</a>
+		<a href="/profile" class="aui-bar-tab-item  aui-active" tapmode>
+			<i class="aui-iconfont aui-icon-my"></i>
+			<div class="aui-bar-tab-label">我的</div>
+		</a>
+	</footer>
+
+
+	<script src="/javascripts/aui-slide.js"></script>
+
 </body>
 
 </html>

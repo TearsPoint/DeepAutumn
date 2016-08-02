@@ -2,34 +2,271 @@
 <html>
 
 <head>
-    <title>
-        <%=title %>
-    </title>
-    <meta charset="UTF-8" />
-    <meta name="author" content="王衡">
-    <meta name="viewport" content="width=device-width" />
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=0" />
-    <script type="text/javascript" src="/scripts/jquery/jquery-1.7.1.js"></script>
-    <link rel="stylesheet" type="text/css" href="/content/css/website.css" />
-    <link rel="stylesheet" type="text/css" href="/content/css/ihiking.me.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="/content/css/website_mobile.css" media="screen and (max-width: 850px), screen and (orientation:portrait)"
-    />
-    <script type="text/javascript" src="/scripts/ihiking.me.js"></script>
-    <script type="text/javascript" src="/scripts/tearspoint.core.js"></script>
-    <script type="text/javascript" src="/scripts/tearspoint.core.dispatcher.js"></script>
-    <script type="text/javascript">
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"
+	/>
+	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
 
-    </script>
+	<title>
+		<%= title %>
+	</title>
+
+    <link rel="stylesheet" type="text/css" href="/content/css/preloader.css" />
+    <script type="text/javascript" src="/scripts/jquery/jquery-1.7.1.js"></script>
+    <script type="text/javascript" src="/scripts/preloader.min.js"></script>    
+    <script type="text/javascript" src="/scripts/tearspoint.core.js"></script>
+    <script type="text/javascript" src="/scripts/tearspoint.core.dispatcher.js"></script> 
+	<link rel='stylesheet' href='/stylesheets/aui.2.0.css' />
+	<link rel='stylesheet' href='/stylesheets/aui-slide.css' />
+	<style type="text/css">
+		/*.aui-slide-wrap{
+		height: 240px; 
+		width: 100%;
+	}
+	.aui-slide-wrap img{height:240px;}
+	.aui-slide-wrap .aui-slide-node{width:100%;}*/
+		
+		.aui-content {
+			margin-bottom: 5em;
+		}
+		
+		.aui-card-list-content-padded {
+			padding: 0.5rem 0.25rem;
+		}
+		
+		.activity-item {
+			display: block;
+			height: 100px;
+		}
+		
+		.activity-item p {
+			font-size: 0.3em;
+		}
+		
+		.aui-col-xs-4 {
+			padding: 0.5rem 0 !important;
+		}
+		
+		.aui-col-xs-4 .aui-grid-label {
+			font-size: 0.6rem;
+		}
+	</style>
+
 </head>
 
-<body class="page-responsive">
-    <div id='welcome'>
-        <h1>Main</h1>
-        <div>当前用户 <%=uname %>  </div>
-        <div><a href="/account/setpwd">设置密码</a </div>
-        <div><a href="/account/register?uid=<%=uid %>">完善用户信息</a </div>
-        <div><a href="/account/signout">退出登录</a </div>
-    </div>
+<body>
+	<div class="aui-content">
+		<!-- slide -->
+		<div id="aui-slide">
+			<div class="aui-slide-wrap">
+				<div class="aui-slide-node bg-dark">
+					<img src="/images/demo/l1.png" />
+				</div>
+				<div class="aui-slide-node bg-dark">
+					<img src="/images/demo/l2.png" />
+				</div>
+				<div class="aui-slide-node bg-dark">
+					<img src="/images/demo/l3.png" />
+				</div>
+			</div>
+			<div class="aui-slide-page-wrap">
+				<!--分页容器-->
+			</div>
+		</div>
+		<!-- slide end -->
+
+		<!-- 导航 -->
+		<!--  <section class="aui-grid aui-margin-b-15">
+		    <div class="aui-row">
+		        <div class="aui-col-xs-4">
+		            <i class="aui-iconfont aui-icon-image"></i>
+		            <div class="aui-grid-label">短线</div>
+		        </div>
+		        <div class="aui-col-xs-4">
+		            <i class="aui-iconfont aui-icon-paper"></i>
+		            <div class="aui-grid-label">长线</div>
+		        </div>
+		        <div class="aui-col-xs-4">
+		            <i class="aui-iconfont aui-icon-like"></i>
+		            <div class="aui-grid-label">亲子</div>
+		        </div>
+		        <div class="aui-col-xs-4">
+		            <i class="aui-iconfont aui-icon-laud"></i>
+		            <div class="aui-grid-label">团建</div>
+		        </div>
+		        <div class="aui-col-xs-4">
+		            <i class="aui-iconfont aui-icon-flag"></i>
+		            <div class="aui-grid-label">领队</div>
+		        </div>
+		        <div class="aui-col-xs-4">
+		            <i class="aui-iconfont aui-icon-map"></i>
+		            <div class="aui-grid-label">我们</div>
+		        </div>
+		    </div>
+		</section> -->
+		<!-- 导航 end -->
+
+		<!-- 活动 -->
+		<div class="aui-card-list">
+			<!-- 头部切换 -->
+			<div class="aui-tab" id="tab">
+				<div class="aui-tab-item aui-active" id="">最新活动</div>
+				<!-- <div class="aui-tab-item" id="">下周活动</div> -->
+			</div>
+
+			<!-- <div class="aui-card-list-content-padded aui-border-b aui-border-t ">
+                <div class="aui-row aui-row-padded">
+                    <div class="aui-col-xs-4">
+                        <a class="activity-item" href="#" >
+                        	<img src="/images/demo/l1.png">
+                        	<p>港岛径南丫岛四期</p>
+                        	<p>周六</p>
+                        </a>
+                    </div>
+                    <div class="aui-col-xs-4">
+                        <a class="activity-item" href="#" >
+                        	<img src="/images/demo/l1.png">
+                        	<p>港岛径南丫岛四期</p>
+                        	<p>周六</p>
+                        </a>
+                    </div>
+                    <div class="aui-col-xs-4">
+                       <a class="activity-item" href="#" >
+                        	<img src="/images/demo/l1.png">
+                        	<p>港岛径南丫岛四期</p>
+                        	<p>周六</p>
+                        </a>
+                    </div>
+                    <div class="aui-col-xs-4">
+                        <a class="activity-item" href="#" >
+                        	<img src="/images/demo/l1.png">
+                        	<p>港岛径南丫岛四期</p>
+                        	<p>周六</p>
+                        </a>
+                    </div>
+                    <div class="aui-col-xs-4">
+                        <a class="activity-item" href="#" >
+                        	<img src="/images/demo/l1.png">
+                        	<p>港岛径南丫岛四期</p>
+                        	<p>周六</p>
+                        </a>
+                    </div>
+                    <div class="aui-col-xs-4">
+                        <a class="activity-item" href="#" >
+                        	<img src="/images/demo/l1.png">
+                        	<p>港岛径南丫岛四期</p>
+                        	<p>周六</p>
+                        </a>
+                    </div>
+                </div>
+            </div> -->
+
+			<ul class="aui-list aui-media-list">
+
+				<li class="aui-list-item">
+					<a href="/detail" class="aui-media-list-item-inner">
+						<div class="aui-list-item-media">
+							<img src="/images/demo/001.jpg">
+						</div>
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-text">
+								<div class="aui-list-item-title">【海螺角】听海踏浪、拾螺</div>
+								<div class="aui-list-item-right">1天线</div>
+							</div>
+							<div class="aui-list-item-text">
+								海螺角海岸线位于惠东半岛巽寮湾，既有清澈湛蓝的海水、洁白细软的沙滩...
+							</div>
+						</div>
+					</a>
+					<div class="aui-info" style="padding-top:0">
+						<div class="aui-info-item">
+							<span class="aui-margin-l-5">领队：zyy</span>
+						</div>
+						<div class="aui-info-item">周六出发</div>
+					</div>
+				</li>
+				<li class="aui-list-item">
+					<a href="/detail" class="aui-media-list-item-inner">
+						<div class="aui-list-item-media">
+							<img src="/images/demo/001.jpg">
+						</div>
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-text">
+								<div class="aui-list-item-title">【大草坡】恍若桃源大南山</div>
+								<div class="aui-list-item-right">1天线</div>
+							</div>
+							<div class="aui-list-item-text">
+								位于广东省惠东县增光镇与海丰县接壤的地带 此地群峰耸峙， 林深壑幽山腰白练飘飘， 山下溪涧奔流...
+							</div>
+						</div>
+					</a>
+					<div class="aui-info" style="padding-top:0">
+						<div class="aui-info-item">
+							<span class="aui-margin-l-5">领队：广文</span>
+						</div>
+						<div class="aui-info-item">周日出发</div>
+					</div>
+				</li>
+				<li class="aui-list-item">
+					<a href="/detail" class="aui-media-list-item-inner">
+						<div class="aui-list-item-media">
+							<img src="/images/demo/003.png">
+						</div>
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-text">
+								<div class="aui-list-item-title">【大甲岛】东方小夏威夷</div>
+								<div class="aui-list-item-right">1天线</div>
+							</div>
+							<div class="aui-list-item-text">
+								大甲岛，又称大辣甲岛，是大亚湾第二大岛，面积2.7平方公里，距离澳头港十海里左右...
+							</div>
+						</div>
+					</a>
+					<div class="aui-info" style="padding-top:0">
+						<div class="aui-info-item">
+							<span class="aui-margin-l-5">领队：广文</span>
+						</div>
+						<div class="aui-info-item">周日出发</div>
+					</div>
+				</li>
+
+			</ul>
+
+		</div>
+		<!-- 活动 -->
+
+	</div>
+
+	<!-- footer -->
+	<footer class="aui-bar aui-bar-tab" id="footer">
+		<a href="/" class="aui-bar-tab-item aui-active" tapmode>
+			<i class="aui-iconfont aui-icon-home"></i>
+			<div class="aui-bar-tab-label">首页</div>
+		</a>
+		<a class="aui-bar-tab-item" tapmode>
+			<i class="aui-iconfont aui-icon-flag"></i>
+			<div class="aui-bar-tab-label">活动</div>
+		</a>
+		<a href="/profile" class="aui-bar-tab-item" tapmode>
+			<i class="aui-iconfont aui-icon-my"></i>
+			<div class="aui-bar-tab-label">我的</div>
+		</a>
+	</footer>
+
+	<script src="/javascripts/aui-slide.js"></script>
+	<script>
+		var slide = new auiSlide({
+	        container:document.getElementById("aui-slide"),
+	        // "width":300,
+	        "height":160,
+	        "speed":500,
+	        "autoPlay": 3000, //自动播放
+	        "loop":true,
+	        "pageShow":true,
+	        "pageStyle":'line',
+	        'dotPosition':'center'
+	    })
+	</script>
 </body>
 
 </html>
