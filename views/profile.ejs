@@ -9,14 +9,12 @@
     <meta name="author" content="王衡">
     <meta name="viewport" content="width=device-width" />
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=0" />
-    <link rel="stylesheet" type="text/css" href="/content/css/preloader.css" />
     <script type="text/javascript" src="/scripts/jquery/jquery-1.7.1.js"></script>
-    <script type="text/javascript" src="/scripts/preloader.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/content/css/website.css" />
-    <link rel="stylesheet" type="text/css" href="/content/css/13hike.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="/content/css/ihiking.me.css" media="all" />
     <link rel="stylesheet" type="text/css" href="/content/css/website_mobile.css" media="screen and (max-width: 850px), screen and (orientation:portrait)"
     />
-    <script type="text/javascript" src="/scripts/13hike.js"></script>
+    <script type="text/javascript" src="/scripts/ihiking.me.js"></script>
     <script type="text/javascript" src="/scripts/tearspoint.core.js"></script>
     <script type="text/javascript" src="/scripts/tearspoint.core.dispatcher.js"></script>
     <script type="text/javascript">
@@ -25,11 +23,11 @@
 </head>
 
 <body class="page-responsive">
-    <div id='welcome' >
-        <h1>Welcome 13hike</h1>
-        <a class="btn btn-theme-green btn-jumbotron" href="/account/login" rel="nofollow">Sign in</a>
-        <a class="btn btn-theme-green btn-jumbotron" href="/account/register" rel="nofollow">Sign up</a>
+    <div id='welcome'>
+        <h1>Main</h1>
+        <div>当前用户 <%=uname %>  </div>
+        <div><a href="/account/setpwd">设置密码</a </div>
+        <div><a href="/complete?uid=<%=uid %>">完善用户信息</a </div>
+        <div><a href="/account/signout">退出登录</a </div>
     </div>
 </body>
-
-</html>

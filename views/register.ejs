@@ -2,70 +2,93 @@
 <html>
 
 <head>
-    <title>
-        <%=title %>
-    </title>
-    <meta charset="UTF-8" />
-    <meta name="author" content="王衡">
-    <meta name="viewport" content="width=device-width" />
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=0" />
-    <script type="text/javascript" src="/scripts/jquery/jquery-1.7.1.js"></script>
-    <link rel="stylesheet" type="text/css" href="/content/css/website.css" />
-    <link rel="stylesheet" type="text/css" href="/content/css/ihiking.me.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="/content/css/website_mobile.css" media="screen and (max-width: 850px), screen and (orientation:portrait)"
-    />
-    <script type="text/javascript" src="/scripts/ihiking.me.js"></script>
-    <script type="text/javascript" src="/scripts/tearspoint.core.js"></script>
-    <script type="text/javascript" src="/scripts/tearspoint.core.dispatcher.js"></script>
-    <script type="text/javascript">
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"
+	/>
+	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
 
-    </script>
+	<title><%=title %></title>
+
+	<link rel='stylesheet' href='/stylesheets/aui.2.0.css' />
+	<link rel='stylesheet' href='/stylesheets/aui-slide.css' />
+	<style type="text/css">
+		.aui-list .aui-list-item-label {
+			width: 10%;
+		}
+		
+		.aui-list {
+			border-left: 1px solid #EEE;
+			border-right: 1px solid #EEE;
+		}
+	</style>
+
 </head>
 
-<body class="page-responsive">
-    <div id='pal_signup'>
-        <h1>Sign up</h1>
-        <form id='reg_from' action="\account\regsvc" method="post">
-            <div class="form_group">
-                <input id="uname" name="uname" placeholder="昵称" type="text" class="noborder_input form_control" value="<%=user.user_name %>"
-                />
-            </div>
-            <div class="form_group">
-                <input id="ureal_name" name="ureal_name" placeholder="真实姓名" type="text" class="noborder_input form_control" value="<%=user.real_name %>"
-                />
-            </div>
-            <div class="form_group">
-                <input type="radio" class="weui_check" name="ugender" id="x1" value="1" <% if(user.gender=='1'){  %>  <%='checked' %>  <% } %>/>
-                <label for="x1">男</label>
-                <input type="radio" class="weui_check" name="ugender" id="x0" value="0" <% if(user.gender=='0'){  %>  <%='checked' %> <% } %> />
-                <label for="x0">女</label>
-            </div>
-            <div class="form_group">
-                <input id="uidcard" name="uidcard" placeholder="身份证号" type="text" class="noborder_input form_control" value="<%=user.idcard %>"
-                />
-            </div>
-            <div class="form_group">
-                <input id="uphone" name="uphone" placeholder="联系电话" type="text" class="noborder_input form_control" value="<%=user.phone %>"
-                />
-            </div>
-            <div class="form_group">
-                <input id="uemail" name="uemail" placeholder="email" type="text" class="noborder_input form_control" value="<%=user.email %>"
-                />
-            </div>
-            <div class="form_group">
-                <input id="uwechat_no" name="uwechat_no" placeholder="微信号" type="text" class="noborder_input form_control" value="<%=user.wechat_no %>"
-                />
-            </div>
-            <div class="form_group">
-                <input id="uabout_me" name="uabout_me" placeholder="个性签名" type="text" class="noborder_input form_control" value="<%=user.about_me %>"
-                />
-            </div>
-            <div class="form_group">
-                <input type="submit" class="btn_login" value="Sign up" />
-                <a  class="btn_login" href='\account\login'> Sign in </a>
-            </div>
-        </form>
-    </div>
+<body>
+	<header class="aui-bar aui-bar-nav">
+		<div class="aui-title">注册页</div>
+	</header>
+
+	<form id='reg_from' action="\account\register" method="post">
+		<div class="aui-content aui-margin-b-15" style="padding:1rem;">
+			<ul class="aui-list aui-form-list" style="margin: 3rem 0 2rem 0;">
+				<li class="aui-list-item">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-label">
+							<i class="aui-iconfont aui-icon-my"></i>
+						</div>
+						<div class="aui-list-item-input">
+							<input type="text" id="uname" name="uname" placeholder="取个名字">
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-label">
+							<i class="aui-iconfont aui-icon-lock"></i>
+						</div>
+						<div class="aui-list-item-input">
+							<input type="password" id="login_pwd" name="login_pwd" placeholder="输入密码">
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-label">
+							<i class="aui-iconfont aui-icon-lock"></i>
+						</div>
+						<div class="aui-list-item-input">
+							<input type="password" id="login_pwd2" name="login_pwd2" placeholder="重新输入密码">
+						</div>
+					</div>
+				</li>
+			</ul>
+			<p><input type="submit" class="aui-btn aui-btn-info aui-btn-block" value="注册" />
+			</p>
+			<p style="margin:1rem 0; "><a href="/account/login" class="aui-btn aui-btn-block">登录</a></p>
+
+		</div>
+	</form>
+
+	<!-- footer -->
+	<footer class="aui-bar aui-bar-tab" id="footer">
+		<a href="/" class="aui-bar-tab-item" tapmode>
+			<i class="aui-iconfont aui-icon-home"></i>
+			<div class="aui-bar-tab-label">首页</div>
+		</a>
+		<a class="aui-bar-tab-item" tapmode>
+			<i class="aui-iconfont aui-icon-flag"></i>
+			<div class="aui-bar-tab-label">活动</div>
+		</a>
+		<a href="/profile" class="aui-bar-tab-item  aui-active" tapmode>
+			<i class="aui-iconfont aui-icon-my"></i>
+			<div class="aui-bar-tab-label">我的</div>
+		</a>
+	</footer>
+
+
+	<script src="/javascripts/aui-slide.js"></script>
+
 </body>
 
 </html>

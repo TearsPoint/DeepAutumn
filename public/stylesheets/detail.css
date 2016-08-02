@@ -1,0 +1,108 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 14px; 
+  background: #FFF;
+
+}
+
+a {
+  color: #00B7FF;
+}
+
+.fixed{
+	position:fixed; 
+	left:0; 
+	top:0;
+	background: #FFF;   
+}
+
+.detail-title{
+	position: relative;
+	height: 180px;
+	background: url('/images/demo/l1.png');
+	background-size:cover;
+}
+
+.detail-title img{
+	width:100%;
+	height:180px;
+
+}
+
+.detail-title .black-bg{
+	position: absolute;
+	bottom:0;
+	left: 0;
+	width: 100%;
+	height:40px;
+	line-height: 40px;
+	background: #000;
+	opacity: 0.5;
+}
+.detail-title h4{
+	position: absolute;
+	bottom:0;
+	left: 0;
+	line-height:2em; 
+	color:#FFF;
+	text-indent: 0.5em; 
+	font-size: 1.4em; 
+}
+.detail-title a.go-home{
+	position: absolute; 
+	left:1rem;
+	top:1rem;
+	width:1.5rem;
+	height: 1.5rem; 
+	display: block; 
+	color:#FFF;  
+	border:1px solid #FFF; 
+	padding:3px;
+	border-radius: 50%;  
+	text-align: center; 
+}
+.detail-title a.go-home i{
+	font-size: 1rem; 
+}
+
+
+.detail-info{
+	margin:1em;
+}
+
+.detail-info li{
+	height: 3em;
+	line-height: 3em; 
+	border-bottom:1px solid #EEE;
+}
+
+.detail-info li label{
+	color:#666;
+}
+
+.con{
+	padding:10px; 
+}
+.con dt{
+	display: inline-block;
+	margin:10px 5px; 
+	margin-top: 20px; 
+	padding:5px;
+	background:rgb(249, 110, 87);
+	border-radius: 5px;
+	color:#FFF;
+}
+.con dd{
+	padding:10px;
+	font-size: 0.6rem;
+	color: #666;
+	line-height: 22px;  
+}
+
+.content{
+	margin-bottom: 70px;  
+}
+
+
+
+

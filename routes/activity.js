@@ -7,6 +7,10 @@ var sqlexecutor = require('../sqlexecutor');
 var url = require('url');
 
 function push(router) {
+    
+    router.get('/detail', function (req, res) {
+        res.render('detail', { title: '活动详情' });
+    });
 
     //发布活动
     router.post('/activity', function (req, res) {

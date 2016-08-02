@@ -7,9 +7,33 @@ var sqlexecutor = require('../sqlexecutor');
 var url = require('url');
 
 function push(router) {
+
+    router.get('/complete', function (req, res) {
+        //var param = url.parse(req.url, true).query;
+        var data = { user_name: '', pwd: '', real_name: '', gender: '', idcard: '', phone: '', email: '', wechat_no: '', about_me: '' };
+
+        if (req.session.uid != undefined && req.session.uid > 0) {
+            sqlexecutor.ExecSql('select * from user where id=@uid', { uid: req.session.uid },
+                function (err, rows) {
+                    if (err) log(err, 3);
+                    else if (rows.length > 0) {
+                        res.render('enroll', { title: '修改个人信息', user: rows[0] });
+                        return;
+                    }
+                    else
+                        res.render('enroll', { title: '加入', user: data });
+                }
+            );
+        }
+        else
+            res.render('enroll', { title: '加入', user: data });
+    });
+
+
     router.get('/account/login', function (req, res) {
         res.render('login', { title: '登录' });
     });
+
 
     router.post('/account/loginsvc', function (req, res) {
         runtime.Log("login_key:" + req.param('login_key'), 1);
@@ -34,7 +58,7 @@ function push(router) {
 
                     //res.contentType('application/text'); 
                     //res.render('chat');  //只是呈现，客户端的url没有变化
-                    res.writeHead(302, { 'Location': '/index' }); //add other headers here...  
+                    res.writeHead(302, { 'Location': '/profile' }); //add other headers here...  
                     res.end();
                     return;
                 }
@@ -64,7 +88,7 @@ function push(router) {
     });
 
     //保存用户信息
-    router.post('/account/regsvc', function (req, res) {
+    router.post('/account/register', function (req, res) {
         var uname = req.param('uname');
 
         if (uname.trim().length == 0) {
@@ -72,8 +96,21 @@ function push(router) {
             return;
         }
 
-        if (req.param('upwd' != undefined))
-            var upwd = runtime.md5(runtime.md5(req.param('upwd')));
+        // if (req.param('upwd' != undefined))
+        //     var upwd = runtime.md5(runtime.md5(req.param('upwd')));
+        var upwd = '';
+        if (req.param('login_pwd' != undefined) && req.param('login_pwd2' != undefined)) {
+            var login_pwd = req.param('login_pwd');
+            var login_pwd2 = req.param('login_pwd2');
+
+            if (login_pwd != login_pwd2) {
+                res.send('两次密码输入不一致');
+                return;
+            }
+
+            upwd = runtime.md5(runtime.md5(login_pwd));
+        }
+
         var ureal_name = req.param('ureal_name');
         var ugender = req.param('ugender');
         var uidcard = req.param('uidcard');
@@ -101,10 +138,13 @@ function push(router) {
                             if (err) log(err);
                             else if (rows.affectedRows > 0) {
                                 req.session.uname = uname;
-                                res.render('register', {
-                                    title: '修改个人信息',
-                                    user: { user_name: uname, pwd: upwd, real_name: ureal_name, gender: ugender, idcard: uidcard, phone: uphone, email: uemail, wechat_no: uwechat_no, about_me: uabout_me }
-                                });
+                                // res.render('register', {
+                                //     title: '修改个人信息',
+                                //     user: { user_name: uname, pwd: upwd, real_name: ureal_name, gender: ugender, idcard: uidcard, phone: uphone, email: uemail, wechat_no: uwechat_no, about_me: uabout_me }
+                                // });
+                                res.writeHead(302, { 'Location': '/profile' }); //add other headers here... });
+                                res.end();
+                                return;
                             }
                             else {
                                 res.send('保存个人信息失败');
@@ -113,12 +153,12 @@ function push(router) {
                         });
                 }
                 else {
-                    sqlexecutor.ExecSql('insert into user(user_name,real_name,gender,idcard,phone,email,wechat_no,about_me) ' +
-                        'values (@uname ,@ureal_name,@ugender,@uidcard,@uphone,@uemail,@uwechat_no,@uabout_me)',
+                    sqlexecutor.ExecSql('insert into user(user_name,pwd,real_name,gender,idcard,phone,email,wechat_no,about_me) ' +
+                        'values (@uname ,@upwd,@ureal_name,@ugender,@uidcard,@uphone,@uemail,@uwechat_no,@uabout_me)',
                         { uname: uname, upwd: upwd, ureal_name: ureal_name, ugender: ugender, uidcard: uidcard, uphone: uphone, uemail: uemail, uwechat_no: uwechat_no, uabout_me: uabout_me },
                         function (err, rows) {
                             res.contentType('application/json');
-                            if (err) { res.send('-1'); runtime.Log(err, 3); }
+                            if (err) { res.send({ err: '注册失败' }); runtime.Log(err, 3); }
                             else if (rows.insertId > 0) {
                                 data = rows;
 
@@ -126,7 +166,7 @@ function push(router) {
                                 req.session.uid = rows.insertId;
                                 req.session.uname = uname;
 
-                                res.writeHead(302, { 'Location': '/account/setpwd' }); //add other headers here... });
+                                res.writeHead(302, { 'Location': '/account/login' }); //add other headers here... });
                                 res.end();
                                 return;
                             }
