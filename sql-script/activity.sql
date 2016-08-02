@@ -1,5 +1,5 @@
 --活动表
-drop TABLE if exists activity;
+--drop TABLE if exists activity;
 
 CREATE TABLE if not exists activity (
   id bigint(20) NOT NULL AUTO_INCREMENT,
@@ -23,16 +23,31 @@ CREATE PROCEDURE `coredb`.`alter_activity` (IN icount int)
  READS SQL DATA 
   SQL SECURITY DEFINER 
 begin
-    --真实姓名
-    -- select  @i:=count(column_name)  from information_schema.columns where
-    --     table_name='user' and column_name='real_name';
-    -- if @i=0 then alter table user add real_name varchar(30) null; end if;
-  
+    --活动分类
+    select  @i:=count(column_name)  from information_schema.columns where
+        table_name='activity' and column_name='act_category';
+    if @i=0 then alter table activity add act_category varchar(100) null; end if;
+    
+    --活动banner_url
+    select  @i:=count(column_name)  from information_schema.columns where
+        table_name='activity' and column_name='banner_url';
+    if @i=0 then alter table activity add banner_url varchar(100) null; end if;
+    
+    --出发时间  
+    select  @i:=count(column_name)  from information_schema.columns where
+        table_name='activity' and column_name='start_on';
+    if @i=0 then alter table activity add start_on varchar(100) null; end if;
+    
+    --领队 leader1_uid
+    select  @i:=count(column_name)  from information_schema.columns where
+        table_name='activity' and column_name='leader1_uid';
+    if @i=0 then alter table activity add leader1_uid varchar(100) null; end if;
+    
 end; 
 
 call alter_activity(1);
 
-insert into activity (act_theme) values('狮子岛露营');
+--insert into activity (act_theme) values('狮子岛露营');
 
 select * from activity;
 
@@ -59,3 +74,4 @@ insert into act_signup (act_id,user_id,suggesion) values(1,1,'玩的愉快');
 insert into act_signup (act_id,user_id,suggesion) values(2,2,'玩的愉快2');
 
 select * from act_signup;
+

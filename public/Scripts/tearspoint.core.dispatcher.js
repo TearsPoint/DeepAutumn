@@ -216,7 +216,7 @@ window.onload = function () {
             scripts : scripts,
             images: images,
             mode: 'text',
-            text: 'welcome iHiking.me - loding...',
+            text: 'welcome 13hike - loding...',
             background: ['#000']   //#2bc9fd
         });
 
