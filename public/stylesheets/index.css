@@ -1,0 +1,27 @@
+.aui-content {
+	margin-bottom: 5em;
+}
+
+.aui-card-list-content-padded {
+	padding: 0.5rem 0.25rem;
+}
+
+.activity-item {
+	display: block;
+	height: 100px;
+}
+
+.activity-item p {
+	font-size: 0.3em;
+}
+
+.aui-col-xs-4 {
+	padding: 0.5rem 0 !important;
+}
+
+.aui-col-xs-4 .aui-grid-label {
+	font-size: 0.6rem;
+}
+
+
+

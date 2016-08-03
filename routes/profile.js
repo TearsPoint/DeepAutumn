@@ -15,9 +15,7 @@ function push(router) {
         }
         res.render('profile', { title: '个人设置', uid: req.session.uid, uname: req.session.uname });
     });
-
-
-
+    
     router.get('/contact', function (req, res) {
         res.render('contact', {});
     }

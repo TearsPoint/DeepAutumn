@@ -1,0 +1,48 @@
+/**
+ * 个人信息页
+ */
+
+.detail-title{
+	position: relative;
+	height: 220px; 
+	background: url('/images/demo/info-bg.jpg'); 
+	background-size:cover;  
+	text-align:center;
+	color: #FFF;
+}
+.detail-title a.go-home{
+	position: absolute; 
+	left:1rem;
+	top:1rem;
+	width:1.5rem;
+	height: 1.5rem; 
+	display: block; 
+	color:#FFF;  
+	padding:3px;
+	border-radius: 50%;  
+	text-align: center; 
+}
+.detail-title a.go-home i{
+	font-size: 1rem; 
+}
+
+.detail-title .user-head{
+	width:4rem;
+	height:4rem;
+	border:2px solid #FFF;
+	border-radius: 50%; 
+	margin:3rem auto;
+	margin-bottom:0.1rem;
+}
+.detail-title .user-name{
+	color:#FFF;
+	font-size: 16px;
+	padding:5px;
+	border-radius: 10px;
+}
+
+.detail-title .mychat{
+	margin:0.5rem auto;
+	font-size: 14px;  
+}
+
