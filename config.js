@@ -20,7 +20,7 @@ var config =
         db_host: 'localhost',      /* Database IP */
         db_port: 3306,                  /* Database Port */
         db_user: 'sa',                /* Database Username */
-        db_password: '123mysql',     /* Database Password */
+        db_password: '123',     /* Database Password */
         db_database: 'coredb',           /* Database Name */
         db_engine: 'InnoDB',
         blog_name: 'DeepAutumn',

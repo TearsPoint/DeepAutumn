@@ -99,7 +99,7 @@ function push(router) {
         // if (req.param('upwd' != undefined))
         //     var upwd = runtime.md5(runtime.md5(req.param('upwd')));
         var upwd = '';
-        if (req.param('login_pwd' != undefined) && req.param('login_pwd2' != undefined)) {
+        if (req.param('login_pwd') != undefined && req.param('login_pwd2') != undefined) {
             var login_pwd = req.param('login_pwd');
             var login_pwd2 = req.param('login_pwd2');
 
