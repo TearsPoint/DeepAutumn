@@ -102,6 +102,7 @@ HIKE.onReady(
 //加载活动
 HIKE.onReady(
     function load_acts() {
+        alert(1);
         jQuery.getJSON(window.location.origin + "/activity/", 'p=11',
             function (data, textStatu, jqXHR) {
                 $("#ul_acts > li").each(function (i, e) {
@@ -109,8 +110,6 @@ HIKE.onReady(
                 });
 
                 $.each(data.acts, function (j, d) {
-
-
                     var row = document.createElement("li");
                     row.id = "li_" + d["id"]; row.className = "aui-list-item";
                     var rowContentHtml = " <a href=\"/detail?aid=" + d["id"] + " \" class=\"aui-media-list-item-inner\">";

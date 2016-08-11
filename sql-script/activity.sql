@@ -63,6 +63,22 @@ begin
     select  @i:=count(column_name)  from information_schema.columns where
         table_name='activity' and column_name='create_by_uid';
     if @i=0 then alter table activity add create_by_uid int null; end if;
+
+    --浏览次数 
+    select  @i:=count(column_name)  from information_schema.columns where
+        table_name='activity' and column_name='read_count';
+    if @i=0 then alter table activity add read_count int null; end if;
+
+    --删除状态
+    select  @i:=count(column_name)  from information_schema.columns where
+        table_name='activity' and column_name='isdeleted';
+    if @i=0 then alter table activity add isdeleted smallint default 0; end if;
+
+    --版本号
+    select  @i:=count(column_name)  from information_schema.columns where
+        table_name='activity' and column_name='rowversion';
+    if @i=0 then alter table activity add rowversion datetime default now(); end if;
+
 end; 
 
 call alter_activity(1);
@@ -95,7 +111,9 @@ CREATE TABLE if not exists act_signup (
   status smallint not null default 0,   --状态  0：未支付  1:已支付
   suggesion varchar(200),               --对此活动的意见
   order_id varchar(50) null,            --订单ID
-  signup_on datetime null ,      --报名时间
+  signup_on datetime null ,      	    --报名时间
+  ecperson varchar(50) null,            --紧急联系人
+  ecpersonphone varchar(20) null,       --紧急联系人电话
   PRIMARY KEY (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 

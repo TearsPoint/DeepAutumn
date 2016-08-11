@@ -7,7 +7,7 @@ var sqlexecutor = require('../sqlexecutor');
 var url = require('url');
 
 function push(router) {
- 
+
     //发布活动
     router.post('/activity', function (req, res) {
         var act_theme = req.param('act_theme');
@@ -42,7 +42,7 @@ function push(router) {
         sqlexecutor.ExecSql(' select id,act_theme,act_summary,price,price_desc,begin_on, ' +
             ' end_on,difficuty_flag,difficuty_desc,start_place,act_category,banner_url,start_on,leader1_uid,leader1_name,' +
             ' datediff(end_on,start_on ) days ' +
-            ' from activity where end_on >= curdate() ',
+            ' from activity where isdeleted = 0  ', //--and end_on >= curdate()
             {}, function (err, rows) {
                 if (err) runtime.Log(err);
                 else if (rows.length > 0) {
@@ -59,9 +59,9 @@ function push(router) {
     router.get('/detail', function (req, res, next) {
         var param = url.parse(req.url, true).query;
         var id = param.aid;
-        
+
         sqlexecutor.ExecSql(' select id,act_theme,act_summary,price,price_desc,act_detail,begin_on, ' +
-            ' end_on,difficuty_flag,difficuty_desc,start_place,act_category,banner_url ,act_category,banner_url,start_on,leader1_uid,leader1_name ,'+ 
+            ' end_on,difficuty_flag,difficuty_desc,start_place,act_category,banner_url ,act_category,banner_url,start_on,leader1_uid,leader1_name ,' +
             ' person_count' +
             ' from activity where id = @id ',
             { id: id }, function (err, rows) {
@@ -72,6 +72,12 @@ function push(router) {
                 }
             }
         )
+    });
+
+    //报名
+    router.get('/enroll' ,function (req,res,next) {
+       
+        
     });
 }
 

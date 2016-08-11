@@ -113,10 +113,10 @@ console.log(new f3() instanceof f3);
 
 console.log(
     (function f() {
-    function f() { return 1; }
-    return f();
-    function f() { return 2; }
-})()
+        function f() { return 1; }
+        return f();
+        function f() { return 2; }
+    })()
 );
 
 
@@ -124,3 +124,22 @@ console.log(
     console.log(foo.foo.bar);
     return typeof foo.bar;
 })({ foo: { bar: 1 } });
+
+
+
+(function () {
+
+    /* can't delete `arguments`, since it has DontDelete */
+    var t = 'tt'; 
+
+    delete arguments; // false 
+    typeof arguments; // "object" 
+
+    /* can't delete function's `length`; it also has DontDelete */
+
+    function f() { }
+    console.log(f.length);
+    delete f.length; // false 
+    typeof f.length; // "number" 
+    console.log(f.length);
+})(); 
