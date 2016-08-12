@@ -54,7 +54,7 @@ begin
         table_name='activity' and column_name='person_count';
     if @i=0 then alter table activity add person_count int null; end if;
     
-    --活动发起时间
+    --活动创建时间
     select  @i:=count(column_name)  from information_schema.columns where
         table_name='activity' and column_name='create_on';
     if @i=0 then alter table activity add create_on datetime null; end if;

@@ -75,9 +75,10 @@ function push(router) {
     });
 
     //报名
-    router.get('/enroll' ,function (req,res,next) {
-       
-        
+    router.get('/enroll', function (req, res, next) {
+        var data = { user_name: '', pwd: '', real_name: '', gender: '', idcard: '', phone: '', email: '', wechat_no: '', about_me: '' ,ecperson:'',ecpersonphone:'' ,others:''};
+
+        res.render('enroll', { title: "报名", user: data });
     });
 }
 
