@@ -102,7 +102,6 @@ HIKE.onReady(
 //加载活动
 HIKE.onReady(
     function load_acts() {
-        alert(1);
         jQuery.getJSON(window.location.origin + "/activity/", 'p=11',
             function (data, textStatu, jqXHR) {
                 $("#ul_acts > li").each(function (i, e) {

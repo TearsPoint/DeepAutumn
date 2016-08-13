@@ -22,7 +22,7 @@
 		<div class="aui-title">填写报名表</div>
 	</header>
 
-	<form id='reg_from' action="\account\register" method="post">
+	<form id='reg_from' action="\activity\enroll" method="post">
 		<div class="aui-content">
 			<div class="aui-content aui-margin-b-15">
 				<ul class="aui-list aui-form-list">
@@ -85,7 +85,7 @@
 								紧急联系人
 							</div>
 							<div class="aui-list-item-input">
-								<input id="ecperson" name="ecperson" placeholder="紧急联系人" type="text" class="noborder_input form_control" value="<%=user.phone %>">
+								<input id="ecperson" name="ecperson" placeholder="紧急联系人" type="text" class="noborder_input form_control" value="<%=user.ecperson %>">
 							</div>
 						</div>
 					</li>
@@ -95,7 +95,7 @@
 								紧急联系人电话
 							</div>
 							<div class="aui-list-item-input">
-								<input id="ecpersonphone" name="ecpersonphone" placeholder="紧急联系人电话" type="text" class="noborder_input form_control" value="<%=user.ecperson %>">
+								<input id="ecpersonphone" name="ecpersonphone" placeholder="紧急联系人电话" type="text" class="noborder_input form_control" value="<%=user.ecpersonphone %>">
 							</div>
 						</div>
 					</li>
@@ -105,7 +105,7 @@
 								其他需求及建议
 							</div>
 							<div class="aui-list-item-input">
-								<input id="ecpersonphone" name="ecpersonphone" placeholder="" type="text" class="noborder_input form_control" value="<%=user.others %>">
+								<input id="others" name="others" placeholder="" type="text" class="noborder_input form_control" value="<%=user.others %>">
 							</div>
 						</div>
 					</li>

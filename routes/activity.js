@@ -74,12 +74,107 @@ function push(router) {
         )
     });
 
-    //报名
-    router.get('/enroll', function (req, res, next) {
-        var data = { user_name: '', pwd: '', real_name: '', gender: '', idcard: '', phone: '', email: '', wechat_no: '', about_me: '' ,ecperson:'',ecpersonphone:'' ,others:''};
+    //报名页
+    router.get('/activity/enroll', function (req, res, next) {
+        var user = { user_name: '', pwd: '', real_name: '', gender: '', idcard: '', phone: '', email: '', wechat_no: '', about_me: '', ecperson: '', ecpersonphone: '', others: '' };
 
-        res.render('enroll', { title: "报名", user: data });
+        if (req.session.isLogin && req.session.user !== undefined) {
+            user = req.session.user;
+        }
+        else {
+            req.session.user = user;
+        }
+        res.render('enroll', { title: "报名", user: user });
     });
+
+
+    //提交报名表单
+    router.post('/activity/enroll', function (req, res, next) {
+        var user = req.session.user;
+        user.user_name = req.param('uname');
+
+        if (uname.trim().length == 0) {
+            res.send('昵称不能为空');
+            return;
+        }
+
+        // if (req.param('upwd' != undefined))
+        //     var upwd = runtime.md5(runtime.md5(req.param('upwd')));
+        if (req.param('login_pwd') != undefined && req.param('login_pwd2') != undefined) {
+            var login_pwd = req.param('login_pwd');
+            var login_pwd2 = req.param('login_pwd2');
+
+            if (login_pwd != login_pwd2) {
+                res.send('两次密码输入不一致');
+                return;
+            }
+            if (login_pwd == login_pwd2 && login_pwd.trim() == '') login_pwd = '13';
+            user.pwd = runtime.md5(runtime.md5(login_pwd));
+        }
+
+        user.real_name = req.param('ureal_name');
+        user.gender = req.param('ugender');
+        user.idcard = req.param('uidcard');
+        user.phone = req.param('uphone');
+        user.email = req.param('uemail');
+        user.wechat_no = req.param('uwechat_no');
+        user.about_me = req.param('uabout_me');
+        user.ecperson = req.param('ecperson');
+        user.ecpersonphone = req.param('ecpersonphone');
+
+        var uid = -1;
+        if (req.session.uid != undefined && req.session.uid > 0) uid = req.session.uid;
+
+        sqlexecutor.ExecSql(' select * from user where user_name=@uname ', { uname: uname }, function (err, rows) {
+            if (err) log(err, 3);
+            else if (req.session.isLogin) {
+                if (rows.length > 0 && req.session.uname != uname) {
+                    res.send('[' + uname + ']用户名已被使用');
+                    return;
+                }
+                sqlexecutor.ExecSql(' update user set real_name=@real_name,gender=@gender,idcard=@idcard,phone=@phone  where id = @id ',
+                    user, function (err, rows) {
+                        if (err) log(err);
+                        else if (rows.affectedRows > 0) {
+                            req.session.uname = uname;
+                            dosign(user, req, res, next);
+                        }
+                        else {
+                            res.send('报名失败');
+                            return;
+                        }
+                    });
+            }
+            else if ((rows.length > 0 && uid < 0)) {
+                res.send('[' + uname + ']用户名已被使用');
+                return;
+            }
+            else {
+                sqlexecutor.ExecSql('insert into user(user_name,pwd,real_name,gender,idcard,phone) ' +
+                    'values (@user_name ,@pwd,@real_name,@gender,@idcard,@phone)',
+                    user,
+                    function (err, rows) {
+                        res.contentType('application/json');
+                        if (err) { res.send({ err: '报名失败' }); runtime.Log(err, 3); }
+                        else if (rows.insertId > 0) {
+                            user = rows;
+
+                            req.session.isLogin = true;
+                            req.session.uid = rows.insertId;
+                            req.session.uname = uname;
+                            req.session.user
+                            dosign(req.session.user, req, res, next);
+                        }
+                    });
+            }
+        });
+
+    });
+
+    //报名
+    function dosign(user, req, res, next) {
+        
+    }
 }
 
 
