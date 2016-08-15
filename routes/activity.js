@@ -76,9 +76,11 @@ function push(router) {
 
     //报名页
     router.get('/activity/enroll', function (req, res, next) {
-        var user = { user_name: '', pwd: '', real_name: '', gender: '', idcard: '', phone: '', email: '', wechat_no: '', about_me: '', ecperson: '', ecpersonphone: '', others: '' };
+        var param = url.parse(req.url).query;
+        var user = { act_id: param.aid, user_name: '', pwd: '', real_name: '', gender: '', idcard: '', phone: '', email: '', wechat_no: '', about_me: '', ecperson: '', ecpersonphone: '', others: '' };
 
         if (req.session.isLogin && req.session.user !== undefined) {
+            req.session.act_id = user.act_id;
             user = req.session.user;
         }
         else {
@@ -90,10 +92,13 @@ function push(router) {
 
     //提交报名表单
     router.post('/activity/enroll', function (req, res, next) {
+        var param = url.parse(req.url).query;
         var user = req.session.user;
+        user.act_id = param.aid;
+
         user.user_name = req.param('uname');
 
-        if (uname.trim().length == 0) {
+        if (user.user_name.trim().length == 0) {
             res.send('昵称不能为空');
             return;
         }
@@ -119,24 +124,25 @@ function push(router) {
         user.email = req.param('uemail');
         user.wechat_no = req.param('uwechat_no');
         user.about_me = req.param('uabout_me');
+        user.suggesion = req.param('others');
         user.ecperson = req.param('ecperson');
         user.ecpersonphone = req.param('ecpersonphone');
 
         var uid = -1;
         if (req.session.uid != undefined && req.session.uid > 0) uid = req.session.uid;
 
-        sqlexecutor.ExecSql(' select * from user where user_name=@uname ', { uname: uname }, function (err, rows) {
+        sqlexecutor.ExecSql(' select * from user where user_name=@uname ', { uname: user.user_name }, function (err, rows) {
             if (err) log(err, 3);
             else if (req.session.isLogin) {
-                if (rows.length > 0 && req.session.uname != uname) {
-                    res.send('[' + uname + ']用户名已被使用');
+                if (rows.length > 0 && req.session.uname != user.user_name) {
+                    res.send('[' + user.user_name + ']昵称已被使用');
                     return;
                 }
                 sqlexecutor.ExecSql(' update user set real_name=@real_name,gender=@gender,idcard=@idcard,phone=@phone  where id = @id ',
                     user, function (err, rows) {
                         if (err) log(err);
                         else if (rows.affectedRows > 0) {
-                            req.session.uname = uname;
+                            req.session.uname = user.user_name;
                             dosign(user, req, res, next);
                         }
                         else {
@@ -146,7 +152,7 @@ function push(router) {
                     });
             }
             else if ((rows.length > 0 && uid < 0)) {
-                res.send('[' + uname + ']用户名已被使用');
+                res.send('[' + user.user_name + ']昵称已被使用');
                 return;
             }
             else {
@@ -161,8 +167,8 @@ function push(router) {
 
                             req.session.isLogin = true;
                             req.session.uid = rows.insertId;
-                            req.session.uname = uname;
-                            req.session.user
+                            req.session.uname = user.user_name;
+                            req.session.user.id = rows.insertedId;
                             dosign(req.session.user, req, res, next);
                         }
                     });
@@ -173,7 +179,28 @@ function push(router) {
 
     //报名
     function dosign(user, req, res, next) {
-        
+        user.is_agreen = 1;
+        user.paytype_flag = 0;
+        user.signup_on = new Date();
+        sqlexecutor.ExecSql(' select * from act_signup where act_id =@act_id and user_id =@user_id',
+            { act_id: user.act_id, user_id: user.id }, function (err, rows) {
+                if (err) { runtime.Log(err, 3); }
+                else if (rows.length > 0) {
+                    res.send({ err: '已报名' });
+                    return;
+                } else {
+                    sqlexecutor.ExecSql(' insert into act_signup (act_id,user_id, is_agreen , paytype_flag , status , suggesion , signup_on , ' +
+                        ' ecperson , ecpersonphone)  ' +
+                        ' values ( @act_id, @id, @is_agreen , @paytype_flag , @status , @suggesion , @signup_on , @ecperson , @ecpersonphone)',
+                        user, function (err, rows) {
+                            if (err) { runtime.Log(err, 3); }
+                            else if (rows.insertedId > 0) {
+                                res.send({ err: '报名成功' });
+                                return;
+                            }
+                        });
+                }
+            });
     }
 }
 
