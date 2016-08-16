@@ -28,7 +28,7 @@ function push(router) {
             }
             , function (err, rows) {
                 if (err) runtime.Log(err);
-                else if (rows.insertedId > 0) {
+                else if (rows.insertId > 0) {
                     res.send({ info: '发布成功' });
                 }
                 else
@@ -76,7 +76,7 @@ function push(router) {
 
     //报名页
     router.get('/activity/enroll', function (req, res, next) {
-        var param = url.parse(req.url).query;
+        var param = url.parse(req.url, true).query;
         var user = { act_id: param.aid, user_name: '', pwd: '', real_name: '', gender: '', idcard: '', phone: '', email: '', wechat_no: '', about_me: '', ecperson: '', ecpersonphone: '', others: '' };
 
         if (req.session.isLogin && req.session.user !== undefined) {
@@ -92,30 +92,40 @@ function push(router) {
 
     //提交报名表单
     router.post('/activity/enroll', function (req, res, next) {
-        var param = url.parse(req.url).query;
-        var user = req.session.user;
+        var param = url.parse(req.url, true).query;
+        var user = { act_id: param.aid, user_name: '', pwd: '', real_name: '', gender: '', idcard: '', phone: '', email: '', wechat_no: '', about_me: '', ecperson: '', ecpersonphone: '', others: '' };
+
+        if (req.session.isLogin && req.session.user !== undefined) {
+            req.session.act_id = user.act_id;
+            user = req.session.user;
+        }
+        else {
+            req.session.user = user;
+        }
+
         user.act_id = param.aid;
 
         user.user_name = req.param('uname');
 
-        if (user.user_name.trim().length == 0) {
+        if (user.user_name.length == 0) {
             res.send('昵称不能为空');
             return;
         }
 
         // if (req.param('upwd' != undefined))
         //     var upwd = runtime.md5(runtime.md5(req.param('upwd')));
-        if (req.param('login_pwd') != undefined && req.param('login_pwd2') != undefined) {
-            var login_pwd = req.param('login_pwd');
-            var login_pwd2 = req.param('login_pwd2');
+        //if (req.param('login_pwd') != undefined && req.param('login_pwd2') != undefined) {
+        var login_pwd = req.param('login_pwd');
+        var login_pwd2 = req.param('login_pwd2');
 
-            if (login_pwd != login_pwd2) {
-                res.send('两次密码输入不一致');
-                return;
-            }
-            if (login_pwd == login_pwd2 && login_pwd.trim() == '') login_pwd = '13';
-            user.pwd = runtime.md5(runtime.md5(login_pwd));
+        if (login_pwd != login_pwd2) {
+            res.send('两次密码输入不一致');
+            return;
         }
+        if (login_pwd == login_pwd2 && login_pwd == undefined)
+            login_pwd = '13';
+        user.pwd = runtime.md5(runtime.md5(login_pwd));
+        //}
 
         user.real_name = req.param('ureal_name');
         user.gender = req.param('ugender');
@@ -135,7 +145,7 @@ function push(router) {
             if (err) log(err, 3);
             else if (req.session.isLogin) {
                 if (rows.length > 0 && req.session.uname != user.user_name) {
-                    res.send('[' + user.user_name + ']昵称已被使用');
+                    res.send({ err: '[' + user.user_name + ']昵称已被使用' });
                     return;
                 }
                 sqlexecutor.ExecSql(' update user set real_name=@real_name,gender=@gender,idcard=@idcard,phone=@phone  where id = @id ',
@@ -146,13 +156,13 @@ function push(router) {
                             dosign(user, req, res, next);
                         }
                         else {
-                            res.send('报名失败');
+                            res.send({ err: '报名失败' });
                             return;
                         }
                     });
             }
             else if ((rows.length > 0 && uid < 0)) {
-                res.send('[' + user.user_name + ']昵称已被使用');
+                res.send({ err: '[' + user.user_name + ']昵称已被使用' });
                 return;
             }
             else {
@@ -168,7 +178,7 @@ function push(router) {
                             req.session.isLogin = true;
                             req.session.uid = rows.insertId;
                             req.session.uname = user.user_name;
-                            req.session.user.id = rows.insertedId;
+                            req.session.user.id = rows.insertId;
                             dosign(req.session.user, req, res, next);
                         }
                     });
@@ -182,6 +192,7 @@ function push(router) {
         user.is_agreen = 1;
         user.paytype_flag = 0;
         user.signup_on = new Date();
+        user.status = 0;
         sqlexecutor.ExecSql(' select * from act_signup where act_id =@act_id and user_id =@user_id',
             { act_id: user.act_id, user_id: user.id }, function (err, rows) {
                 if (err) { runtime.Log(err, 3); }
@@ -194,8 +205,9 @@ function push(router) {
                         ' values ( @act_id, @id, @is_agreen , @paytype_flag , @status , @suggesion , @signup_on , @ecperson , @ecpersonphone)',
                         user, function (err, rows) {
                             if (err) { runtime.Log(err, 3); }
-                            else if (rows.insertedId > 0) {
-                                res.send({ err: '报名成功' });
+                            else if (rows.insertId > 0) {
+                                res.contentType('application/json');
+                                res.send({ info: '报名成功' });
                                 return;
                             }
                         });
