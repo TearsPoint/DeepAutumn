@@ -6,6 +6,7 @@ var sqlexecutor = require('../sqlexecutor');
 require('./default').push(router);
 require('./index').push(router);
 require('./profile').push(router);
+require('./profile-setup').push(router);
 require('./blog').push(router);
 require('./account').push(router);
 require('./activity').push(router);

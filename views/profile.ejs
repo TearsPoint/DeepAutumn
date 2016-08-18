@@ -16,18 +16,180 @@
     />
     <script type="text/javascript" src="/scripts/13hike.js"></script>
     <script type="text/javascript" src="/scripts/tearspoint.core.js"></script>
-    <script type="text/javascript" src="/scripts/tearspoint.core.dispatcher.js"></script>
-    <script type="text/javascript">
+    <script type="text/javascript" src="/scripts/tearspoint.core.dispatcher.js"></script> 
+    
+    <link rel='stylesheet' href='/stylesheets/aui.2.0.css' />
+    <link rel='stylesheet' href='/stylesheets/profile.css' /> 
 
-    </script>
 </head>
 
-<body class="page-responsive">
-    <div id='welcome'>
+<body>
+    <!-- <div id='welcome'>
+        这是个人信息表 
         <h1>Main</h1>
         <div>当前用户 <%=uname %>  </div>
         <div><a href="/account/setpwd">设置密码</a </div>
         <div><a href="/complete?uid=<%=uid %>">完善用户信息</a </div>
-        <div><a href="/account/signout">退出登录</a </div>
+        <div><a href="/account/signout">退出登录</a </div> 
+    </div> -->
+    <div class="aui-content">
+
+        <div class="detail-title">
+            <a class="go-home" href="/profile-setup"> 
+                <i class="aui-iconfont aui-icon-gear"></i>
+            </a> 
+            <img class="user-head" src="/images/demo/002.jpg">
+            <div><span class="user-name"><%=uname %></span></div>
+            <div class="mychat">生活总是苟且，但我向往诗与远方。</div>
+        </div>
+
+        <div class="aui-tab" id="tab" style="width:100%">
+            <a class="aui-tab-item aui-active" id="tab-profile">个人信息</a>
+            <a class="aui-tab-item" id="tab-activity">走过的路</a>
+        </div>
+
+        <!-- 个人信息 -->
+        <ul class="aui-list aui-media-list" id="profile-box">
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <label>昵称：</label> 了灰鸽
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <label>性别：</label> 男
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <label>个人说明：</label> 生活总是苟且，但我向往诗与远方。
+                </div>
+            </li>
+        </ul>
+
+        <!-- 走过的路 -->
+        <ul class="aui-list aui-media-list" id="activity-box" style="display: none;">
+            <li class="aui-list-item">
+                <a href="/detail" class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media">
+                        <img src="/images/demo/001.jpg">
+                    </div>
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-text">
+                            <div class="aui-list-item-title">【海螺角】听海踏浪、拾螺</div>
+                        </div>
+                        <div class="aui-list-item-text">
+                            海螺角海岸线位于惠东半岛巽寮湾，既有清澈湛蓝的海水、洁白细软的沙滩...
+                        </div>
+                    </div>
+                </a>
+                <div class="aui-info" style="padding-top:0">
+                    <div class="aui-info-item">
+                        <span class="aui-margin-l-5">2016-03-03</span>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <a href="/detail" class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media">
+                        <img src="/images/demo/002.jpg">
+                    </div>
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-text">
+                            <div class="aui-list-item-title">【海螺角】听海踏浪、拾螺</div>
+                        </div>
+                        <div class="aui-list-item-text">
+                            海螺角海岸线位于惠东半岛巽寮湾，既有清澈湛蓝的海水、洁白细软的沙滩...
+                        </div>
+                    </div>
+                </a>
+                <div class="aui-info" style="padding-top:0">
+                    <div class="aui-info-item">
+                        <span class="aui-margin-l-5">2016-03-03</span>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <a href="/detail" class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media">
+                        <img src="/images/demo/003.png">
+                    </div>
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-text">
+                            <div class="aui-list-item-title">【海螺角】听海踏浪、拾螺</div>
+                        </div>
+                        <div class="aui-list-item-text">
+                            海螺角海岸线位于惠东半岛巽寮湾，既有清澈湛蓝的海水、洁白细软的沙滩...
+                        </div>
+                    </div>
+                </a>
+                <div class="aui-info" style="padding-top:0">
+                    <div class="aui-info-item">
+                        <span class="aui-margin-l-5">2016-03-03</span>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <a href="/detail" class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media">
+                        <img src="/images/demo/001.jpg">
+                    </div>
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-text">
+                            <div class="aui-list-item-title">【海螺角】听海踏浪、拾螺</div>
+                        </div>
+                        <div class="aui-list-item-text">
+                            海螺角海岸线位于惠东半岛巽寮湾，既有清澈湛蓝的海水、洁白细软的沙滩...
+                        </div>
+                    </div>
+                </a>
+                <div class="aui-info" style="padding-top:0">
+                    <div class="aui-info-item">
+                        <span class="aui-margin-l-5">2016-03-03</span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
     </div>
+
+    <!-- footer -->
+    <footer class="aui-bar aui-bar-tab" id="footer">
+        <a href="/" class="aui-bar-tab-item" tapmode>
+            <i class="aui-iconfont aui-icon-home"></i>
+            <div class="aui-bar-tab-label">首页</div>
+        </a>
+        <a class="aui-bar-tab-item" tapmode>
+            <i class="aui-iconfont aui-icon-flag"></i>
+            <div class="aui-bar-tab-label">活动</div>
+        </a>
+        <a href="/profile" class="aui-bar-tab-item aui-active" tapmode>
+            <i class="aui-iconfont aui-icon-my"></i>
+            <div class="aui-bar-tab-label">我的</div>
+        </a>
+    </footer>
+
+    
+    <script type="text/javascript" src="/scripts/jquery/jquery-1.7.1.js"></script>
+    <script type="text/javascript" src="/scripts/ihiking.me.js"></script>
+    <script type="text/javascript" src="/scripts/tearspoint.core.js"></script>
+    <script type="text/javascript" src="/scripts/tearspoint.core.dispatcher.js"></script>
+    <script type="text/javascript">
+        $("#tab-profile").click(function(){
+            $(".aui-tab-item").removeClass("aui-active");
+            $(this).addClass("aui-active");
+
+            $(".aui-media-list").hide();
+            $("#profile-box").show();
+
+        });
+        $("#tab-activity").click(function(){
+            $(".aui-tab-item").removeClass("aui-active");
+            $(this).addClass("aui-active");
+
+            $(".aui-media-list").hide();
+            $("#activity-box").show(); 
+        });
+
+    </script>
 </body>
