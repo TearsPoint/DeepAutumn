@@ -14,7 +14,8 @@
 	<link rel='stylesheet' href='/stylesheets/aui.2.0.css' />
 	<link rel='stylesheet' href='/stylesheets/aui-slide.css' />
 	<link rel='stylesheet' href='/stylesheets/detail.css' />
-</head> 
+</head>
+
 <body>
 	<div class="aui-content">
 		<div class="detail-title">
@@ -24,7 +25,7 @@
 			<img src="/images/demo/002.jpg" />
 			<div class="black-bg"></div>
 			<h4>
-				<%=act.act_theme %>
+				<%=act.act_theme + "  ("  + act.read_count + "次浏览)" %>
 			</h4>
 		</div>
 
@@ -36,8 +37,8 @@
 					<%=act.difficuty_desc %>
 			</li>
 			<li><label>活动时间：</label>
-				<%=act.start_on %> 至
-					<%=act.end_on %>
+				<%= new Date(act.start_on).toLocaleDateString() %> 至
+					<%=new Date(act.end_on).toLocaleDateString()  %>
 			</li>
 			<li><label>集合地点：</label>
 				<%=act.start_place %>
@@ -102,6 +103,24 @@
 
 		</div>
 	</div>
+
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="<%=act.id %>" data-title="<%=act.act_theme %>" data-url="http://120.25.78.19/detail?aid=<%=act.id %>"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+var duoshuoQuery = {short_name:"13hike"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+
 
 	<!-- footer -->
 	<footer class="aui-bar aui-bar-tab" id="footer">

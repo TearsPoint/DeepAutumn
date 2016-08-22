@@ -115,7 +115,7 @@ HIKE.onReady(
                     var rowContentHtml = rowContentHtml + " <div class=\"aui-list-item-media\"> <img src=\" " + d["banner_url"] + " \"> </div>";
                     var rowContentHtml = rowContentHtml + "  <div class=\"aui-list-item-inner\">  <div class=\"aui-list-item-text\"> ";
                     var rowContentHtml = rowContentHtml + "  <div class=\"aui-list-item-title\"> " + d["act_theme"] + " </div>";
-                    var rowContentHtml = rowContentHtml + "  <div class=\"aui-list-item-right\">" + d["days"] + "天线</div>";
+                    var rowContentHtml = rowContentHtml + "  <div class=\"aui-list-item-right\">" + d["days"] + "天线    " + d["read_count"] + "阅读</div>";
                     var rowContentHtml = rowContentHtml + "  </div>";
                     var rowContentHtml = rowContentHtml + "  <div class=\"aui-list-item-text\"> " + d["act_summary"] + " </div>";
                     var rowContentHtml = rowContentHtml + "  </div> </a>";
@@ -125,7 +125,7 @@ HIKE.onReady(
                     var rowContentHtml = rowContentHtml + " <div class=\"aui-info-item\">  ";
                     var rowContentHtml = rowContentHtml + "     <span class=\"aui-margin-l-5\">领队:" + d["leader1_name"] + "</span>";
                     var rowContentHtml = rowContentHtml + "  </div>";
-                    var rowContentHtml = rowContentHtml + "   <div class=\"aui-info-item\"> "+ d["start_on"]+" 出发</div>";
+                    var rowContentHtml = rowContentHtml + "   <div class=\"aui-info-item\"> "+ new Date(d["start_on"]).toLocaleDateString() +" 出发</div>";
                     var rowContentHtml = rowContentHtml + "  </div>";
 
                     row.innerHTML = rowContentHtml;

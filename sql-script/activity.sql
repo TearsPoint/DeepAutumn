@@ -1,5 +1,5 @@
 --活动表
-drop TABLE if exists activity;
+--drop TABLE if exists activity;
 
 CREATE TABLE if not exists activity (
   id bigint(20) NOT NULL AUTO_INCREMENT,
@@ -68,7 +68,8 @@ begin
     select  @i:=count(column_name)  from information_schema.columns where
         table_name='activity' and column_name='read_count';
     if @i=0 then alter table activity add read_count int null; end if;
-
+    alter table activity change read_count read_count int not null default 0;
+    
     --删除状态
     select  @i:=count(column_name)  from information_schema.columns where
         table_name='activity' and column_name='isdeleted';
@@ -100,7 +101,7 @@ select * from activity;
 
 
 --活动报名表
-drop TABLE if exists act_signup;
+--drop TABLE if exists act_signup;
 
 CREATE TABLE if not exists act_signup (
   id bigint(20) NOT NULL AUTO_INCREMENT,

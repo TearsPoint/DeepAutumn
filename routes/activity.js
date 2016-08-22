@@ -41,7 +41,7 @@ function push(router) {
     router.get('/activity', function (req, res, next) {
         sqlexecutor.ExecSql(' select id,act_theme,act_summary,price,price_desc,begin_on, ' +
             ' end_on,difficuty_flag,difficuty_desc,start_place,act_category,banner_url,start_on,leader1_uid,leader1_name,' +
-            ' datediff(end_on,start_on ) days ' +
+            ' datediff(end_on,start_on ) days , read_count ' +
             ' from activity where isdeleted = 0  ', //--and end_on >= curdate()
             {}, function (err, rows) {
                 if (err) runtime.Log(err);
@@ -60,18 +60,22 @@ function push(router) {
         var param = url.parse(req.url, true).query;
         var id = param.aid;
 
-        sqlexecutor.ExecSql(' select id,act_theme,act_summary,price,price_desc,act_detail,begin_on, ' +
-            ' end_on,difficuty_flag,difficuty_desc,start_place,act_category,banner_url ,act_category,banner_url,start_on,leader1_uid,leader1_name ,' +
-            ' person_count' +
-            ' from activity where id = @id ',
-            { id: id }, function (err, rows) {
-                if (err) runtime.Log(err);
-                else if (rows.length > 0) {
-                    res.render('detail', { title: '活动详情', act: rows[0] });
-                    return;
-                }
-            }
-        )
+        sqlexecutor.ExecSql(' update activity set read_count = read_count+1 where id=@id ', { id: id }, function (err, rows) {
+            if (err) runtime.Log(err);
+            else
+                sqlexecutor.ExecSql(' select id,act_theme,act_summary,price,price_desc,act_detail,begin_on, ' +
+                    ' end_on,difficuty_flag,difficuty_desc,start_place,act_category,banner_url ,act_category,banner_url,start_on,leader1_uid,leader1_name ,' +
+                    ' person_count,read_count' +
+                    ' from activity where id = @id ',
+                    { id: id }, function (err, rows) {
+                        if (err) runtime.Log(err);
+                        else if (rows.length > 0) {
+                            res.render('detail', { title: '活动详情', act: rows[0] });
+                            return;
+                        }
+                    }
+                )
+        });
     });
 
     //报名页
