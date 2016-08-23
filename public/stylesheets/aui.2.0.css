@@ -6,6 +6,11 @@
  */
  /*初始化类*/
 @charset "UTF-8";
+
+#ds-thread{
+    bottom:20px;
+}
+
 html{
 	font-family: sans-serif;
 	font-size: 20px;
