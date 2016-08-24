@@ -13,6 +13,8 @@ function push(router) {
             res.end();
             return;
         }
+
+        
         res.render('profile', { title: '个人设置', uid: req.session.uid, uname: req.session.uname });
     });
     
