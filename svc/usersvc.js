@@ -1,13 +1,13 @@
 var express = require('express');
 var runtime = require('../runtime');
-var sqlexecutor = require('../sqlexecutor');
+var sqlexec = require('../sqlexec');
 
 
 function push(router) {
     router.get('/usersvc', function (req, res) {
         res.contentType('application/json');
         var data;
-        sqlexecutor.ExecSql('select * from user limit 1000;', undefined, function (err, rows) {
+        sqlexec.ExecSql('select * from user limit 1000;', undefined, function (err, rows) {
             if (err) log(err, 3);
             else {
                 data = rows;
@@ -27,8 +27,8 @@ function push(router) {
         var uname = req.param('user_name');
         var pwd = req.param('pwd');
         var cpwd = runtime.md5(runtime.md5(pwd));
-        //sqlexecutor.ExecSql('insert into user(user_name,pwd) values("' + uname + '","' + cpwd + '");',
-        sqlexecutor.ExecSql('insert into user(user_name,pwd) values(@uname ,@cpwd)', { uname: uname, cpwd: cpwd },
+        //sqlexec.ExecSql('insert into user(user_name,pwd) values("' + uname + '","' + cpwd + '");',
+        sqlexec.ExecSql('insert into user(user_name,pwd) values(@uname ,@cpwd)', { uname: uname, cpwd: cpwd },
             function (err, rows) {
                 if (err) { res.send('-1'); log(err, 3); }
                 else {

@@ -27,9 +27,9 @@
     <!-- <div id='welcome'>
         这是个人信息表 
         <h1>Main</h1>
-        <div>当前用户 <%=uname %>  </div>
+        <div>当前用户 <%=user.user_name %>  </div>
         <div><a href="/account/setpwd">设置密码</a </div>
-        <div><a href="/complete?uid=<%=uid %>">完善用户信息</a </div>
+        <div><a href="/complete?uid=<%=user.Id %>">完善用户信息</a </div>
         <div><a href="/account/signout">退出登录</a </div> 
     </div> -->
     <div class="aui-content">
@@ -39,7 +39,7 @@
                 <i class="aui-iconfont aui-icon-gear"></i>
             </a> 
             <img class="user-head" src="/images/demo/002.jpg">
-            <div><span class="user-name"><%=uname %></span></div>
+            <div><span class="user-name"><%=user.user_name %></span></div>
             <div class="mychat">生活总是苟且，但我向往诗与远方。</div>
         </div>
 
@@ -52,17 +52,17 @@
         <ul class="aui-list aui-media-list" id="profile-box">
             <li class="aui-list-item">
                 <div class="aui-list-item-inner">
-                    <label>昵称：</label> 了灰鸽
+                    <label>昵称：</label> <%=user.user_name %>
                 </div>
             </li>
             <li class="aui-list-item">
                 <div class="aui-list-item-inner">
-                    <label>性别：</label> 男
+                    <label>性别：</label> <% if(user.gender=='1'){  %>  <%='男' %>  <% } else{ %> <%='女' %> <% } %>
                 </div>
             </li>
             <li class="aui-list-item">
                 <div class="aui-list-item-inner">
-                    <label>个人说明：</label> 生活总是苟且，但我向往诗与远方。
+                    <label>个人说明：</label> <%=user.about_me %>
                 </div>
             </li>
         </ul>

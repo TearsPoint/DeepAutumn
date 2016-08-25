@@ -1,6 +1,6 @@
 var express = require('express');
 var runtime = require('../runtime');
-var sqlexecutor = require('../sqlexecutor');
+var sqlexec = require('../sqlexec');
 var url = require('url');
 
 function push(router) {

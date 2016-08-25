@@ -3,7 +3,7 @@
  */
 var express = require('express');
 var runtime = require('../runtime');
-var sqlexecutor = require('../sqlexecutor');
+var sqlexec = require('../sqlexec');
 var url = require('url');
 
 function push(router) {
@@ -20,7 +20,7 @@ function push(router) {
         var difficuty_flag = req.param('difficuty_flag');
         var start_place = req.param('start_place');
 
-        sqlexecutor.ExecSql(' insert into activity (act_theme,act_summary,price,price_desc,act_detail,begin_on,end_on,' +
+        sqlexec.ExecSql(' insert into activity (act_theme,act_summary,price,price_desc,act_detail,begin_on,end_on,' +
             'difficuty_flag,start_place,act_category,banner_url,start_on,leader1_uid) '
             , {
                 act_theme: act_theme, act_summary: act_summary, price: price, price_desc: price_desc, act_detail: act_detail, begin_on: begin_on, end_on: end_on,
@@ -39,7 +39,7 @@ function push(router) {
 
     //获取活动未完成的活动 在主页中展示
     router.get('/activity', function (req, res, next) {
-        sqlexecutor.ExecSql(' select id,act_theme,act_summary,price,price_desc,begin_on, ' +
+        sqlexec.ExecSql(' select id,act_theme,act_summary,price,price_desc,begin_on, ' +
             ' end_on,difficuty_flag,difficuty_desc,start_place,act_category,banner_url,start_on,leader1_uid,leader1_name,' +
             ' datediff(end_on,start_on ) days , read_count ' +
             ' from activity where isdeleted = 0  ', //--and end_on >= curdate()
@@ -60,10 +60,10 @@ function push(router) {
         var param = url.parse(req.url, true).query;
         var id = param.aid;
 
-        sqlexecutor.ExecSql(' update activity set read_count = read_count+1 where id=@id ', { id: id }, function (err, rows) {
+        sqlexec.ExecSql(' update activity set read_count = read_count+1 where id=@id ', { id: id }, function (err, rows) {
             if (err) runtime.Log(err);
             else
-                sqlexecutor.ExecSql(' select id,act_theme,act_summary,price,price_desc,act_detail,begin_on, ' +
+                sqlexec.ExecSql(' select id,act_theme,act_summary,price,price_desc,act_detail,begin_on, ' +
                     ' end_on,difficuty_flag,difficuty_desc,start_place,act_category,banner_url ,act_category,banner_url,start_on,leader1_uid,leader1_name ,' +
                     ' person_count,read_count' +
                     ' from activity where id = @id ',
@@ -145,14 +145,14 @@ function push(router) {
         var uid = -1;
         if (req.session.uid != undefined && req.session.uid > 0) uid = req.session.uid;
 
-        sqlexecutor.ExecSql(' select * from user where user_name=@uname ', { uname: user.user_name }, function (err, rows) {
+        sqlexec.ExecSql(' select * from user where user_name=@uname ', { uname: user.user_name }, function (err, rows) {
             if (err) log(err, 3);
             else if (req.session.isLogin) {
                 if (rows.length > 0 && req.session.uname != user.user_name) {
                     res.send({ err: '[' + user.user_name + ']昵称已被使用' });
                     return;
                 }
-                sqlexecutor.ExecSql(' update user set real_name=@real_name,gender=@gender,idcard=@idcard,phone=@phone  where id = @id ',
+                sqlexec.ExecSql(' update user set real_name=@real_name,gender=@gender,idcard=@idcard,phone=@phone  where id = @id ',
                     user, function (err, rows) {
                         if (err) log(err);
                         else if (rows.affectedRows > 0) {
@@ -170,7 +170,7 @@ function push(router) {
                 return;
             }
             else {
-                sqlexecutor.ExecSql('insert into user(user_name,pwd,real_name,gender,idcard,phone) ' +
+                sqlexec.ExecSql('insert into user(user_name,pwd,real_name,gender,idcard,phone) ' +
                     'values (@user_name ,@pwd,@real_name,@gender,@idcard,@phone)',
                     user,
                     function (err, rows) {
@@ -197,14 +197,14 @@ function push(router) {
         user.paytype_flag = 0;
         user.signup_on = new Date();
         user.status = 0;
-        sqlexecutor.ExecSql(' select * from act_signup where act_id =@act_id and user_id =@user_id',
+        sqlexec.ExecSql(' select * from act_signup where act_id =@act_id and user_id =@user_id',
             { act_id: user.act_id, user_id: user.id }, function (err, rows) {
                 if (err) { runtime.Log(err, 3); }
                 else if (rows.length > 0) {
                     res.send({ err: '已报名' });
                     return;
                 } else {
-                    sqlexecutor.ExecSql(' insert into act_signup (act_id,user_id, is_agreen , paytype_flag , status , suggesion , signup_on , ' +
+                    sqlexec.ExecSql(' insert into act_signup (act_id,user_id, is_agreen , paytype_flag , status , suggesion , signup_on , ' +
                         ' ecperson , ecpersonphone)  ' +
                         ' values ( @act_id, @id, @is_agreen , @paytype_flag , @status , @suggesion , @signup_on , @ecperson , @ecpersonphone)',
                         user, function (err, rows) {

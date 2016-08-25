@@ -3,13 +3,13 @@
  */
 var express = require('express');
 var runtime = require('../runtime');
-var sqlexecutor = require('../sqlexecutor');
+var sqlexec = require('../sqlexec');
 
 function push(router) {
     /* GET test page. */
     router.get('/test2', function (req, res) {
         var data;
-        //sqlexecutor.ExecSql('select * from chinesecharactercode limit 1000;',undefined, function(err,rows) {
+        //sqlexec.ExecSql('select * from chinesecharactercode limit 1000;',undefined, function(err,rows) {
         //if(err) log(err,3);
         //else{
         //data = rows;

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var runtime = require('../runtime');
-var sqlexecutor = require('../sqlexecutor');
+var sqlexec = require('../sqlexec');
 
 require('./default').push(router);
 require('./index').push(router);

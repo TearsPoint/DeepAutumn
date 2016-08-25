@@ -3,7 +3,7 @@
  */
 var express = require('express');
 var runtime = require('../runtime');
-var sqlexecutor = require('../sqlexecutor');
+var sqlexec = require('../sqlexec');
 var url = require('url');
 
 function push(router) {
@@ -13,7 +13,7 @@ function push(router) {
         var data = { user_name: '', pwd: '', real_name: '', gender: '', idcard: '', phone: '', email: '', wechat_no: '', about_me: '' };
 
         if (req.session.uid != undefined && req.session.uid > 0) {
-            sqlexecutor.ExecSql('select * from user where id=@uid', { uid: req.session.uid },
+            sqlexec.ExecSql('select * from user where id=@uid', { uid: req.session.uid },
                 function (err, rows) {
                     if (err) log(err, 3);
                     else if (rows.length > 0) {
@@ -42,7 +42,7 @@ function push(router) {
         var cpwd = runtime.md5(runtime.md5(login_pwd));
         runtime.Log("login_pwd:" + cpwd, 1);
 
-        sqlexecutor.ExecSql('SELECT *,1 as count FROM user where ( user_name = @login_key or email= @login_key1 or phone= @login_key2 ) and pwd= @cpwd', { login_key: login_key, login_key1: login_key, login_key2: login_key, cpwd: cpwd },
+        sqlexec.ExecSql('SELECT *,1 as count FROM user where ( user_name = @login_key or email= @login_key1 or phone= @login_key2 ) and pwd= @cpwd', { login_key: login_key, login_key1: login_key, login_key2: login_key, cpwd: cpwd },
             function (err, rows) {
                 if (err) { log(err, 3); }
                 if (rows[0] === undefined || rows[0].count == 0) {
@@ -72,7 +72,7 @@ function push(router) {
         var data = { user_name: '', pwd: '', real_name: '', gender: '', idcard: '', phone: '', email: '', wechat_no: '', about_me: '' };
 
         if (req.session.uid != undefined && req.session.uid > 0) {
-            sqlexecutor.ExecSql('select * from user where id=@uid', { uid: req.session.uid },
+            sqlexec.ExecSql('select * from user where id=@uid', { uid: req.session.uid },
                 function (err, rows) {
                     if (err) log(err, 3);
                     else if (rows.length > 0) {
@@ -122,7 +122,7 @@ function push(router) {
         var uid = -1;
         if (req.session.uid != undefined && req.session.uid > 0) uid = req.session.uid;
 
-        sqlexecutor.ExecSql(' select 1 from user where user_name=@uname ', { uname: uname }, function (err, rows) {
+        sqlexec.ExecSql(' select 1 from user where user_name=@uname ', { uname: uname }, function (err, rows) {
             if (err) log(err, 3);
             else if ((rows.length > 0 && uid < 0) || (rows.length > 0 && req.session.isLogin && req.session.uname != uname)) {
                 res.send('[' + uname + ']用户名已被使用');
@@ -130,7 +130,7 @@ function push(router) {
             }
             else { //用户名可用
                 if (req.session.uid != undefined && req.session.uid > 0) {
-                    sqlexecutor.ExecSql(' update user set  user_name=@uname,real_name=@ureal_name,gender=@ugender,idcard=@uidcard,phone=@uphone,email=@uemail,wechat_no=@uwechat_no,about_me=@uabout_me  where id = @id ',
+                    sqlexec.ExecSql(' update user set  user_name=@uname,real_name=@ureal_name,gender=@ugender,idcard=@uidcard,phone=@uphone,email=@uemail,wechat_no=@uwechat_no,about_me=@uabout_me  where id = @id ',
                         { id: req.session.uid, uname: uname, upwd: upwd, ureal_name: ureal_name, ugender: ugender, uidcard: uidcard, uphone: uphone, uemail: uemail, uwechat_no: uwechat_no, uabout_me: uabout_me }, function (err, rows) {
                             if (err) log(err);
                             else if (rows.affectedRows > 0) {
@@ -150,7 +150,7 @@ function push(router) {
                         });
                 }
                 else {
-                    sqlexecutor.ExecSql('insert into user(user_name,pwd,real_name,gender,idcard,phone,email,wechat_no,about_me) ' +
+                    sqlexec.ExecSql('insert into user(user_name,pwd,real_name,gender,idcard,phone,email,wechat_no,about_me) ' +
                         'values (@uname ,@upwd,@ureal_name,@ugender,@uidcard,@uphone,@uemail,@uwechat_no,@uabout_me)',
                         { uname: uname, upwd: upwd, ureal_name: ureal_name, ugender: ugender, uidcard: uidcard, uphone: uphone, uemail: uemail, uwechat_no: uwechat_no, uabout_me: uabout_me },
                         function (err, rows) {
@@ -202,7 +202,7 @@ function push(router) {
         var cpwd = runtime.md5(runtime.md5(login_pwd));
         var cpwd2 = runtime.md5(runtime.md5(login_pwd2));
 
-        sqlexecutor.ExecSql(' update user set pwd = @pwd  where id = @id ', { pwd: cpwd, id: req.session.uid }, function (err, rows) {
+        sqlexec.ExecSql(' update user set pwd = @pwd  where id = @id ', { pwd: cpwd, id: req.session.uid }, function (err, rows) {
             if (err) log(err);
             else if (rows.affectedRows > 0) {
                 res.writeHead(302, { 'Location': '/account/login' });

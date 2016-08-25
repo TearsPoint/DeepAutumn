@@ -1,6 +1,6 @@
 var mysql = require('mysql');
 var config = require('../config');
-var sqlexecutor = require('../sqlexecutor')
+var sqlexec = require('../sqlexec')
 var fs = require('fs');
 var path = require('path');
 var runtime = require('../runtime');
@@ -324,10 +324,10 @@ function test() {
     var cpwd = runtime.md5(runtime.md5(pwd));
 
     //原始拼字符串   不安全
-    //sqlexecutor.ExecSql('insert into user(user_name,pwd) values("' + uname + '","' + cpwd + '");',
+    //sqlexec.ExecSql('insert into user(user_name,pwd) values("' + uname + '","' + cpwd + '");',
 
     //使用format()
-    sqlexecutor.ExecSql('insert into user(user_name,pwd) values(@uname ,@cpwd)', { uname: uname, cpwd: cpwd },
+    sqlexec.ExecSql('insert into user(user_name,pwd) values(@uname ,@cpwd)', { uname: uname, cpwd: cpwd },
         function (err, rows) {
             if (err) { console.log(err, 3); }
             else {
@@ -391,7 +391,7 @@ function Exec() {
 
 
 function ExecSql(sql) {
-    sqlexecutor.ExecSql(sql,
+    sqlexec.ExecSql(sql,
         function (err, rows) {
             if (err) log(err, 3);
             else {
@@ -414,7 +414,7 @@ function ExecSqls() {
         sql = fs.readFileSync(filePath, 'utf-8');
     }
 
-    sqlexecutor.ExecSqls(sql,
+    sqlexec.ExecSqls(sql,
         function (err, rows) {
             if (err) log(err, 3);
             else {

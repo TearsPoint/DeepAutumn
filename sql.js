@@ -1,6 +1,6 @@
 var mysql = require('mysql');
 var config = require('./config');
-var sqlexecutor = require('./sqlexecutor')
+var sqlexec = require('./sqlexec')
 var fs = require('fs');
 var path = require('path');
 var runtime = require('./runtime');
@@ -23,7 +23,7 @@ function Exec() {
             sql = sql.replace(/--.*/g, '--##');
             sqls = sql.split('--##');
             if (sqls.length > 1) {
-                var conn = sqlexecutor.currentConnection();
+                var conn = sqlexec.currentConnection();
                 //console.log(conn);
                 conn.beginTransaction(function doT(err) {
                     if (err) {
@@ -41,7 +41,7 @@ function Exec() {
                                 // ExecSql(sqls[i]);
                                 // doTransaction(i + 1, len, i + 1, callback);
                                 try {
-                                    sqlexecutor.ExecSql(sqls[i], function oncomplete(err, data) {
+                                    sqlexec.ExecSql(sqls[i], function oncomplete(err, data) {
                                         try {
                                             doTransaction(i + 1, len, i + 1, callback);
                                         } catch (err) {
@@ -88,7 +88,7 @@ function waitExit(time) {
 
 
 function ExecSql(sql) {
-    sqlexecutor.ExecSql(sql,
+    sqlexec.ExecSql(sql,
         function (err, rows) {
             if (err) console.log(err, 3);
             else {
@@ -106,7 +106,7 @@ function ExecSqls(sql) {
     if (sql == null || sql == undefined)
         sql = "select * from bi_posts";
 
-    sqlexecutor.ExecSqls(sql, { o: 'i', value1: 'testValue1' },
+    sqlexec.ExecSqls(sql, { o: 'i', value1: 'testValue1' },
         function (err, rows) {
             if (err) log(err, 3);
             else {
