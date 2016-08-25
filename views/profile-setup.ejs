@@ -7,7 +7,7 @@
 	/>
 	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
 
-	<title>报名</title>
+	<title><%=title %></title>
 
 	<link rel='stylesheet' href='/stylesheets/aui.2.0.css' />
 	<link rel='stylesheet' href='/stylesheets/aui-slide.css' />
@@ -19,7 +19,7 @@
 		<a class="aui-pull-left aui-btn" href="/detail">
 			<span class="aui-iconfont aui-icon-left"></span>
 		</a>
-		<div class="aui-title">填写报名表</div>
+		<div class="aui-title"><%=title %></div>
 	</header>
 
 	<form id='reg_from' action="\account\register" method="post">
@@ -85,7 +85,7 @@
 
 		<!-- footer -->
 		<footer class="aui-bar aui-bar-tab" id="footer">
-			<input type="submit" class="aui-btn aui-btn-info aui-btn-block" style="border-radius: 0;" value="提交" />
+			<input type="submit" class="aui-btn aui-btn-info aui-btn-block" style="border-radius: 0;" value="保存" />
 		</footer>
 
 	</form>
