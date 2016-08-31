@@ -42,6 +42,7 @@ HIKE = {
         HIKE.isReady = true;
         funcs = []; // 清空一下
     }
+    
 }
 
 if (window.addEventListener) {
@@ -135,3 +136,26 @@ HIKE.onReady(
             });
     }
 );
+
+
+(function init(){
+
+    var jq = jQuery;
+
+    function URLParser(url) {
+    var $el = jq("<a></a>").attr("href", url);
+    this.el = $el.get(0);
+    this.parser = this.el;
+    }
+
+
+    URLParser.prototype.getParam = function(key)    {
+        var KEY_REG = new RegExp("([\?&])" + key + "=([^&#]*)([&#])?");
+        var result = this.el.search.match(KEY_REG);
+        return result
+            ? result[2]
+            : null;
+    };
+
+    
+})();

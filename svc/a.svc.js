@@ -5,5 +5,6 @@ var sqlexec = require('../sqlexec');
 
 require('./usersvc.js').push(router);
 require('./eventsvc.js').push(router);
+require('./uploadsvc.js').push(router);
 
 module.exports  = router;

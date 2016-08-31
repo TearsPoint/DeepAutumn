@@ -70,8 +70,13 @@ function push(router) {
                     { id: id }, function (err, rows) {
                         if (err) runtime.Log(err);
                         else if (rows.length > 0) {
-                            res.render('detail', { title: '活动详情', act: rows[0] });
-                            return;
+                            var result = { title: '活动详情', act: rows[0] };
+                            sqlexec.ExecSql('  select u.user_name, u.gender , s.status , s.signup_on from activity a , act_signup s , user u '
+                                + 'where a.id = s.act_id and s.user_id = u.id  and s.act_id =@act_id', { act_id: id },
+                                function (err, rows) {
+                                    result.users = rows;
+                                    res.render('detail', result);
+                                });
                         }
                     }
                 )
@@ -85,6 +90,7 @@ function push(router) {
 
         if (req.session.isLogin && req.session.user !== undefined) {
             req.session.act_id = user.act_id;
+            req.session.user.act_id = user.act_id;
             user = req.session.user;
         }
         else {
@@ -149,7 +155,8 @@ function push(router) {
             if (err) log(err, 3);
             else if (req.session.isLogin) {
                 if (rows.length > 0 && req.session.uname != user.user_name) {
-                    res.send({ err: '[' + user.user_name + ']昵称已被使用' });
+                    //res.send({ err: '[' + user.user_name + ']昵称已被使用' });
+                    onsign(req, res, { "result": "报名失败,[" + user.user_name + "]昵称已被使用, 如果该昵称用户是你本人，请<a href='/account/login'>登录</a>后报名", "user": user });
                     return;
                 }
                 sqlexec.ExecSql(' update user set real_name=@real_name,gender=@gender,idcard=@idcard,phone=@phone  where id = @id ',
@@ -160,21 +167,19 @@ function push(router) {
                             dosign(user, req, res, next);
                         }
                         else {
-                            res.send({ err: '报名失败' });
-                            return;
+                            onsign(req, res, { "result": "报名失败", "user": user });
                         }
                     });
             }
             else if ((rows.length > 0 && uid < 0)) {
-                res.send({ err: '[' + user.user_name + ']昵称已被使用' });
-                return;
+                // res.send({ err: '[' + user.user_name + ']昵称已被使用' });
+                onsign(req, res, { "result": "报名失败,[" + user.user_name + "]昵称已被使用, 如果该昵称用户是你本人，请<a href='/account/login'>登录</a>后报名", "user": user });
             }
             else {
                 sqlexec.ExecSql('insert into user(user_name,pwd,real_name,gender,idcard,phone) ' +
                     'values (@user_name ,@pwd,@real_name,@gender,@idcard,@phone)',
                     user,
                     function (err, rows) {
-                        res.contentType('application/json');
                         if (err) { res.send({ err: '报名失败' }); runtime.Log(err, 3); }
                         else if (rows.insertId > 0) {
                             user = rows;
@@ -201,8 +206,7 @@ function push(router) {
             { act_id: user.act_id, user_id: user.id }, function (err, rows) {
                 if (err) { runtime.Log(err, 3); }
                 else if (rows.length > 0) {
-                    res.send({ err: '已报名' });
-                    return;
+                    onsign(req, res, { "result": "你已在该活动报过名", "user": user });
                 } else {
                     sqlexec.ExecSql(' insert into act_signup (act_id,user_id, is_agreen , paytype_flag , status , suggesion , signup_on , ' +
                         ' ecperson , ecpersonphone)  ' +
@@ -210,13 +214,21 @@ function push(router) {
                         user, function (err, rows) {
                             if (err) { runtime.Log(err, 3); }
                             else if (rows.insertId > 0) {
-                                res.contentType('application/json');
-                                res.send({ info: '报名成功' });
-                                return;
+                                onsign(req, res, { "result": "恭喜你报名成功！！", "user": user });
                             }
                         });
                 }
             });
+    }
+
+    function onsign(req, res, info) {
+        sqlexec.ExecSql('  select u.user_name, u.gender , s.status , s.signup_on from activity a , act_signup s , user u '
+            + 'where a.id = s.act_id and s.user_id = u.id  and s.act_id =@act_id', { act_id: info.user.act_id },
+            function (err, rows) {
+                info.users = rows;
+                res.render('signok', info);
+            });
+
     }
 }
 

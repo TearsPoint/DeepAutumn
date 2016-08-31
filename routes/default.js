@@ -8,7 +8,7 @@ var sqlexec = require('../sqlexec');
 function push(router) {
     /* GET home page. */
     router.get('/', function (req, res) {
-        res.render('default', { title: 'Welcome 13hike' });
+        res.render('index', { title: 'Welcome 13hike' });
     });
 
 }

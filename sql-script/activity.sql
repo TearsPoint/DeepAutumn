@@ -84,6 +84,7 @@ end;
 
 call alter_activity(1);
 
+/*
 insert into activity (act_theme,act_summary, leader1_name) values('【二期】来自大美青海的一封情书', '油菜花盛开季
 32号带领大家圆梦青海，重走丝绸之路
 梦再远，我们一起追；
@@ -95,7 +96,8 @@ insert into activity (act_theme,act_summary, leader1_name) values('【年保玉�
 雪山圣湖旁，
 听花开的声音。','zyy');
 
-select * from activity;
+*/
+
 
 
 
@@ -118,8 +120,9 @@ CREATE TABLE if not exists act_signup (
   PRIMARY KEY (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
+/*
 insert into act_signup (act_id,user_id,suggesion) values(1,1,'玩的愉快');
 insert into act_signup (act_id,user_id,suggesion) values(2,2,'玩的愉快2');
+*/
 
-select * from act_signup;
 

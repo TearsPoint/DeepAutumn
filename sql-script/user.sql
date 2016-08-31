@@ -88,5 +88,6 @@ end;
 
 call alter_user(1);
 
-
+/*
 select * from user;
+*/
